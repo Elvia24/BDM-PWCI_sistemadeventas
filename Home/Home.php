@@ -23,7 +23,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper" >
-
+  <!-- buena noche -->
     <!-- Barra superior -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- boton Barra de navegación izquierda -->
