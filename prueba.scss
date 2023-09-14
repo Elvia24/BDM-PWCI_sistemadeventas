@@ -1,0 +1,45 @@
+
+
+:root {
+    --azul-bisonte: #02318b; /* Define la variable y asigna el color AZUL BISONTE */
+    --gris-bisonte:#A8A7A7;
+    --rojo-bisonte: #751314;
+    --azul-bisonte-barralateral: #223e72; 
+    --bisonte-barralateralderecha: #460b0c; 
+    --bisonte-rojizo-Letras: #440808; 
+    --gris-Generico-tabla: #dee2e6;
+    --gris-Generico: #495057;
+}
+
+.card-primary:not(.card-outline)>.card-header {
+    background-color: var(--rojo-bisonte);
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: var(--azul-bisonte);
+}
+a {
+    color: var(--bisonte-rojizo-Letras);
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.nav-pills .nav-item a.nav-link:not(.active):hover {
+    color: var(--azul-bisonte-barralateral); /* Cambia el color a rojo al pasar el mouse */
+  }
+
+  .custom-border {
+    border-top: 1px solid var(--gris-Generico-tabla);
+    border-right: 1px solid var(--gris-Generico-tabla);
+    border-bottom: 1px solid var(--gris-Generico-tabla);
+    border-left: 1px solid var(--gris-Generico-tabla);
+}
+.form-control:focus {
+    color: var(--gris-Generico);
+    background-color: #fff;
+    border-color: var(--rojo-bisonte);
+    outline: 0;
+    box-shadow: inset 0 0 0 transparent;
+}
+
