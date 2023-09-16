@@ -12,7 +12,7 @@
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="../public/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- viejo estilo -->
-  <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../dist/css/lte.min.css">
  <!-- nuevo estilo -->
   <link rel="stylesheet" href="../public/css/Colores.css">
   <link rel="stylesheet" href="../prueba.scss">
@@ -169,7 +169,7 @@
 <script src="../public/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../public/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../dist/js/adminlte.min.js"></script>
+
+<script src="../dist/js/lte.min.js"></script>
 </body>
 </html>
