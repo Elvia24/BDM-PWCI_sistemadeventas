@@ -23,6 +23,9 @@
   <!-- /.login-logo -->
   
 <!-- probando probando -->
+
+<!-- probando probando2 -->
+
   
   <div class="card2a card-outline barrasuperior">
     <div class="card-header text-center">
