@@ -1,18 +1,18 @@
 API de gestion de prodcutos, carrito de 
 comparas, gestion de usuarios.
+1.Gestion de usuarios 
+-Registro e inicio sesion: los clientes podran registrarse e iniciar sesion.
 
-1. Gestion de Productos : 
+2. Gestion de Productos : 
 -la api filtrar la lista 
 productos permitiendo al usaruio buscar el producto 
 por categoria.
 -detalles del producto permitira vizualizar las caracteristicas del 
 producto como nombre, categoria precio etc...
-2. Gestion de Carrito de Compras 
+3. Gestion de Carrito de Compras 
 -Argegar al Carrito:los clientes pueden agregar productos a su carrito de comparas, se registra el producto y la cantidad deseada 
 -los clientes pueden modificar la cantidad de productos en el carrito o eliminar 
 -ver carrito: los clientes pueden ver el contenido de su carrito antes de pagar 
-3.Gestion de usuarios 
--Registro e inicio sesion: los clientes podran registrarse e iniciar sesion.
 
 
 
