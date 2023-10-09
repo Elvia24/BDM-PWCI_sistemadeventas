@@ -6,6 +6,11 @@
      background-color: var(--azul-bisonte); /* AZUL BISONTE*/
     border-color: var(--azul-bisonte);
     box-shadow: none;
+
+  }
+
+  .boton-IniciarSesion:hover {
+    background-color: #ff0000; /* Cambia el color de fondo cuando se pasa el cursor sobre el botón */
   }
 
   .btn2a {

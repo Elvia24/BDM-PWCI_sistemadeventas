@@ -88,7 +88,7 @@
       </p> -->
       <br />
       <p>
-        <a href="register.html" style="color: var(--azul-bisonte);">Registrarse</a>
+        <a href="../Registro/Registro.php" style="color: var(--azul-bisonte);">Registrarse</a>
       </p>
 
     </div>
