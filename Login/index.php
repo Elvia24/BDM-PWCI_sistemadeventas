@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Login Ventas Bisontes </title>
+<!-- icono de la pagina -->
+<link rel="icon" href="../../icon/bisonte.ico" type="image/x-icon">
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -16,29 +18,48 @@
  <!-- nuevo estilo -->
   <link rel="stylesheet" href="../public/css/Colores.css">
   <link rel="stylesheet" href="../prueba.scss">
+
+     <!-- Libreria sweetalert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
 </head>
 <body class="hold-transition login-page2">
 
 <div class="login-box">
   <!-- /.login-logo -->
   
-<!-- probando probando -->
+  <?php 
+  session_start();
+  //existe  o no la sesion abierta
+if(isset($_SESSION["mensje"])){
+    $respuesta = $_SESSION["mensje"];?>
+    <script>
+      Swal.fire({
+  position: 'center',
+  icon: 'error',
+  title: '<?php  echo $respuesta;?>',
+  showConfirmButton: false,
+  timer: 1500
+})
+    </script>
+    
+    <?php 
+}
+  ?>
 
-<!-- probando probando2 -->
-
-  
   <div class="card2a card-outline barrasuperior">
     <div class="card-header text-center">
 
     <img src="../public/images/Logo.png" alt="" width="110px" style="display: block; margin: 0 auto;" top="50px">
-      <a href="../../index2.html" class="h1"> Ventas Bisontes</a>
+      <h1> Ventas Bisontes</h1>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Inicia Sesion</p>
-
-      <form action="../../index3.html" method="post">
+ 
+      <!-- este sujeto mandara los datos al controlador atraves del metodo post -->
+      <form action="../app/controllers/login/login.php" method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="email" name="email_iLogin" class="form-control" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -46,7 +67,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" name="password_user_iLogin" class="form-control" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -54,7 +75,22 @@
           </div>
         </div>
           <!-- /.col -->
-          
+          <div class="input-group mb-3">
+        <label for="miComboBox" class="content" style="padding: 0px 10px;">Rol: </label>
+            <select id="miComboBox" name="opciones_iLogin" class="form-control">
+                <option value="3">Privado</option>
+                <option value="4">Publico</option>
+                <option value="2">Vendedor</option>
+                <option value="1">Administrador</option>
+              
+            </select>
+
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
         <div class="row">
           <!-- <div class="col-8">
             <div class="icheck-primary">

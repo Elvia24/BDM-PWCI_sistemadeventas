@@ -16,6 +16,9 @@
  <!-- nuevo estilo -->
   <link rel="stylesheet" href="../public/css/Colores.css">
   <link rel="stylesheet" href="../prueba.scss">
+
+      <!-- icono de la pagina -->
+      <link rel="icon" href="../icon/bisonte.ico" type="image/x-icon">
 </head>
 <body class="hold-transition register-page">
 
@@ -25,7 +28,7 @@
   <div class="card2a card-outline barrasuperior ">
     <div class="card-header text-center">
     <img src="../public/images/Logo.png" alt="" width="110px" style="display: block; margin: 0 auto;" top="50px">
-      <a href="../../index2.html" class="h1"> Ventas Bisontes</a>
+      <h1> Ventas Bisontes</h1>
     </div>
     <div class="card-body ">
       <p class="login-box-header " style="color: #02318B "  >Registro.</p>
@@ -70,7 +73,8 @@
                 <option value="opcion1" >Privado</option>
                 <option value="opcion2">Publico</option>
                 <option value="opcion3">Vendedor</option>
-               
+                <option value="opcion4">Administrador</option>
+                
             </select>
 
           <div class="input-group-append">
@@ -108,7 +112,6 @@
                 <option value="opcion1" >Mujer</option>
                 <option value="opcion2">Hombre</option>
                 <option value="opcion3">Indistinto</option>
-               
             </select>
 
           <div class="input-group-append">

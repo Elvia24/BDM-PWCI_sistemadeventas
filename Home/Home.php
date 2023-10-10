@@ -1,8 +1,26 @@
+<?php
+include('../app/config.php');
+session_start();
+if(isset( $_SESSION['sesion_email'])){
+  //echo "si existe seccion de  ".$_SESSION['sesion_email'];
+  $email_sesion= $_SESSION['sesion_email'];
+}else{
+  echo "no existe secion";
+
+  header('Location:'.$URL.'/Login/index.php');
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- icono de la pagina -->
+<link rel="icon" href="../../icon/bisonte.ico" type="image/x-icon">
+
   <title>Home</title>
 
   <!-- Google Font: Source Sans Pro -->
@@ -15,9 +33,29 @@
   <link rel="stylesheet" href="../dist/css/lte.min.css">
   
   <link rel="stylesheet" href="../prueba.scss">
-
+  <!-- icono de la pagina -->
+  <link rel="icon" href="../icon/bisonte.ico" type="image/x-icon">
+<!-- icono de la pagina -->
+  <link rel="icon" href="../icon/bisonte.ico" type="image/x-icon">
+  <!-- Libreria sweetalert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+
+
 <body class="hold-transition sidebar-mini">
+
+<script>
+  //este sujeto es el mensaje de bienvenido
+// Swal.fire({
+//   position: 'center',
+//   icon: 'success',
+//   title: 'Bienvenido al sistema <?php echo $email_sesion;?>',
+//   showConfirmButton: false,
+//   timer: 1500
+// })
+
+</script>
+
 <div class="wrapper" >
   <!-- buena noche -->
     <!-- Barra superior -->
@@ -67,11 +105,13 @@
           </a>
         </li> 
       </li>
+      <!-- BOTON DE CERRAR SESION -->
       <li class="nav-item">
-        <a class="nav-link"  href="#" role="button">
+        <a class="nav-link"  href="<?php echo $URL;?>/app/controllers/login/cerrar_sesion.php" role="button">
           <i class="fas fa-arrow-right"></i>
         </a>
       </li>
+      <!-- BOTON DE CERRAR SESION -->
     </ul>
   <!-- contenedor barra superior parte izquierda -->
   </nav>
@@ -80,7 +120,7 @@
   <!-- Contenedor de barra lateral Derecha -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4 " style="background-color: var(--azul-bisonte-barralateral);">
     <!-- Logo -->
-    <a href="Home.php" class="brand-link "style=" border-bottom: var(--rojo-bisonte);">
+    <a href="../Home/Home.php" class="brand-link "style=" border-bottom: var(--rojo-bisonte);">
       <img src="../public/images/Logo.png" alt="Ventas Bisontes" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Ventas Bisontes</span>
     </a>
@@ -93,7 +133,7 @@
           <img src="../public/images/Logo.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">User</a>
+          <a href="../Perfil/perfil.php" class="d-block">User</a>
         </div>
       </div>
       <!-- Panel de usuario de la barra lateral Derecha-->
@@ -103,7 +143,7 @@
           <!--  clase .nav-icon con font-awesome para los iconos -->
             <!--  USUARIOS-->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="../Usuarios/Usuarios.php" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
                 <p>
                     Usuarios

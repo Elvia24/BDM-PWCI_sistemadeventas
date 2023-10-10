@@ -93,7 +93,7 @@
           <img src="../public/images/Logo.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">User</a>
+          <a href="../Perfil/perfil.php" class="d-block">User</a>
         </div>
       </div>
       <!-- Panel de usuario de la barra lateral Derecha-->
