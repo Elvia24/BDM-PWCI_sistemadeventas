@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,46 +36,48 @@
  
         
         
-      <form action="../../index.html" method="post">
-                <!-- correo electronico-->
+
+
+       <form action="../app/controllers/usuarios/registro.php " method="post"  enctype="multipart/form-data"><!-- ESTE SUJETO MANDA LOS DATAOS A registro.php DEL CONTROLADOR -->
+        <!-- correo electronico-->
                 <div class="input-group mb-3">
-          <input type="Correo" class="form-control" placeholder="Correo Electronico">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
-        </div>
+                    <input name="correo_registro" type="Correo" class="form-control" placeholder="Correo Electronico">
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span class="fas fa-envelope"></span>
+                      </div>
+                    </div>
+                </div>
         <!-- correo electronico-->
         <!-- Nombre de usuario-->
-        <div class="input-group mb-3">
-          <input type="Usuario" class="form-control" placeholder="Usuario">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
-        </div>
-          <!-- Nombre de usuario-->
-            <!-- Constraseña-->
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
+                <div class="input-group mb-3">
+                  <input name="nombreUsuario_registro" type="text" class="form-control" placeholder="Usuario">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-user"></span>
+                    </div>
+                  </div>
+                </div>
+        <!-- Nombre de usuario-->
+        <!-- Constraseña-->
+                <div class="input-group mb-3">
+                  <input name="contraseña_registro" type="password" class="form-control" placeholder="Password">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-lock"></span>
+                    </div>
+                  </div>
+                </div>
         <!-- Constraseña-->
         <!-- Rol de usuario-->
         <div class="input-group mb-3">
         <label for="miComboBox" class="content" style="padding: 0px 10px;">Rol: </label>
-            <select id="miComboBox" name="opciones" class="form-control" >
-                <option value="opcion1" >Privado</option>
-                <option value="opcion2">Publico</option>
-                <option value="opcion3">Vendedor</option>
-                <option value="opcion4">Administrador</option>
-                
+            <select id="miComboBox" name="ID_rol_registro" class="form-control" >
+                <option value="3">Privado</option>
+                <option value="4">Publico</option>
+                <option value="2">Vendedor</option>
+                <option value="1">Administrador</option>
+               
             </select>
 
           <div class="input-group-append">
@@ -86,7 +89,7 @@
         <!-- Rol de usuario-->
         <!-- Nombre Completo-->
         <div class="input-group mb-3">
-          <input type="NombreCompleto-" class="form-control" placeholder="Nombre">
+          <input name="Nombres_registro" type="text" class="form-control" placeholder="Nombre">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -98,7 +101,7 @@
         <div class="input-group mb-3">
          
           <label for="birthday" >Fecha de Nacimiento</label>
-                        <input class="form-control" type="date" name="birthday" id="birthday" required min="1977-01-01" max="2022-12-31">
+                        <input class="form-control" type="date" name="fechaNacimiento_registro" id="birthday" required min="1977-01-01" max="2022-12-31">
                         <div id="myBirthday">
                         <br>
                         </div>
@@ -107,11 +110,11 @@
         <!-- Fecha de nacimiento-->
        <!-- Sexo-->
        <div class="input-group mb-3">
-        <label for="miComboBox" class="content" style="padding: 0px 10px;">Sexo: </label>
-            <select id="miComboBox" name="opciones" class="form-control" >
-                <option value="opcion1" >Mujer</option>
-                <option value="opcion2">Hombre</option>
-                <option value="opcion3">Indistinto</option>
+        <label for="miComboBox2" class="content" style="padding: 0px 10px;">Sexo: </label>
+            <select id="miComboBox2" name="Sexo_registro" class="form-control" >
+                <option value="Mujer" >Mujer</option>
+                <option value="Hombre">Hombre</option>
+                <option value="Indistinto">Indistinto</option>
             </select>
 
           <div class="input-group-append">
@@ -123,21 +126,22 @@
         <!-- Sexo-->
         
         <div class="container">
-    <!--<br>-->
-    <label for="avatar">Imagen de perfil</label>
 
-    <input class="ocultaron"  type="file" id="avatar"  name="imagenSubida" accept="image/*"/>
+          <label for="avatar">Imagen de perfil</label>
 
-    <label for="avatar" class="content" > 
-        <div class="myLabel">
-            <img class="myImg2" id="imagenSubida" src="../public/images/Logo.png" />
-            <div>
-                <span id="tituloArchivo">Agregar imagen</span><br />
-                <span id="nombreArchivo"></span>
-            </div>
+          <input class="ocultaron"  type="file" id="avatar"  name="Imagen_registro" accept="image/*"/>
+
+          <label for="avatar" class="content" > 
+              <div class="myLabel">
+                  <img name="Imagen" class="myImg2" id="imagenSubida" src="../public/images/Logo.png" />
+                  <div>
+                      <span id="tituloArchivo">Agregar imagen</span><br />
+                      <span id="nombreArchivo"></span>
+                  </div>
+              </div>
+          </label>
+
         </div>
-    </label>
-    </div>
 
 
         <div class="row">
@@ -149,6 +153,12 @@
           <!-- /.col -->
         </div>
       </form>
+
+
+
+
+       
+
 <!--  
       <div class="social-auth-lnkis text-center">
         <a href="#" class="btn btn-block btn-primary">
@@ -161,7 +171,7 @@
         </a>
       </div>
 --> 
-      <a href="login.html" class="text-center"style="color: var(--azul-bisonte);" >¿Ya tienes cuenta? Inicia sesión </a>
+      <a href="<?php  include('../app/config.php');  echo $URL;?>../Login/index.php"  class="text-center"style="color: var(--azul-bisonte);" >¿Ya tienes cuenta? Inicia sesión </a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->

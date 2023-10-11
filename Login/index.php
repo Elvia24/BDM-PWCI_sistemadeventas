@@ -4,8 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Login Ventas Bisontes </title>
-<!-- icono de la pagina -->
-<link rel="icon" href="../../icon/bisonte.ico" type="image/x-icon">
+
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -21,7 +20,9 @@
 
      <!-- Libreria sweetalert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  
+  <!-- icono de la pagina -->
+<link rel="icon" href="../../icon/bisonte.ico" type="image/x-icon">
+
 </head>
 <body class="hold-transition login-page2">
 
@@ -124,7 +125,7 @@ if(isset($_SESSION["mensje"])){
       </p> -->
       <br />
       <p>
-        <a href="../Registro/Registro.php" style="color: var(--azul-bisonte);">Registrarse</a>
+        <a href="<?php  include('../app/config.php');  echo $URL;?>../Registro/Registro.php" style="color: var(--azul-bisonte);">Registrarse</a>
       </p>
 
     </div>

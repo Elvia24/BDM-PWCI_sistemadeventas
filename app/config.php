@@ -1,3 +1,4 @@
+
 <?php
 
 // Definición de constantes
