@@ -25,6 +25,7 @@
 
 
 
+
 <div class="register-box  ">
   <div class="card2a card-outline barrasuperior ">
     <div class="card-header text-center">
@@ -72,7 +73,7 @@
                 <option value="3">Privado</option>
                 <option value="4">Publico</option>
                 <option value="2">Vendedor</option>
-                <option value="1">Administrador</option>
+                <!-- <option value="1">Administrador</option> -->
                
             </select>
 
@@ -120,24 +121,33 @@
           </div>
         </div>
         <!-- Sexo-->
-        
+        <!-- IMAGEN-->
         <div class="container">
-
           <label for="avatar">Imagen de perfil</label>
-
-          <input class="ocultaron"  type="file" id="avatar"  name="Imagen_r" accept="image/*"/>
-
-          <label for="avatar" class="content" > 
+          <input class="ocultaron" type="file" id="avatar" name="Imagen_r" accept="image/*"/>
+          <label for="avatar" class="content">
               <div class="myLabel">
-                  <img name="Imagen" class="myImg2" id="imagenSubida" src="../public/images/Logo.png" />
-                  <div>
-                      <span id="tituloArchivo">Agregar imagen</span><br />
-                      <span id="nombreArchivo"></span>
-                  </div>
+                  <img class="myImg2" id="imagenSubida" src="../public/images/Logo.png" style="  border-radius:50%; margin:20px; "/>
               </div>
           </label>
-
         </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const inputImagen = document.getElementById('avatar');
+        const imagenSubida = document.getElementById('imagenSubida');
+
+        inputImagen.addEventListener('change', function () {
+            const file = inputImagen.files[0];
+            if (file) {
+                const url = URL.createObjectURL(file);
+                imagenSubida.src = url;
+            }
+        });
+    });
+</script>
+   <!-- IMAGEN-->
+
 
 
         <div class="row">
@@ -148,6 +158,7 @@
           </div>
           <!-- /.col -->
         </div>
+        
       </form>
 
 

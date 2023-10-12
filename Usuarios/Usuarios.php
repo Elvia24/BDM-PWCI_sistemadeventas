@@ -3,7 +3,12 @@ include('../app/config.php');
 include('../layout/sesion.php');
 
 include('../app/controllers/usuarios/listado_de_usuarios.php');
-include('../layout/parte1.php');?> <!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR -LA BARRA IZQUIERDA AZUL -->
+ include('../layout/parte1.php');  //ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR -LA BARRA IZQUIERDA AZUL 
+
+
+?> 
+
+
 
 <title>Usuarios</title>
 
@@ -40,7 +45,7 @@ include('../layout/parte1.php');?> <!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
                         <th>Foto</th>
                         <th>Usuario</th>
                         <th>Nombres</th>
-                        <th>Correo</th>
+                        <th >Correo</th>
                         
                         </tr>
                     </thead>
@@ -49,15 +54,24 @@ include('../layout/parte1.php');?> <!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
                     <?php
                          //(lista de usuarios de la base de datos AS  mis lista )
                          //VERIFICAR LA CONSULTA PARA VER SOLO ALGUNOS USUARIOS 
-                    foreach($usuarios_tabla as $usuarios_dato){ ?>
-                     <tr>
+                    foreach($usuarios_tabla as $usuarios_dato){ 
+                      $id_usuario = $usuarios_dato['ID_usuario'];?>
+                      
+                     <tr >
                         <td>
-                            <img src=" <?php echo $usuarios_dato['Imagen'];?>" width="200px" >
+                            <img src=" <?php echo $URL. "../app/controllers/usuarios/imageUsuarios/" .$usuarios_dato['Imagen'];?>" width="100px" alt="imageUsuarios/">
                         
                         </td>
                         <td><?php echo $usuarios_dato['nombreUsuario'];?></td>
                         <td><?php echo $usuarios_dato['Nombres'];?></td>
-                        <td><?php echo $usuarios_dato['correo'];?></td>
+                        <td ><?php echo $usuarios_dato['correo'];?></td>
+                        <!-- <td ><?php echo $usuarios_dato['ID_usuario'];?></td> -->
+                        <td >
+                              <div class="btn-group">
+                              <a href="VerUsuario.php?idu=<?php echo $id_usuario;?> " type="button" class="btn btn-info"><i class="fa fa-eye"></i>Ver</a>
+
+                              </div>
+                        </td>
 
                      </tr>
                      

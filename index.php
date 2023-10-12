@@ -21,6 +21,10 @@
 
 <div class="login-box">
  <h1>aqui va la Landing page</h1>
+<a href="Login/index.php">Iniciar Sesion</a>
+<a href="Registro/Registro.php">Registro</a>
+
+
 </div>
 
 <!-- /.login-box -->

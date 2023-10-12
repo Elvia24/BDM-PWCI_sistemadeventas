@@ -17,5 +17,7 @@
 <script src="<?php echo $URL;?>../public/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!--  -->
 <script src="<?php echo $URL;?>../dist/js/lte.min.js"></script>
+
+
 </body>
 </html>

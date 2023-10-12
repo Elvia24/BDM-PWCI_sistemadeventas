@@ -3,7 +3,7 @@
 
 
 $email_sesion= $_SESSION['sesion_email'];
-$sql_usuarios = "SELECT usuario.correo,
+$sql_usuarios = "SELECT usuario.ID_usuario,usuario.correo,
 usuario.contraseña, 
 usuario.nombreUsuario, 
 usuario.Nombres, 

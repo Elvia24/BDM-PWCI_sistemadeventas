@@ -122,11 +122,11 @@
 
     <!-- Contenedor Menu lateral derecho-->
     <div class="sidebar">
-      <!-- Panel de usuario de la barra lateral Derecha-->
+      <!-- Perfil-->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex"style=" border-bottom: var(--rojo-bisonte);">
         <div class="image">
           <!-- <img src="<?php echo $URL;?>../public/images/Logo.png" class="img-circle elevation-2" alt="User Image"> -->
-          <img class="img-circle elevation-2" alt="User Image" src="<?php echo $ImagenDusuario_sesion;?>"  >
+          <img class="img-circle elevation-2" alt="User Image" src="<?php echo $URL. "../app/controllers/usuarios/imageUsuarios/" .$ImagenDusuario_sesion;?>"  >
 
 
         </div>
@@ -134,7 +134,7 @@
           <a href="<?php echo $URL;?>../Perfil/perfil.php" class="d-bloc"  style="  font-size: 20px;  " ><?php echo $nombresDusuario_sesion?></a>
         </div>
       </div>
-      <!-- Panel de usuario de la barra lateral Derecha-->
+      <!-- Perfil-->
       <!-- Menu Lateral Derecha -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
