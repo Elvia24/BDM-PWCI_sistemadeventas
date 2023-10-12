@@ -34,11 +34,7 @@
     <div class="card-body ">
       <p class="login-box-header " style="color: #02318B "  >Registro.</p>
  
-        
-        
-
-
-       <form action="../app/controllers/usuarios/registro.php " method="post"  enctype="multipart/form-data"><!-- ESTE SUJETO MANDA LOS DATAOS A registro.php DEL CONTROLADOR -->
+       <form action="../app/controllers/usuarios/registro.php " method="POST"  enctype="multipart/form-data"><!-- ESTE SUJETO MANDA LOS DATAOS A registro.php DEL CONTROLADOR -->
         <!-- correo electronico-->
                 <div class="input-group mb-3">
                     <input name="correo_registro" type="Correo" class="form-control" placeholder="Correo Electronico">
@@ -101,7 +97,7 @@
         <div class="input-group mb-3">
          
           <label for="birthday" >Fecha de Nacimiento</label>
-                        <input class="form-control" type="date" name="fechaNacimiento_registro" id="birthday" required min="1977-01-01" max="2022-12-31">
+                        <input class="form-control" type="date" name="fechaNacimiento_registro" id="birthday"  min="1977-01-01" max="2022-12-31"><!-- required -->
                         <div id="myBirthday">
                         <br>
                         </div>
@@ -129,7 +125,7 @@
 
           <label for="avatar">Imagen de perfil</label>
 
-          <input class="ocultaron"  type="file" id="avatar"  name="Imagen_registro" accept="image/*"/>
+          <input class="ocultaron"  type="file" id="avatar"  name="Imagen_r" accept="image/*"/>
 
           <label for="avatar" class="content" > 
               <div class="myLabel">

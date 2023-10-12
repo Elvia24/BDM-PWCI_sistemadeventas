@@ -33,8 +33,8 @@ include('../layout/parte1.php');?> <!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
                 <div class="card">
                 <div class="card-header">
                     
-                <div class="card-body table-responsive p-0 overflow-auto" style="max-height: 500px;">
-                    <table class="table  ">
+                <div class="card-body " style="overflow-y: scroll; max-height: 850px;">
+                    <table class="table   table-striped ">
                     <thead>
                         <tr>
                         <th>Foto</th>

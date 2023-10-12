@@ -126,7 +126,7 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex"style=" border-bottom: var(--rojo-bisonte);">
         <div class="image">
           <!-- <img src="<?php echo $URL;?>../public/images/Logo.png" class="img-circle elevation-2" alt="User Image"> -->
-          <img class="img-circle elevation-2" alt="User Image" src="<?php echo $ImagenDusuario_sesion;?>" style="width: 80px; ">
+          <img class="img-circle elevation-2" alt="User Image" src="<?php echo $ImagenDusuario_sesion;?>"  >
 
 
         </div>
