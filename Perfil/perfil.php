@@ -6,7 +6,7 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
 // include('../app/controllers/usuarios/ver_usuario.php');
 ?> 
 
-<title>VerUsuario</title>
+<title>Perfil</title>
 
 
   <!-- El contenido de la página -->
@@ -49,7 +49,7 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
                     <b>Nombre: </b> <a ><?php echo $nombres_sesion;?></a>
                   </li>
                   <li class="list-group-item mx-auto">
-                  <b>Fecha de Nacimiento:</b> <a><?php echo $fechaCreacion_sesion; ?></a>
+                  <b>Fecha de Nacimiento:</b> <a><?php echo $fechaNacimiento_sesion; ?></a>
 
                   </li>
                   <li class="list-group-item mx-auto">
@@ -120,23 +120,24 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
                 <div class="tab-content"><!-- tab-content -->
                   <div class="active tab-pane" id="EditarDatos">
                   
-                  <form class="form-horizontal">
-                      <div class="form-group row">
+                  <form action="../app/controllers/usuarios/editar_usuario.php"  class="form-horizontal "method="post"  enctype="multipart/form-data">
+                  <input hidden type="text" name="id_editar_usuario" value="<?php echo $ID_usuario_sesion ?>">     
+                  <div class="form-group row">
                         <label for="CorreoElectronico" class="col-sm-2 col-form-label">Correo Electronico</label>
                         <div class="col-sm-10">
-                          <input type="email" class="form-control" id="CorreoElectronico" placeholder="Correo Electronico">
+                          <input required name="correo_editar_usuario" value="<?php echo $correo_sesion?>" type="email" class="form-control" id="CorreoElectronico" placeholder="Correo Electronico">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputNombredeUsuario" class="col-sm-2 col-form-label">Nombre de Usuario</label>
                         <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputNombredeUsuario" placeholder="Nombre de Usuario">
+                          <input required name="nombreUsuario_editar_usuario" value="<?php echo $nombresDusuario_sesion?>" type="text" class="form-control" id="inputNombredeUsuario" placeholder="Nombre de Usuario">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputContraseña" class="col-sm-2 col-form-label">Constraseña</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputContraseña" placeholder="Constraseña">
+                          <input required  name="contraseña_editar_usuario"  type="text" class="form-control" id="inputContraseña" placeholder="Constraseña">
                         </div>
                       </div>
                       <!-- <div class="form-group row">
@@ -146,45 +147,74 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
                         </div>
                       </div> -->
                       <div class="form-group row">
-                        <label for="inputNombreCompleto" class="col-sm-2 col-form-label">Nombre Completo</label>
+                        <label  for="inputNombreCompleto" class="col-sm-2 col-form-label">Nombre Completo</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputNombreCompleto" placeholder="Nombre Completo">
+                          <input required  name="Nombres_editar_usuario" value="<?php echo $nombres_sesion?>" type="text" class="form-control" id="inputNombreCompleto" placeholder="Nombre Completo">
                         </div>
                       </div>
                       <div class="form-group row">
                           <label for="avatar"  class="col-sm-2 col-form-label">Imagen de perfil</label>
 
-                            <input class="ocultaron "  type="file" id="avatar"  name="imagenSubida" accept="image/*"/>
+                          <input required name="Imagen_editar_usuario" class="ocultaron" type="file" id="avatar" name="imagenSubida" accept="image/*">
 
                         <label for="avatar" class="content" > 
                           <div class="myLabel">
-                            <img class="myImg2" id="imagenSubida" src="../public/images/Logo.png" />
+                            <img  name="Imagen_editar_usuario" class="myImg2" id="imagenSubida" src="<?php echo $URL. "../app/controllers/usuarios/imageUsuarios/" .$ImagenDusuario_sesion;?>" />
                             <div>
                                 <span id="tituloArchivo">Agregar imagen</span><br />
                                 <span id="nombreArchivo"></span>
                             </div>
                             </div>
                         </label>
+
+                        <script>
+                          document.addEventListener('DOMContentLoaded', function () {
+                              const inputImagen = document.getElementById('avatar');
+                              const imagenSubida = document.getElementById('imagenSubida');
+
+                              inputImagen.addEventListener('change', function () {
+                                  const file = inputImagen.files[0];
+                                  if (file) {
+                                      const url = URL.createObjectURL(file);
+                                      imagenSubida.src = url;
+                                  }
+                              });
+                          });
+                      </script>
+
                       </div>
                       <div class="form-group row">
                         <label for="inputFechadeNacimiento" class="col-sm-2 col-form-label">Fecha de Nacimiento</label>
                         <div class="col-sm-10">
-                          <input class="form-control" type="date" name="birthday" id="birthday" required min="1977-01-01" max="2022-12-31">
+                          <input  name="fechaNacimiento_editar_usuario" value="<?php echo $fechaNacimiento_sesion?>" class="form-control" type="datetime-local" name="birthday" id="birthday"  min="1977-01-01" max="2022-12-31"><!--   required -->
                               <div id="myBirthday">
                               <br>
                               </div>
                         </div>
                       </div>
                       <div class="form-group row">
-                          <label for="miComboBox" class= "col-sm-2 col-form-label">Sexo: </label>
+                          <label for="miComboBox" class="col-sm-2 col-form-label">Sexo: </label>
                           <div class="col-sm-10">
-                            <select id="miComboBox" name="opciones" class="form-control" >
-                            <option value="opcion1" >Mujer</option>
-                            <option value="opcion2">Hombre</option>
-                            <option value="opcion3">Indistinto</option>
-                          </select>
+                              <select id="miComboBox" name="Sexo_editar_usuario" class="form-control">
+                                  <option value="Mujer" <?php if ($Sexo_sesion == 'Mujer') echo 'selected'; ?>>Mujer</option>
+                                  <option value="Hombre" <?php if ($Sexo_sesion == 'Hombre') echo 'selected'; ?>>Hombre</option>
+                                  <option value="Indistinto" <?php if ($Sexo_sesion == 'Indistinto') echo 'selected'; ?>>Indistinto</option>
+                              </select>
                           </div>
                       </div>
+
+<!-- <div id="selectedValue"></div> Agregar esta línea -->
+
+<!-- <script>
+    var miComboBox = document.getElementById('miComboBox');
+    var selectedValue = document.getElementById('selectedValue');
+
+    miComboBox.addEventListener('change', function() {
+        selectedValue.innerHTML = 'Seleccionado: ' + miComboBox.value;
+    });
+</script> -->
+
+
                       <!-- <div class="form-group row">
                         <div class="offset-sm-2 col-sm-10">
                           <div class="checkbox">
@@ -196,7 +226,7 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
                       </div> -->
                       <div class="form-group row">
                         <div class="offset-sm-2 col-sm-10">
-                        <button type="button" class="btn btn-success">Guardar</button>
+                        <button type="submit" class="btn btn-success">Guardar</button>
                         </div>
                       </div>
                     </form>

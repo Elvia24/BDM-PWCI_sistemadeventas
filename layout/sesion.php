@@ -3,7 +3,8 @@ session_start();
 if(isset( $_SESSION['sesion_email'])){
   //echo "si existe seccion de  ".$_SESSION['sesion_email'];
     $email_sesion= $_SESSION['sesion_email'];
-    $sql = "SELECT usuario.correo,
+    $sql = "SELECT usuario.ID_usuario,
+    usuario.correo,
      usuario.contraseña, 
      rol.nombre AS nombre_rol, 
      usuario.nombreUsuario, 
@@ -28,6 +29,8 @@ if(isset( $_SESSION['sesion_email'])){
               $correo_sesion=$usuario['correo'];
               $fechaCreacion_sesion=$usuario['fechaCreacion'];
               $Sexo_sesion=$usuario['Sexo'];
+              $fechaNacimiento_sesion=$usuario['fechaNacimiento'];
+              $ID_usuario_sesion=$usuario['ID_usuario'];
     }
 
         

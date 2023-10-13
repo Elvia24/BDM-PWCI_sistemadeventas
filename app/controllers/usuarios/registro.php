@@ -49,6 +49,7 @@ try {
       VALUES ($correo_registro, $NombreUsuario_registro, $contraseña_registro, $ID_rol_registro, $Nombres_registro, $FechaNacimiento_registro, $Sexo_registro, $filename)";
 
     $pdo->exec($query);
+    header('Location:'.$URL.'/Login/index.php');
     //echo "Datos insertados con éxito.";
 } catch (PDOException $e) {
     echo "Error de PDO: " . $e->getMessage();

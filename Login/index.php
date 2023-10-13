@@ -59,8 +59,9 @@ if(isset($_SESSION["mensje"])){
  
       <!-- este sujeto mandara los datos al controlador atraves del metodo post -->
       <form action="../app/controllers/login/login.php" method="post">
-        <div class="input-group mb-3">
-          <input type="email" name="email_iLogin" class="form-control" placeholder="Email">
+           
+      <div class="input-group mb-3">
+          <input required type="email" name="email_iLogin" class="form-control" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -68,7 +69,7 @@ if(isset($_SESSION["mensje"])){
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" name="password_user_iLogin" class="form-control" placeholder="Password">
+          <input required type="password" name="password_user_iLogin" class="form-control" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

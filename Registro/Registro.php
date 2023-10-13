@@ -38,7 +38,7 @@
        <form action="../app/controllers/usuarios/registro.php " method="POST"  enctype="multipart/form-data"><!-- ESTE SUJETO MANDA LOS DATAOS A registro.php DEL CONTROLADOR -->
         <!-- correo electronico-->
                 <div class="input-group mb-3">
-                    <input name="correo_registro" type="Correo" class="form-control" placeholder="Correo Electronico">
+                    <input required name="correo_registro" type="Correo" class="form-control" placeholder="Correo Electronico">
                     <div class="input-group-append">
                       <div class="input-group-text">
                         <span class="fas fa-envelope"></span>
@@ -48,7 +48,7 @@
         <!-- correo electronico-->
         <!-- Nombre de usuario-->
                 <div class="input-group mb-3">
-                  <input name="nombreUsuario_registro" type="text" class="form-control" placeholder="Usuario">
+                  <input required name="nombreUsuario_registro" type="text" class="form-control" placeholder="Usuario">
                   <div class="input-group-append">
                     <div class="input-group-text">
                       <span class="fas fa-user"></span>
@@ -58,7 +58,7 @@
         <!-- Nombre de usuario-->
         <!-- Constraseña-->
                 <div class="input-group mb-3">
-                  <input name="contraseña_registro" type="password" class="form-control" placeholder="Password">
+                  <input required name="contraseña_registro" type="password" class="form-control" placeholder="Password">
                   <div class="input-group-append">
                     <div class="input-group-text">
                       <span class="fas fa-lock"></span>
@@ -69,7 +69,7 @@
         <!-- Rol de usuario-->
         <div class="input-group mb-3">
         <label for="miComboBox" class="content" style="padding: 0px 10px;">Rol: </label>
-            <select id="miComboBox" name="ID_rol_registro" class="form-control" >
+            <select  id="miComboBox" name="ID_rol_registro" class="form-control" >
                 <option value="3">Privado</option>
                 <option value="4">Publico</option>
                 <option value="2">Vendedor</option>
@@ -86,7 +86,7 @@
         <!-- Rol de usuario-->
         <!-- Nombre Completo-->
         <div class="input-group mb-3">
-          <input name="Nombres_registro" type="text" class="form-control" placeholder="Nombre">
+          <input required name="Nombres_registro" type="text" class="form-control" placeholder="Nombre">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -98,7 +98,7 @@
         <div class="input-group mb-3">
          
           <label for="birthday" >Fecha de Nacimiento</label>
-                        <input class="form-control" type="date" name="fechaNacimiento_registro" id="birthday"  min="1977-01-01" max="2022-12-31"><!-- required -->
+                        <input required class="form-control" type="date" name="fechaNacimiento_registro" id="birthday"  min="1977-01-01" max="2022-12-31"><!-- required -->
                         <div id="myBirthday">
                         <br>
                         </div>
@@ -124,7 +124,7 @@
         <!-- IMAGEN-->
         <div class="container">
           <label for="avatar">Imagen de perfil</label>
-          <input class="ocultaron" type="file" id="avatar" name="Imagen_r" accept="image/*"/>
+          <input required class="ocultaron" type="file" id="avatar" name="Imagen_r" accept="image/*"/>
           <label for="avatar" class="content">
               <div class="myLabel">
                   <img class="myImg2" id="imagenSubida" src="../public/images/Logo.png" style="  border-radius:50%; margin:20px; "/>
