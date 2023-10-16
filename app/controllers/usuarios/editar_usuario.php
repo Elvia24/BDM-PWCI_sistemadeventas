@@ -1,6 +1,5 @@
 <?php
 include('../../config.php');
-
 try { 
    
      $correo_editar_usuario = $_POST['correo_editar_usuario'];
@@ -48,7 +47,7 @@ try {
 
     //    $query = "INSERT INTO usuario (correo, nombreUsuario, contraseña, ID_rol, Nombres, fechaNacimiento, Sexo, Imagen) 
     //    VALUES ($correo_editar_usuario, $NombreUsuario_editar_usuario, $contraseña_editar_usuario, $ID_rol_editar_usuario, $Nombres_editar_usuario, $FechaNacimiento_editar_usuario, $Sexo_editar_usuario, $filename)";
-
+    session_start();
 $query = "UPDATE usuario SET correo= $correo_editar_usuario,
 nombreUsuario= $NombreUsuario_editar_usuario,
 contraseña=$contraseña_editar_usuario,
@@ -56,10 +55,10 @@ Nombres= $Nombres_editar_usuario,
 fechaNacimiento= $FechaNacimiento_editar_usuario,
 Sexo= $Sexo_editar_usuario,
 Imagen=$filename WHERE ID_usuario=$id_editar_usuario";
-
+session_destroy();
     $pdo->exec($query);
     //echo "Datos insertados con éxito.";
-
+    
     header('Location:'.$URL.'/Perfil/perfil.php');
 } catch (PDOException $e) {
     echo "Error de PDO: " . $e->getMessage();
