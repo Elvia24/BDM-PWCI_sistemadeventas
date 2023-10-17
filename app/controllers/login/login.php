@@ -50,10 +50,34 @@ if($contador==0){
     header('Location:'.$URL.'/Login/index.php');
 
 }else{
+    if($Rol==1){       //ADMINISTRADOR
     echo"Inicio Sesion Exitoso";
     session_start();
     $_SESSION['sesion_email']=$email;
     header('Location:'.$URL.'/Home/Home.php');
+    }else{
+        if($Rol==2){          //VENDEDOR
+            echo"Inicio Sesion Exitoso";
+            session_start();
+            $_SESSION['sesion_email']=$email;
+            header('Location:'.$URL.'/Home/Home.php');
+            }else{
+                if($Rol==3){          //PRIVADO
+                    echo"Inicio Sesion Exitoso";
+                    session_start();
+                    $_SESSION['sesion_email']=$email;
+                    header('Location:'.$URL.'/Home/Home.php');
+                    }else{
+                        if($Rol==4){          //PUBLICO
+                            echo"Inicio Sesion Exitoso";
+                            session_start();
+                            $_SESSION['sesion_email']=$email;
+                            header('Location:'.$URL.'/Home/Home.php');
+                            }
+                    }
+            }
+    }
+        
 }
 
 
