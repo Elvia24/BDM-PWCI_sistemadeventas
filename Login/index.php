@@ -55,7 +55,7 @@ if(isset($_SESSION["mensje"])){
       <h1> Ventas Bisontes</h1>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Inicia Sesion</p>
+      <p class="login-box-msg">Inicia sesión</p>
  
       <!-- este sujeto mandara los datos al controlador atraves del metodo post -->
       <form action="../app/controllers/login/login.php" method="post">
@@ -104,7 +104,7 @@ if(isset($_SESSION["mensje"])){
           </div> -->
           <!-- /.col -->
           <div class="col-12">
-            <button type="submit" class="btn boton-IniciarSesion btn-block2a">Inicia Sesion</button>
+            <button type="submit" class="btn boton-IniciarSesion btn-block2a">Inicia sesión</button>
           </div>
           <!-- /.col -->
         </div>

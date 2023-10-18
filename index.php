@@ -21,8 +21,9 @@
 <body class="hold-transition login-page2">
 
 <section>
+<div class="circulo"></div>
   <header>
-    <a href="#" class="logo">Ventas</a>
+    <a href="#" class="logo">Ventas bisontes</a>
     <ul class="navbar">
       <li><a href="Login/index.php">Iniciar sesión</a></li>
       <li><a href="Registro/Registro.php">Registro</a></li>
@@ -32,20 +33,16 @@
   <div class="contenido">
     <div class="tituloBox">
       <h2>Explora la esencia<br></h2>
-      <h2>de nuestra<span>facultad</span></h2>
+      <h2>de nuestra <span>facultad</span></h2>
       <p>en cada producto que ofrecemos.</p>
       <a href="#">Comprar</a>
 </div>
 <div class="imgBox">
+  <img src="icon/bisonte1.png" alt="">
 </div>
 </section>
 
 <div class="login-box">
- <h1>aqui va la Landing page</h1>
-
-
-
-
 </div>
 
 <!-- /.login-box -->
