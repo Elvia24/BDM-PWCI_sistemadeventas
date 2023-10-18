@@ -38,7 +38,8 @@
        <form action="../app/controllers/usuarios/registro.php " method="POST"  enctype="multipart/form-data"><!-- ESTE SUJETO MANDA LOS DATAOS A registro.php DEL CONTROLADOR -->
         <!-- correo electronico-->
                 <div class="input-group mb-3">
-                    <input required name="correo_registro" type="Correo" class="form-control" placeholder="Correo Electronico">
+                    <input required name="correo_registro" type="email" class="form-control" placeholder="Correo Electronico"
+                    pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/">
                     <div class="input-group-append">
                       <div class="input-group-text">
                         <span class="fas fa-envelope"></span>
@@ -48,7 +49,7 @@
         <!-- correo electronico-->
         <!-- Nombre de usuario-->
                 <div class="input-group mb-3">
-                  <input required name="nombreUsuario_registro" type="text" class="form-control" placeholder="Usuario">
+                  <input required name="nombreUsuario_registro" type="text" class="form-control" placeholder="Usuario" minlength="3">
                   <div class="input-group-append">
                     <div class="input-group-text">
                       <span class="fas fa-user"></span>
@@ -58,7 +59,9 @@
         <!-- Nombre de usuario-->
         <!-- Constraseña-->
                 <div class="input-group mb-3">
-                  <input required name="contraseña_registro" type="password" class="form-control" placeholder="Password">
+                  <input required name="contraseña_registro" type="password" class="form-control" placeholder="Password"
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                  title="Tu contraseña debe tener al menos 8 caracteres, un numero, una mayuscula, una minuscula y un signo de puntuacion">
                   <div class="input-group-append">
                     <div class="input-group-text">
                       <span class="fas fa-lock"></span>
