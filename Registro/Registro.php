@@ -73,9 +73,9 @@
         <div class="input-group mb-3">
         <label for="miComboBox" class="content" style="padding: 0px 10px;">Rol: </label>
             <select  id="miComboBox" name="ID_rol_registro" class="form-control" >
-                <option value="3">Privado</option>
-                <option value="4">Publico</option>
-                <option value="2">Vendedor</option>
+                <option value="3" title="Quienes únicamente deseen Comprar">Privado</option>
+                <option value="4" title="Quienes deseen Vender O Comprar">Publico</option>
+                <option value="2" title="Quienes solo Realizaran ventas">Vendedor</option>
                 <!-- <option value="1">Administrador</option> -->
                
             </select>

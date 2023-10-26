@@ -23,6 +23,13 @@
   <link rel="icon" href="<?php echo $URL;?>../icon/bisonte.ico" type="image/x-icon">
   <!-- Libreria sweetalert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- DataTables -->
+  <link rel="stylesheet" href="<?php echo $URL;?>../public/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?php echo $URL;?>../public/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?php echo $URL;?>../public/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+ 
+
 </head>
 
 
@@ -116,7 +123,7 @@
   <!-- Contenedor de barra lateral Derecha -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4 " style="background-color: var(--azul-bisonte-barralateral);">
     <!-- Logo -->
-    <a href="<?php  include('../app/config.php');    echo $URL;?>../Home/Home.php" class="brand-link "style=" border-bottom: var(--rojo-bisonte);">
+    <a href="<?php echo $URL;?>../Home/Home.php" class="brand-link "style=" border-bottom: var(--rojo-bisonte);">
       <img src="<?php echo $URL;?>../public/images/Logo.png" alt="Ventas Bisontes" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Ventas Bisontes</span>
     </a>
@@ -127,7 +134,7 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex"style=" border-bottom: var(--rojo-bisonte);">
         <div class="image">
           <!-- <img src="<?php echo $URL;?>../public/images/Logo.png" class="img-circle elevation-2" alt="User Image"> -->
-          <img  width="300px"  class="img-circle elevation-2" alt="User Image" src="<?php echo $URL. "../app/controllers/usuarios/imageUsuarios/" .$ImagenDusuario_sesion;?>"  >
+          <img   class="img-circle elevation-2" alt="User Image" src="<?php echo $URL. "../app/controllers/usuarios/imageUsuarios/" .$ImagenDusuario_sesion;?>" style="width: 40px; height: 40px;" >
 
 
         </div>
@@ -141,52 +148,40 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!--  clase .nav-icon con font-awesome para los iconos -->
             <!--  USUARIOS-->
-          <li class="nav-item">
-            <a href="<?php echo $URL;?>../Usuarios/Usuarios.php" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-                <p>
-                    Usuarios
-                      <!-- <span class="right badge badge-danger">0</span> insignia-peligro-->  
-                </p>
-            </a>
-          </li>
+<li class="nav-item">
+    <?php if ($Rol_sesion === 'Administrador') : ?>
+        <a href="<?php echo $URL;?>../Usuarios/Usuarios.php" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+                Usuarios
+                <!-- <span class="right badge badge-danger">0</span> insignia-peligro-->  
+            </p>
+        </a>
+    <?php endif; ?>
+</li>
+
+
+
             <!--  USUARIOS-->
           <!--  CATEGORIAS-->
-          <li class="nav-item menu">
-            <a href="#" class="nav-link ">
-              <i class="nav-icon fas fa-bars"></i>
-                <p>
-                  Categorias
-                    <i class="right fas fa-angle-left"></i>
-                </p>
+          <li class="nav-item">
+            <a href="<?php echo $URL;?>../Categorias/Categorias.php" class="nav-link">
+              <i  class="fa fa-clone" ></i>
+              <p>
+                Categorias
+                  <!-- <span class="right badge badge-danger">0</span> insignia-peligro-->  
+              </p>
             </a>
-            <!--  categorias-->
-            <ul class="nav nav-treeview">
-
-              <li class="nav-item">
-                <a href="#" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p></p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p></p>
-                </a>
-              </li>
-            </ul>
-            <!--  categorias-->
           </li>
           <!--  CATEGORIAS-->
 
 
             <!--  PRODUCTOS-->
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-barcode"></i>
+            <a href="<?php echo $URL;?>../Productos/Productos.php" class="nav-link">
+           <i class="fa fa-puzzle-piece" aria-hidden="true"></i>
               <p>
-                Mis Productos
+                Productos
                   <!-- <span class="right badge badge-danger">0</span> insignia-peligro-->  
               </p>
             </a>
@@ -195,7 +190,7 @@
             <!--  COTIZACION-->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-handshake"></i>
+            <i  class="fa fa-handshake" ></i>
               <p>
                 Cotizacion
                   <!-- <span class="right badge badge-danger">0</span> insignia-peligro-->  

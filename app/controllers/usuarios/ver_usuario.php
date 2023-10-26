@@ -1,6 +1,6 @@
 <?php
 
- $id_usuario_get=$_GET['idu'];
+$id_usuario_get=$_GET['idu'];
 
 //$email_sesion= $_SESSION['sesion_email'];
 $sql_usuarios = "SELECT usuario.correo,

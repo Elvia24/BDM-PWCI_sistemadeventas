@@ -6,7 +6,7 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
 include('../app/controllers/usuarios/ver_usuario.php');
 ?> 
 
-<title>VerUsuario</title>
+<title>EliminarUsuario</title>
 
 
   <!-- El contenido de la página -->
@@ -15,9 +15,14 @@ include('../app/controllers/usuarios/ver_usuario.php');
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Usuario:</h1>
-          </div><!-- col-sm-6 -->
+          <div class="col-sm-12">
+        <form method="post" action="../app/controllers/usuarios/eliminar_usuario.php">
+            <input type="text" name="id_usuario" value="<?php echo $id_usuario_get?>" hidden>
+            <P><h1 class="m-0">¿Seguro que desea ELIMINAR el usuario?</h1></P>
+            <button class="btn btn-danger">ELINIMAR USUARIO</button>
+        </form>
+                
+        </div><!-- col-sm-6 -->
         </div><!-- row mb-2-->
       </div><!-- container-fluid -->
     </div>
@@ -33,12 +38,16 @@ include('../app/controllers/usuarios/ver_usuario.php');
             <div class="card2a card-outline barrasuperior">
               <div class="card-body box-profile ">
                 <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle" src="<?php echo $URL. "../app/controllers/usuarios/imageUsuarios/" .$Imagen_verusuario;?>" alt="Foto de Usuario"  style="width: 100px; height: 100px;">
+                  <img class="profile-user-img img-fluid img-circle" src="<?php echo $URL. "../app/controllers/usuarios/imageUsuarios/" .$Imagen_verusuario;?>" alt="Foto de Usuario">
                 </div>
 
                 <h3 class="profile-username text-center">User: <?php echo $nombreUsuario_verusuario;?></h3>
 
                 <p class="text-muted text-center">Rol: <?php echo $nombre_rol_verusuario;?></p>
+
+
+
+                
                 <!-- Datos Usuario -->
 
 
@@ -184,7 +193,7 @@ elseif ($nombre_rol_verusuario === 'Privado') { ?>
 
   <!-- El contenido de la página -->
 
-
+  
 <?php include('../layout/parte2.php');?> <!-- ESTE SUJETO CONTIENE  -LA BARRA DERECHA cARRITO -->
 
 

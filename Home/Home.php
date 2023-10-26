@@ -23,7 +23,63 @@ include('../layout/parte1.php');?> <!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
 
     <!-- Contenedor tabla -->
     <div class="content" style ="padding: 0rem 2rem">
-        <!-- Encabezado tabla -->
+       
+    <!-- PRUEBA -->
+<div class="row">
+      <div class="col-lg-2 col-6">
+
+          <div class="small-box" style="background-color: var(--gris-Generico);">
+          <img style="width: 200px; height: auto; object-fit: cover;" src="https://i.pinimg.com/564x/89/31/e0/8931e0c19e5bfca74c58e1c29625c46a.jpg" alt="Ventas Bisontes" >
+          <div class="inner">
+          
+          <h3>$</h3>
+          <p>Nombre Producto</p>
+          </div>
+          <div class="icon">
+          <i class="ion ion-bag"></i>
+          </div>
+          <a  style="background-color: var(--bisonte-rojizo-Letras);" href="#" class="small-box-footer">Mas informacion <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+      </div>
+      <div class="col-lg-2 col-6">
+
+          <div class="small-box" style="background-color: var(--gris-Generico);">
+          <img style="width: 200px; height: auto; object-fit: cover;" src="https://i.pinimg.com/564x/76/3d/72/763d72714d49faeac0fcdeeef052b41f.jpg" alt="Ventas Bisontes" >
+          <div class="inner">
+          
+          <h3>$</h3>
+          <p>Nombre Producto</p>
+          </div>
+          <div class="icon">
+          <i class="ion ion-bag"></i>
+          </div>
+          <a  style="background-color: var(--bisonte-rojizo-Letras);" href="#" class="small-box-footer">Mas informacion <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+      </div>
+
+      <div class="col-lg-2 col-6">
+
+          <div class="small-box" style="background-color: var(--gris-Generico);">
+          <img style="width: 200px; height: auto; object-fit: cover;" src="https://i.pinimg.com/564x/76/3d/72/763d72714d49faeac0fcdeeef052b41f.jpg" alt="Ventas Bisontes" >
+          <div class="inner">
+          
+          <h3>$</h3>
+          <p>Nombre Producto</p>
+          </div>
+          <div class="icon">
+          <i class="ion ion-bag"></i>
+          </div>
+          <a  style="background-color: var(--bisonte-rojizo-Letras);" href="#" class="small-box-footer">Mas informacion <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+      </div>
+</div>
+
+<!-- PRUEBA -->
+    
+    
+    
+    
+    <!-- Encabezado tabla -->
         <div class="row">
           <div class="col-12">
             <div class="card">

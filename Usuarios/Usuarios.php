@@ -32,6 +32,9 @@ include('../app/controllers/usuarios/listado_de_usuarios.php');
 
     <!-- Contenedor tabla -->
     <div class="content" style ="padding: 0rem 2rem">
+
+
+    
             <!-- Encabezado tabla -->
             <div class="row">
             <div class="col-12">
@@ -69,6 +72,7 @@ include('../app/controllers/usuarios/listado_de_usuarios.php');
                         <td >
                               <div class="btn-group">
                               <a href="VerUsuario.php?idu=<?php echo $id_usuario;?> " type="button" class="btn btn-info"><i class="fa fa-eye"></i>Ver</a>
+                              <a href="EliminarUsuario.php?idu=<?php echo $id_usuario;?> " type="button" class="btn btn-danger"><i class="fa fa-trash"></i>Eliminar</a>
 
                               </div>
                         </td>
@@ -100,7 +104,7 @@ include('../app/controllers/usuarios/listado_de_usuarios.php');
 
   <!-- El contenido de la página -->
 
-
+  <?php include('../layout/mensaje.php');?>
 <?php include('../layout/parte2.php');?> <!-- ESTE SUJETO CONTIENE  -LA BARRA DERECHA cARRITO -->
 
 

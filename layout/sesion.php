@@ -22,9 +22,9 @@ if(isset( $_SESSION['sesion_email'])){
 
     $usuarios = $query->fetchAll(PDO::FETCH_ASSOC);
     foreach($usuarios as $usuario){
-             $nombres_sesion=$usuario['Nombres'];
+              $nombres_sesion=$usuario['Nombres'];
               $nombresDusuario_sesion=$usuario['nombreUsuario'];
-             $ImagenDusuario_sesion=$usuario['Imagen'];
+              $ImagenDusuario_sesion=$usuario['Imagen'];
               $Rol_sesion=$usuario['nombre_rol'];
               $correo_sesion=$usuario['correo'];
               $fechaCreacion_sesion=$usuario['fechaCreacion'];

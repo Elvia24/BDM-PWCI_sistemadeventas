@@ -32,9 +32,10 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
             <div class="card2a card-outline barrasuperior" >
               <div class="card-body box-profile " >
                 <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle"
+                  <img  class="profile-user-img img-fluid img-circle"
                        src="<?php echo $URL. "../app/controllers/usuarios/imageUsuarios/" .$ImagenDusuario_sesion;?>"
-                       alt="Foto de Usuario">
+                       alt="Foto de Usuario"
+                       style="width: 100px; height: 100px;">
                 </div>
 
                 <h3 class="profile-username text-center">User: <?php echo $nombresDusuario_sesion;?></h3>
