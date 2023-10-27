@@ -5,7 +5,8 @@ include('../../config.php');
 
     $id_usuario = $_POST['id_usuario'];
 
-    $query = $pdo->prepare("DELETE FROM usuario WHERE ID_usuario = :id_usuario");
+// Llamar al procedimiento almacenado para eliminar el usuario
+$query = $pdo->prepare("CALL EliminarUsuario(:id_usuario)");
     $query->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
 
 
@@ -15,6 +16,20 @@ include('../../config.php');
     $_SESSION['icono']="success";
     
     header('Location:'.$URL.'/Usuarios/Usuarios.php');
-
+//     BEGIN
+//     DECLARE categoria_count INT;
+    
+//     -- Verificar si existen registros en la tabla de categorías para el usuario
+//     SELECT COUNT(*) INTO categoria_count FROM categoria WHERE id_usuario = ID_usuario;
+  
+//     -- Si existen registros de categorías, mostrar un mensaje y no eliminar al usuario
+//     IF categoria_count > 0 THEN
+//       SELECT 'No es posible eliminar el usuario. Existen registros de categorías relacionados.';
+//     ELSE
+//       -- Si no existen registros de categorías, eliminar al usuario
+//       DELETE FROM usuario WHERE id = ID_usuario;
+//       SELECT 'Usuario eliminado correctamente.';
+//     END IF;
+//   END
 
 ?>
