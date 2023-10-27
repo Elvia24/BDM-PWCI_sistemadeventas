@@ -26,10 +26,10 @@ include('../layout/parte1.php');?> <!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
        
     <!-- PRUEBA -->
 <div class="row">
-      <div class="col-lg-2 col-6">
+      <div class="col-lg-3 col-6">
 
           <div class="small-box" style="background-color: var(--gris-Generico);">
-          <img style="width: 200px; height: auto; object-fit: cover;" src="https://i.pinimg.com/564x/89/31/e0/8931e0c19e5bfca74c58e1c29625c46a.jpg" alt="Ventas Bisontes" >
+          <img style="width: 100%; height: 100%; object-fit: object-fit" src="https://i.pinimg.com/564x/89/31/e0/8931e0c19e5bfca74c58e1c29625c46a.jpg" alt="Ventas Bisontes" >
           <div class="inner">
           
           <h3>$</h3>
@@ -41,10 +41,10 @@ include('../layout/parte1.php');?> <!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
           <a  style="background-color: var(--bisonte-rojizo-Letras);" href="#" class="small-box-footer">Mas informacion <i class="fas fa-arrow-circle-right"></i></a>
           </div>
       </div>
-      <div class="col-lg-2 col-6">
+      <div class="col-lg-3 col-6">
 
           <div class="small-box" style="background-color: var(--gris-Generico);">
-          <img style="width: 200px; height: auto; object-fit: cover;" src="https://i.pinimg.com/564x/76/3d/72/763d72714d49faeac0fcdeeef052b41f.jpg" alt="Ventas Bisontes" >
+          <img style="width: 100%; height: 100%; object-fit: object-fit;" src="https://i.pinimg.com/564x/fa/61/24/fa6124a758e3616660efd744263eec43.jpg" alt="Ventas Bisontes" >
           <div class="inner">
           
           <h3>$</h3>
@@ -57,10 +57,10 @@ include('../layout/parte1.php');?> <!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
           </div>
       </div>
 
-      <div class="col-lg-2 col-6">
+      <div class="col-lg-3 col-6">
 
           <div class="small-box" style="background-color: var(--gris-Generico);">
-          <img style="width: 200px; height: auto; object-fit: cover;" src="https://i.pinimg.com/564x/76/3d/72/763d72714d49faeac0fcdeeef052b41f.jpg" alt="Ventas Bisontes" >
+          <img style="width: 100%; height: 100%; object-fit: object-fit" src="https://i.pinimg.com/564x/76/3d/72/763d72714d49faeac0fcdeeef052b41f.jpg" alt="Ventas Bisontes" >
           <div class="inner">
           
           <h3>$</h3>

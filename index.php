@@ -17,6 +17,9 @@
  <!-- nuevo estilo -->
    <!--<link rel="stylesheet" href="public/css/Colores.css">-->
    <!--<link rel="stylesheet" href="../prueba.scss">-->
+
+   <!-- icono de la pagina -->
+  <link rel="icon" href="<?php echo $URL;?>icon/bisonte.ico" type="image/x-icon">
 </head>
 <body class="hold-transition login-page2">
 

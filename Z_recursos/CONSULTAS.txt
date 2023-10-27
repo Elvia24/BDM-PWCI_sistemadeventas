@@ -1,0 +1,5 @@
+SELECT usuario.ID_usuario, usuario.correo, usuario.contraseña, usuario.nombreUsuario, usuario.Nombres, usuario.fechaNacimiento, usuario.Sexo, usuario.Imagen, usuario.fechaCreacion,
+       rol.ID_Rol, rol.Nombre AS Nombre_Rol
+FROM usuario
+INNER JOIN rol ON usuario.ID_Rol = rol.ID_Rol
+WHERE usuario.ID_usuario <>1 AND rol.nombre<>'Administrador' ;

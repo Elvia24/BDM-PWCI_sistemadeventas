@@ -187,7 +187,7 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
                       <div class="form-group row">
                         <label for="inputFechadeNacimiento" class="col-sm-2 col-form-label">Fecha de Nacimiento</label>
                         <div class="col-sm-10">
-                          <input  name="fechaNacimiento_editar_usuario" value="<?php echo $fechaNacimiento_sesion?>" class="form-control" type="datetime-local" name="birthday" id="birthday"  min="1977-01-01" max="2022-12-31"><!--   required -->
+                          <input  name="fechaNacimiento_editar_usuario" value="<?php echo $fechaNacimiento_sesion?>" class="form-control" type="date" name="birthday" id="birthday"  min="1977-01-01" max="2022-12-31"><!--   required -->
                               <div id="myBirthday">
                               <br>
                               </div>

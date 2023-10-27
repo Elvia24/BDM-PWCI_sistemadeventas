@@ -164,28 +164,120 @@
 
             <!--  USUARIOS-->
           <!--  CATEGORIAS-->
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="<?php echo $URL;?>../Categorias/Categorias.php" class="nav-link">
-              <i  class="fa fa-clone" ></i>
+              <i  class="fa fa-tags" ></i>
               <p>
                 Categorias
-                  <!-- <span class="right badge badge-danger">0</span> insignia-peligro-->  
+                  
               </p>
             </a>
+          </li> -->
+
+          <!-- aqui -->
+          <li class="nav-item menu">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fas fa-tags"></i>
+                <p>
+                  Categorias
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <!--  categorias-->
+            <ul class="nav nav-treeview">
+
+            <li class="nav-item">
+
+                <?php if ($Rol_sesion === 'Administrador' ||$Rol_sesion === 'Vendedor' ) : ?>
+        <a href="<?php echo $URL;?>../Categorias/AgregarCategoria.php" class="nav-link">
+            <i class="fa fa-plus-circle nav-icon"></i>
+            <p>
+                Agregar Categoria
+                <!-- <span class="right badge badge-danger">0</span> insignia-peligro-->  
+            </p>
+        </a>
+    <?php endif; ?>
+              </li>
+
+
+              <li class="nav-item">
+                <a href="<?php echo $URL;?>../Categorias/Categorias.php" class="nav-link ">
+                  <i class="fa fa-bars"></i>
+                  <p> Lista de Categorias</p>
+                </a>
+              </li>
+              <!-- <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p></p>
+                </a>
+              </li> -->
+            </ul>
+            <!--  categorias-->
           </li>
+          
+
+          <!-- aqui -->
           <!--  CATEGORIAS-->
 
 
             <!--  PRODUCTOS-->
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="<?php echo $URL;?>../Productos/Productos.php" class="nav-link">
-           <i class="fa fa-puzzle-piece" aria-hidden="true"></i>
+            <i class="fa fa-puzzle-piece" aria-hidden="true"></i>
               <p>
                 Productos
-                  <!-- <span class="right badge badge-danger">0</span> insignia-peligro-->  
+                  
               </p>
             </a>
+          </li> -->
+
+                      <!-- aqui -->
+          <li class="nav-item menu">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fas fa-tag"></i>
+                <p>
+                  Productos
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            
+            <ul class="nav nav-treeview">
+
+            <li class="nav-item">
+
+                <?php if ($Rol_sesion === 'Administrador' ||$Rol_sesion === 'Vendedor' ) : ?>
+        <a href="<?php echo $URL;?>../Productos/AgregarProducto.php" class="nav-link">
+            <i class="fa fa-plus-circle nav-icon"></i>
+            <p>
+                Agregar Producto
+                <!-- <span class="right badge badge-danger">0</span> insignia-peligro-->  
+            </p>
+        </a>
+    <?php endif; ?>
+              </li>
+
+
+              <li class="nav-item">
+                <a href="<?php echo $URL;?>../Productos/Productos.php" class="nav-link ">
+                  <i class="fa fa-bars"></i>
+                  <p> Lista de Producto</p>
+                </a>
+              </li>
+              <!-- <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p></p>
+                </a>
+              </li> -->
+            </ul>
+            
           </li>
+          
+
+          <!-- aqui -->
+
+
             <!--  PRODUCTOS-->
             <!--  COTIZACION-->
           <li class="nav-item">

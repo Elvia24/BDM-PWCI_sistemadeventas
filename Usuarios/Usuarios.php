@@ -20,6 +20,11 @@ include('../app/controllers/usuarios/listado_de_usuarios.php');
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
+          <!-- <form method="post" action="../app/controllers/usuarios/listado_de_usuarios.php">
+          <input type="text" name="id_usuarioSesion" value="<?php echo $ID_usuario_sesion?>" hidden>
+          
+        </form> -->
+
             <h1 class="m-0">Lista de Usuarios</h1>
           </div><!-- col-sm-6 -->
         </div><!-- row mb-2-->
@@ -47,7 +52,7 @@ include('../app/controllers/usuarios/listado_de_usuarios.php');
                         <tr>
                         <th>Foto</th>
                         <th>Usuario</th>
-                        <th>Nombres</th>
+                        <th>ROL</th>
                         <th >Correo</th>
                         
                         </tr>
@@ -66,7 +71,7 @@ include('../app/controllers/usuarios/listado_de_usuarios.php');
                         
                         </td>
                         <td><?php echo $usuarios_dato['nombreUsuario'];?></td>
-                        <td><?php echo $usuarios_dato['Nombres'];?></td>
+                        <td><?php echo $usuarios_dato['RolNombre'];?></td>
                         <td ><?php echo $usuarios_dato['correo'];?></td>
                         <!-- <td ><?php echo $usuarios_dato['ID_usuario'];?></td> -->
                         <td >

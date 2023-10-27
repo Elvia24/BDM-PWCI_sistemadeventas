@@ -21,7 +21,8 @@
      <!-- Libreria sweetalert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- icono de la pagina -->
-<link rel="icon" href="../../icon/bisonte.ico" type="image/x-icon">
+  <link rel="icon" href="<?php echo $URL;?>../icon/bisonte.ico" type="image/x-icon">
+
 
 </head>
 <body class="hold-transition login-page2">
