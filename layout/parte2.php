@@ -11,8 +11,7 @@
 
 
 
-<!-- jQuery -->
-<script src="<?php echo $URL;?>../public/plugins/jquery/jquery.min.js"></script>
+
 <!-- Bootstrap 4 -->
 <script src="<?php echo $URL;?>../public/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!--  -->

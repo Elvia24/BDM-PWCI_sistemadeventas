@@ -16,7 +16,7 @@ usuario.fechaCreacion,
 rol.nombre AS RolNombre
        FROM usuario 
        INNER JOIN rol ON usuario.ID_Rol = rol.ID_Rol
-       WHERE  usuario.ID_usuario <> $ID_usuario_sesion ;";
+       WHERE  usuario.ID_usuario <> $ID_usuario_sesion AND status_usuario=1;";
 
 $query_usuarios = $pdo->prepare($sql_usuarios);
 $query_usuarios->execute();

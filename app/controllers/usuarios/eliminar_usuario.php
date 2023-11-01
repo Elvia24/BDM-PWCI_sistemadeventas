@@ -6,7 +6,7 @@ include('../../config.php');
     $id_usuario = $_POST['id_usuario'];
 
 // Llamar al procedimiento almacenado para eliminar el usuario
-$query = $pdo->prepare("CALL EliminarUsuario(:id_usuario)");
+$query = $pdo->prepare("UPDATE usuario SET status_usuario=0 WHERE ID_usuario= :id_usuario;");
     $query->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
 
 

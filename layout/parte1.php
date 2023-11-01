@@ -29,7 +29,8 @@
   <link rel="stylesheet" href="<?php echo $URL;?>../public/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="<?php echo $URL;?>../public/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
  
-
+<!-- jQuery -->
+<script src="<?php echo $URL;?>../public/plugins/jquery/jquery.min.js"></script>
 </head>
 
 
@@ -164,60 +165,20 @@
 
             <!--  USUARIOS-->
           <!--  CATEGORIAS-->
-          <!-- <li class="nav-item">
-            <a href="<?php echo $URL;?>../Categorias/Categorias.php" class="nav-link">
-              <i  class="fa fa-tags" ></i>
+          <li class="nav-item">
+
+              <?php if ($Rol_sesion === 'Administrador' ||$Rol_sesion === 'Vendedor' ) : ?>
+              <a href="<?php echo $URL;?>../Categorias/Categorias.php" class="nav-link">
+              <i class="fa fa-tags nav-icon"></i>
               <p>
-                Categorias
-                  
+              Categoria
+              <!-- <span class="right badge badge-danger">0</span> insignia-peligro-->  
               </p>
-            </a>
-          </li> -->
-
-          <!-- aqui -->
-          <li class="nav-item menu">
-            <a href="#" class="nav-link ">
-              <i class="nav-icon fas fa-tags"></i>
-                <p>
-                  Categorias
-                    <i class="right fas fa-angle-left"></i>
-                </p>
-            </a>
-            <!--  categorias-->
-            <ul class="nav nav-treeview">
-
-            <li class="nav-item">
-
-                <?php if ($Rol_sesion === 'Administrador' ||$Rol_sesion === 'Vendedor' ) : ?>
-        <a href="<?php echo $URL;?>../Categorias/AgregarCategoria.php" class="nav-link">
-            <i class="fa fa-plus-circle nav-icon"></i>
-            <p>
-                Agregar Categoria
-                <!-- <span class="right badge badge-danger">0</span> insignia-peligro-->  
-            </p>
-        </a>
-    <?php endif; ?>
-              </li>
-
-
-              <li class="nav-item">
-                <a href="<?php echo $URL;?>../Categorias/Categorias.php" class="nav-link ">
-                  <i class="fa fa-bars"></i>
-                  <p> Lista de Categorias</p>
-                </a>
-              </li>
-              <!-- <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p></p>
-                </a>
-              </li> -->
-            </ul>
-            <!--  categorias-->
+              </a>
+              <?php endif; ?>
           </li>
-          
 
-          <!-- aqui -->
+        
           <!--  CATEGORIAS-->
 
 
@@ -260,7 +221,7 @@
 
               <li class="nav-item">
                 <a href="<?php echo $URL;?>../Productos/Productos.php" class="nav-link ">
-                  <i class="fa fa-bars"></i>
+                  <i class="fa fa-bars "></i>
                   <p> Lista de Producto</p>
                 </a>
               </li>
