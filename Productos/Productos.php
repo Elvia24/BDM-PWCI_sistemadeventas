@@ -10,8 +10,16 @@ include('../app/controllers/productos/lista_productos.php');
 
 
 
-<title>Usuarios</title>
+<title>Productos</title>
 
+<style>
+    .product-image {
+        max-width: 200px; /* Ajusta el tamaño máximo de la imagen */
+        max-height: 200px;
+        border: 1px solid #ccc; /* Agrega un borde */
+        margin-right: 10px; /* Espacio entre las imágenes */
+    }
+</style>
 
   <!-- El contenido de la página -->
   <div class=" content-wrapper "style="background-color: var(--gris-bisonte);">
@@ -57,6 +65,7 @@ include('../app/controllers/productos/lista_productos.php');
                         <th >Calificacion </th>
                         <th >Categoria </th>
                         <th >Vendedor </th>
+                        <th >Imagenes </th>
                         </tr>
                     </thead>
                 
@@ -64,18 +73,66 @@ include('../app/controllers/productos/lista_productos.php');
                     <?php
                          //(lista de usuarios de la base de datos AS  mis lista )
                          //VERIFICAR LA CONSULTA PARA VER SOLO ALGUNOS USUARIOS 
-                    foreach($usuarios_tabla as $usuarios_dato){ 
-                      $id_usuario = $usuarios_dato['ID_usuario'];?>
+                    foreach($productos_tabla as $productos_dato){ 
+                      //$id_producto = $productos_dato['ID_usuario'];
+                      
+                      
+                      ?>
                       
                      <tr >
-                        <td>
-                            <img src=" <?php echo $URL. "../app/controllers/usuarios/imageUsuarios/" .$usuarios_dato['Imagen'];?>" width="100px" alt="imageUsuarios/">
+                      
+                     
+                        <td><?php echo $productos_dato['NombreProducto'];?></td>
+                        <td><?php echo $productos_dato['DescripcionProducto'];?></td>
+                        <td><?php echo $productos_dato['PrecioProducto'];?></td>
+                        <td><?php echo $productos_dato['CantidadDisponible'];?></td>
                         
-                        </td>
-                        <td><?php echo $usuarios_dato['nombreUsuario'];?></td>
-                        <td><?php echo $usuarios_dato['RolNombre'];?></td>
-                        <td ><?php echo $usuarios_dato['correo'];?></td>
-                        <!-- <td ><?php echo $usuarios_dato['ID_usuario'];?></td> -->
+                        <td><?php echo $productos_dato['CalificacionProducto'];?></td>
+                        <td><?php echo $productos_dato['NombreCategoria'];?></td>
+                        <td><?php echo $productos_dato['NombreUsuario'];?></td>
+                       <?php 
+                        // ... Resto de tus datos
+    // Subconsulta para obtener imágenes
+    $sql_imagenes = "SELECT Imagen_Video FROM imagen_video WHERE id_producto = :id_producto";
+    $query_imagenes = $pdo->prepare($sql_imagenes);
+    $query_imagenes->bindParam(':id_producto', $productos_dato['ID_producto']);
+    $query_imagenes->execute();
+    $imagenes = $query_imagenes->fetchAll(PDO::FETCH_COLUMN);
+
+    // Dirección base de las imágenes en el servidor
+    $directorioImagenes = "../app/controllers/productos/imageProductos/"; // Cambia esta URL
+
+    // Abre la celda <td> antes del bucle
+    
+    echo '<td>';
+    $imagenMostrada = false; // Variable para verificar si se muestra al menos una imagen
+    
+    // Muestra las imágenes en la celda <td>
+    foreach ($imagenes as $imagen) {
+        echo '<img class="product-image" src="' . $directorioImagenes . $imagen . '"';
+        // Verifica si la imagen es válida y, si es el caso, establece el atributo "alt"
+        if (file_exists($directorioImagenes . $imagen)) {
+           
+            $imagenMostrada = true; // Marca que se ha mostrado una imagen
+        }
+        echo '>';
+    }
+    
+    // Si al menos se mostró una imagen, agrega el reproductor de video
+    if ($imagenMostrada) {
+        echo '<video controls width="640" height="360">';
+        echo '<source src="' . $directorioImagenes . $imagen . '" type="video/mp4">';
+        echo 'Tu navegador no soporta la reproducción de videos.';
+        echo '</video>';
+    }
+    
+    // Cierra la celda <td>
+    echo '</td>';
+    
+    
+                        
+                        ?>
+
                         <td >
                               <div class="btn-group">
                               <a href="VerUsuario.php?idu=<?php echo $id_usuario;?> " type="button" class="btn btn-info"><i class="fa fa-eye"></i>Ver</a>

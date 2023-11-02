@@ -1,0 +1,31 @@
+/* Estilo para las imágenes de vista previa */
+.imagen-estilo {
+    max-width: 200px; /* Ancho máximo de la imagen */
+    max-height: 200px; /* Altura máxima de la imagen */
+    margin-right: 10px; /* Espacio entre las imágenes */
+    border: 1px solid #ccc; /* Borde alrededor de la imagen */
+}
+
+
+/* Estilo para el reproductor de video */
+#videoPreview {
+    max-width: 100%; /* Ancho máximo del video */
+    margin-top: 10px; /* Espacio entre el video y otras vistas previas */
+}
+
+/* Estilo para el botón de carga de video */
+input[type="file"] {
+    background-color: #007bff; /* Color de fondo del botón (ajusta según tus necesidades) */
+    color: #fff; /* Color del texto del botón */
+    padding: 10px 20px; /* Relleno del botón (ajusta según tus necesidades) */
+    border: none; /* Borde del botón (puedes ajustarlo según tus necesidades) */
+    cursor: pointer; /* Cambia el cursor al pasar por encima del botón */
+}
+
+/* Estilo para el botón de carga de video al pasar el cursor por encima */
+input[type="file"]:hover {
+    background-color: #0056b3; /* Cambia el color de fondo al pasar por encima (ajusta según tus necesidades) */
+}
+
+
+

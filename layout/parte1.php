@@ -19,6 +19,10 @@
   
   <link rel="stylesheet" href="<?php echo $URL;?>../prueba.scss">
 
+
+  <link rel="stylesheet" href="<?php echo $URL;?>../dist/css/images_videoProducto.css">
+
+
 <!-- icono de la pagina -->
   <link rel="icon" href="<?php echo $URL;?>../icon/bisonte.ico" type="image/x-icon">
   <!-- Libreria sweetalert2 -->
@@ -225,12 +229,15 @@
                   <p> Lista de Producto</p>
                 </a>
               </li>
-              <!-- <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p></p>
-                </a>
-              </li> -->
+              <li class="nav-item">
+
+                <?php if ($Rol_sesion === 'Administrador'  ) : ?>
+                    <a href="<?php echo $URL;?>../Productos/ProductosAutorizados.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Autorizar Productos</p>
+                    </a>
+                <?php endif; ?>
+              </li>
             </ul>
             
           </li>

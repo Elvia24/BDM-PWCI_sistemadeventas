@@ -1,187 +1,37 @@
-<!DOCTYPE html>
-    <html lang="en">
-    <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Productos</title>
+<?php
+include('../app/config.php');
+include('../layout/sesion.php');
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="../public/plugins/fontawesome-free/css/all.min.css">
-    <!-- nuevo estilo -->
-    <link rel="stylesheet" href="../public/css/Colores.css">
-    <!-- viejo estilo -->
-    <link rel="stylesheet" href="../dist/css/lte.min.css">
-    
-    <link rel="stylesheet" href="../prueba.scss">
-    
-    </head>
-    <body class="hold-transition sidebar-mini">
-    <div class="wrapper" >
-
-        <!-- Barra superior -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-        <!-- boton Barra de navegación izquierda -->
-        <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        </li>
-        </ul>
-        <!-- boton Barra de navegación izquierda -->
-
-    <!-- contenedor barra superior parte izquierda -->
-        <ul class="navbar-nav ml-auto" >
-        <!--Boton Navbar Buscar -->
-        <li class="nav-item">
-            <!--Boton -->
-            <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-            <i class="fas fa-search"></i>
-            </a>
-            <!--Boton -->
-            <!--Buscador -->
-            <div class="navbar-search-block">
-            <form class="form-inline">
-                <div class="input-group input-group-sm">
-                <input class="form-control form-control-navbar" type="search" placeholder="Buscar" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-navbar" type="submit">
-                    <i class="fas fa-search"></i>
-                    </button>
-                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                    <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                </div>
-            </form>
-            </div>
-            <!--Buscador -->
-        </li>
-            <!--Boton Navbar Buscar -->
-
-        <!-- Menú desplegable de Compras carrito-->
-        <li class="nav-item dropdown">
-            <li class="nav-item">
-            <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                <i class="fas fa-cart-plus"></i>
-            </a>
-            </li> 
-        </li>
-        <li class="nav-item">
-            <a class="nav-link"  href="#" role="button">
-            <i class="fas fa-arrow-right"></i>
-            </a>
-        </li>
-        </ul>
-    <!-- contenedor barra superior parte izquierda -->
-    </nav>
-        <!-- Barra superior -->
-
-    <!-- Contenedor de barra lateral Derecha -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4 " style="background-color: var(--azul-bisonte-barralateral);">
-        <!-- Logo -->
-        <a href="../Home/Home.php" class="brand-link "style=" border-bottom: var(--rojo-bisonte);">
-        <img src="../public/images/Logo.png" alt="Ventas Bisontes" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Ventas Bisontes</span>
-        </a>
-
-        <!-- Contenedor Menu lateral derecho-->
-        <div class="sidebar">
-        <!-- Panel de usuario de la barra lateral Derecha-->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex"style=" border-bottom: var(--rojo-bisonte);">
-            <div class="image">
-            <img src="../public/images/Logo.png" class="img-circle elevation-2" alt="User Image">
-            </div>
-            <div class="info">
-            <a href="#" class="d-block">User</a>
-            </div>
-        </div>
-        <!-- Panel de usuario de la barra lateral Derecha-->
-        <!-- Menu Lateral Derecha -->
-        <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!--  clase .nav-icon con font-awesome para los iconos -->
-                <!--  USUARIOS-->
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-users"></i>
-                    <p>
-                        Usuarios
-                        <!-- <span class="right badge badge-danger">0</span> insignia-peligro-->  
-                    </p>
-                </a>
-            </li>
-                <!--  USUARIOS-->
-            <!--  CATEGORIAS-->
-            <li class="nav-item menu">
-                <a href="#" class="nav-link ">
-                <i class="nav-icon fas fa-bars"></i>
-                    <p>
-                    Categorias
-                        <i class="right fas fa-angle-left"></i>
-                    </p>
-                </a>
-                <!--  categorias-->
-                <ul class="nav nav-treeview">
-
-                <li class="nav-item">
-                    <a href="#" class="nav-link ">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p></p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p></p>
-                    </a>
-                </li>
-                </ul>
-                <!--  categorias-->
-            </li>
-            <!--  CATEGORIAS-->
+include('../app/controllers/productos/MIS_productos.php');
+ include('../layout/parte1.php');  //ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR -LA BARRA IZQUIERDA AZUL 
 
 
-                <!--  PRODUCTOS-->
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-barcode"></i>
-                <p>
-                    Mis Productos
-                    <!-- <span class="right badge badge-danger">0</span> insignia-peligro-->  
-                </p>
-                </a>
-            </li>
-                <!--  PRODUCTOS-->
-                <!--  COTIZACION-->
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-handshake"></i>
-                <p>
-                    Cotizacion
-                    <!-- <span class="right badge badge-danger">0</span> insignia-peligro-->  
-                </p>
-                </a>
-            </li>
-                <!--  COTIZACION-->
-                <!--  REPORTES-->
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-clipboard"></i>
-                <p>
-                    Reportes
-                    <!-- <span class="right badge badge-danger">0</span> insignia-peligro-->   
-                </p>
-                </a>
-            </li>
-                <!--  REPORTES-->
-            </ul>
-        </nav>
-        <!-- Menu Lateral Derecha -->
-        </div>
-        <!-- Contenedor Menu lateral derecho-->
-    </aside>
-    <!-- Contenedor de barra lateral Derecha -->
+?> 
+
+
+
+<title>Agregar Producto</title>
+
+<style>
+    .product-image {
+        max-width: 200px; /* Ajusta el tamaño máximo de la imagen */
+        max-height: 200px;
+        border: 1px solid #ccc; /* Agrega un borde */
+        margin-right: 10px; /* Espacio entre las imágenes */
+    }
+
+
+    .estado-1 {
+    background-color: green;
+    color: white; /* Cambia el color del texto si es necesario */
+}
+
+.estado-0 {
+    background-color: red; /* Puedes elegir otro color si lo prefieres */
+    color: white; /* Cambia el color del texto si es necesario */
+}
+</style>
+
     
     <!-- El contenido de la página -->
     <div class=" content-wrapper "style="background-color: var(--gris-bisonte);">
@@ -200,7 +50,7 @@
             <section class="content" >
         <div class="container-fluid">
             <div class="row" >
-            <div class="col-md-12">
+            <div class="col-md-10">
 
                 <!-- Profile Image Box  -->
                 <div class="card2a card-outline barrasuperior" >
@@ -214,52 +64,29 @@
                 <div class="card-body " ><!-- card-body -->
                     <div class="tab-content"><!-- tab-content -->
                     <div class="active tab-pane" id="EditarDatos">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" action="../app/controllers/productos/registrar_producto.php " method="POST"  enctype="multipart/form-data"   >
                         
                         <!-- Campos a LLenar -->
                         <div class="form-group row">
                             <label for="inputNombreProducto" class=" col-form-label ">Nombre</label>
                             <div class="col-sm-12">
-                            <input type="text" class="form-control" id="inputNombreProducto" placeholder="Nombre">
+                            <input type="text" class="form-control" id="inputNombreProducto" placeholder="Nombre" name="NombreProducto" required>
                             </div>
                         </div>
                         
                         <div class="form-group row">
-                            <label for="inputDescripcionProducto" class=" col-form-label ">Descripcion</label>
+                            <label for="inputDescripcionProducto" class="col-form-label">Descripción</label>
                             <div class="col-sm-12">
-                            <input type="text" class="form-control" id="inputDescripcionProducto" placeholder="Descripcion">
+                                <textarea class="form-control" id="inputDescripcionProducto" placeholder="Descripción" name="DescripcionProducto" rows="4" required></textarea>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="inputImagenProducto" class="col-form-label">Imágenes del Producto (Máximo 3) *Selecciona la imagen para Eliminarla</label>
-                            <div class="col-sm-12 resaltar-borde ">
-                                <div id="imagenContainer" class="image-container">
-                                    <!-- Aquí se mostrarán las imágenes seleccionadas -->
-                                </div>
-                                <div>
-                                <label for="videoSubido">Subir Imagen:</label>
-                                    <input class="ocultaron" type="file" id="inputImagenProductoBtn" name="imagenSubida" accept="image/*">
-                                    <button id="subirImagenBtn">Subir Imagen</button>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
 
-                        <div class="form-group row ">
-                            <label for="inputVideoProducto" class="col-form-label">Video Del Producto</label>
-                            <div class="col-sm-12 resaltar-borde ">
-                            <form action="tu_script_de_procesamiento.php" method="POST" enctype="multipart/form-data">
-                                <label for="videoSubido">Subir Video:</label>
-                                <input type="file" id="videoSubido" name="videoSubido" accept="video/*">
-                                <video id="videoPreview" controls style="display: none;"></video>
-                                <input type="submit" value="Subir Video"> <!-- checar boton subir video -->
-                            </form>
-                            </div>
-                        </div>
+
+                        
 
                                                 
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <label for="inputCotizaroVenta" class=" col-form-label ">Cotizar o Venta</label>
                             <div class="col-sm-12">
                             
@@ -270,28 +97,117 @@
                           </select>
                           
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group row">
-                            <label for="inputDescripcionProducto" class=" col-form-label ">Precio</label>
+                            <label for="inputDescripcionProducto" class=" col-form-label ">Precio *Si no establece precio es cotizacion</label>
                             <div class="col-sm-12">
-                            <input type="text" class="form-control" id="inputDescripcionProducto" placeholder="0">
+                            <input type="text" class="form-control" id="inputDescripcionProducto" placeholder="0" name="PrecioProducto">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputStock" class=" col-form-label ">Stock (Cantidad Disponible)</label>
                             <div class="col-sm-12">
-                            <input type="text" class="form-control" id="inputStock" placeholder="0">
+                            <input type="text" class="form-control" id="inputStock" placeholder="0" name="StockProducto">
                             </div>
                         </div>
 
+
+                            <!-- Campos para cargar imágenes -->
+                            <div class="form-group row">
+    <label class="col-form-label col-sm-12">Imágenes del Producto (Máximo 3)</label>
+    <div class="col-sm-6">
+                <table>
+            <tr>
+                <td>
+                    <input type="file" name="ArchivoSubido1" accept="image/*" style="display: none;" id="inputImagenProducto1" required >
+                    <label for="inputImagenProducto1" class="btn btn-primary">Subir Imagen 1</label>
+                    <img id="imagenPreview1" class="imagen-estilo">
+                </td>
+                <td>
+                    <input type="file" name="ArchivoSubido2" accept="image/*" style="display: none;" id="inputImagenProducto2"required>
+                    <label for="inputImagenProducto2" class="btn btn-primary">Subir Imagen 2</label>
+                    <img id="imagenPreview2"class="imagen-estilo" >
+                </td>
+
+                <td>
+                    <input type="file" name="ArchivoSubido3" accept="image/*" style="display: none;" id="inputImagenProducto3"required>
+                    <label for="inputImagenProducto3" class="btn btn-primary">Subir Imagen 3</label>
+                    <img id="imagenPreview3" class="imagen-estilo"></td>
+                </tr>
+
+    
+            </table>
+
+
+        </div>
+    </div>
+
+
+
+    <!-- Campo para cargar un video -->
+    <div class="form-group row">
+        <label for="inputVideoProducto" class="col-form-label ">Video Del Producto</label>
+        <div class="col-sm-12">
+            <input  type="file" id="videoSubido" name="ArchivoSubido4" accept="video/*" required>
+            <video id="videoPreview" controls style="display: none;"></video>
+        </div>
+    </div>
+
+<!-- Vista previa del video -->
+<div class="form-group row">
+    <label class="col-form-label">Vista previa del video:</label>
+    <div class="col-sm-12">
+        <video id="videoPreview" controls style="display: none;"></video>
+    </div>
+</div>
+<div class="form-group row">
+    <label for="miComboBox" class="content" style="padding: 0px 10px;">Categoría: </label>
+    <select id="miComboBox" name="ID_Categoria_producto" class="form-control">
+        <?php
+        // Realiza una consulta para obtener las categorías desde la base de datos
+        // Asegúrate de ajustar esta consulta según tu estructura de base de datos
+        $consultaCategorias = "SELECT `ID_categoria`, `nombre_cate` FROM `categoria`";
+
+        // Ejecuta la consulta y recorre los resultados
+        foreach ($pdo->query($consultaCategorias) as $row) {
+            $idCategoria = $row['ID_categoria'];
+            $nombreCategoria = $row['nombre_cate'];
+            echo "<option value='$idCategoria'>$nombreCategoria</option>";
+        }
+        ?>
+    </select>
+</div>
+
+
+
+    <div class="form-group row">
+        <label for="inputDescripcionProducto" class="col-form-label">Precio *Si no establece precio es cotización</label>
+        <div class="col-sm-12">
+            <input type="text" class="form-control" id="inputDescripcionProducto" placeholder="0">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="inputStock" class="col-form-label">Stock (Cantidad Disponible)</label>
+        <div class="col-sm-12">
+            <input type="text" class="form-control" id="inputStock" placeholder="0">
+        </div>
+    </div>
+
+    <input type="text" name="id_usuarioSesion" id="ID_usuario_sesion" value="<?php echo $ID_usuario_sesion?>" hidden>
+
+
+    
                         <!-- Campos a LLenar -->
                         <!-- Boton Guardar -->
                         <div class="form-group row">
                             <div class="offset-sm-5 col-sm-10">
-                            <button type="button" class="btn btn-success">Guardar</button>
+                            <button type="submit" class="btn btn-success"  >Guardar</button>
                             </div>
                         </div>
+                        
+
                         <!-- Boton Guardar -->
                     </form>
                     </div><!-- /.tab-pane -->
@@ -354,15 +270,7 @@
                 
                 <div class="card-header " ><!-- card-header ENCABEZADO CAJA DERECHA -->
                 <h1 class="card-title ">Mis Productos</h1>
-                    <div class="card-tools">
-                        <div  iv class="input-group " >
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-danger ">
-                                <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+
                     <!-- <ul class="nav nav-pills">
                     <li class="nav-item"><a class="nav-link active " href="#EditarDatos" data-toggle="tab"  >Editar Datos</a></li>
                     <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
@@ -376,38 +284,134 @@
                 <!--  CAJA DERECHA-->
                 <div class="card-body">
                     <!--  CAJA DERECHA CONTENIDO-->
-                    <div class="card-body table-responsive p-0" style="height: 300px;">
-                <table class="table table-head-fixed text-nowrap custom-border">
+                                <!-- Encabezado tabla -->
+            <div class="row">
+            <div class="col-12">
+                <div class="card">
+                <div class="card-header">
+                    
+                <div class="card-body " style="overflow-y: scroll; max-height: 850px;">
+                    <table class="table   table-striped ">
                     <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Categoria</th>
+                        <tr>
+                        <th>Autorizado</th>
+                        <th>Producto</th>
                         <th>Descripcion</th>
-                        <th>Imagenes</th>
-                        <th>Video</th>
-                        <th>Cotizacion/Venta</th>
                         <th>Precio</th>
-                        <th>Stock</th>
-                        <th>Puntuacion</th>
+                        <th >Cantidad disponible</th>
+                        <th >Calificacion </th>
+                        <th >Categoria </th>
+                        <th >Vendedor </th>
+                        <th >Imagenes </th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                        <td>Verano</td>
-                        <td>DESCRIPCION</td>
-                        </tr>
-                        <tr>
-                        <td>Rojo</td>
-                        <td>DESCRIPCION</td>
-                        </tr>
-                        <tr>
-                        <td>Casa</td>
-                        <td>DESCRIPCION</td>
-                        </tr>
+                
+                    <tbody><!--   AQUI VA LA LISTA DE USUARIOS-->
+                    <?php
+                         //(lista de usuarios de la base de datos AS  mis lista )
+                         //VERIFICAR LA CONSULTA PARA VER SOLO ALGUNOS USUARIOS 
+                    foreach($productos_tabla as $productos_dato){ 
+                      //$id_producto = $productos_dato['ID_usuario'];
+                      
+                      
+                      ?>
+                      
+                     <tr >
+                      
+                     <td class="estado-<?php echo $productos_dato['EstadoProducto']; ?>">
+                        <?php
+                        if ($productos_dato['EstadoProducto'] == 1) {
+                            echo "Autorizado";
+                        } elseif ($productos_dato['EstadoProducto'] == 0) {
+                            echo "No Autorizado";
+                        }
+                        ?>
+                    </td>
 
+
+                        <td><?php echo $productos_dato['NombreProducto'];?></td>
+                        <td><?php echo $productos_dato['DescripcionProducto'];?></td>
+                        <td><?php echo $productos_dato['PrecioProducto'];?></td>
+                        <td><?php echo $productos_dato['CantidadDisponible'];?></td>
+                        
+                        <td><?php echo $productos_dato['CalificacionProducto'];?></td>
+                        <td><?php echo $productos_dato['NombreCategoria'];?></td>
+                        <td><?php echo $productos_dato['NombreUsuario'];?></td>
+                       <?php 
+                        // ... Resto de tus datos
+    // Subconsulta para obtener imágenes
+    $sql_imagenes = "SELECT Imagen_Video FROM imagen_video WHERE id_producto = :id_producto";
+    $query_imagenes = $pdo->prepare($sql_imagenes);
+    $query_imagenes->bindParam(':id_producto', $productos_dato['ID_producto']);
+    $query_imagenes->execute();
+    $imagenes = $query_imagenes->fetchAll(PDO::FETCH_COLUMN);
+
+    // Dirección base de las imágenes en el servidor
+    $directorioImagenes = "../app/controllers/productos/imageProductos/"; // Cambia esta URL
+
+    // Abre la celda <td> antes del bucle
+    
+    echo '<td>';
+    $imagenMostrada = false; // Variable para verificar si se muestra al menos una imagen
+    
+    // Muestra las imágenes en la celda <td>
+    foreach ($imagenes as $imagen) {
+        echo '<img class="product-image" src="' . $directorioImagenes . $imagen . '"';
+        // Verifica si la imagen es válida y, si es el caso, establece el atributo "alt"
+        if (file_exists($directorioImagenes . $imagen)) {
+           
+            $imagenMostrada = true; // Marca que se ha mostrado una imagen
+        }
+        echo '>';
+    }
+    
+    // Si al menos se mostró una imagen, agrega el reproductor de video
+    if ($imagenMostrada) {
+        echo '<video controls width="640" height="360">';
+        echo '<source src="' . $directorioImagenes . $imagen . '" type="video/mp4">';
+        echo 'Tu navegador no soporta la reproducción de videos.';
+        echo '</video>';
+    }
+    
+    // Cierra la celda <td>
+    echo '</td>';
+    
+    
+                        
+                        ?>
+
+                        <td >
+                              <div class="btn-group">
+                             
+                              <!-- <a href="EliminarUsuario.php?idu=<?php echo $id_usuario;?> " type="button" class="btn btn-danger"><i class="fa fa-trash"></i>Eliminar</a> -->
+
+                              </div>
+                        </td>
+
+                     </tr>
+                     
+
+                    <?php
+                    }
+                    
+                    ?>
+                        
                     </tbody>
+
+
                     </table>
-                </div>
+
+                </div> <!--card -->
+            </div><!--col-12 -->
+            </div><!--row -->
+            <!-- Encabezado tabla -->
+        </div>
+        <!-- Contenedor tabla -->
+
+
+
+
+            </div>
                         <!--  CAJA DERECHA CONTENIDO-->
                 </div> 
                     <!--  CAJA DERECHA-->
@@ -426,26 +430,79 @@
         
     </div>
     <!-- El contenido de la página -->
-
-    <!-- barra derecha carrito -->
-    <aside class="control-sidebar control-sidebar-dark" style="background-color: var(--bisonte-barralateralderecha); ">
-        <!-- El contenido de la barra lateral de control va aquí -->
-        <div class="p-3">
-        <h5>Carrito</h5>
-        <p >Algo</p>
-        </div>
-    </aside>
-    <!-- barra derecha carrito -->
+    <?php include('../layout/mensaje.php');?>
+<?php include('../layout/parte2.php');?> <!-- ESTE SUJETO CONTIENE  -LA BARRA DERECHA cARRITO -->
 
 
 
-    <!-- jQuery -->
-    <script src="../public/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="../public/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!--  -->
-    <script src="../dist/js/lte.min.js"></script>
-    <script src="../public/js/script1.js"></script>
+<script>
+// Función para mostrar la vista previa de imágenes
+function mostrarVistaPreviaImagen(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var imagen = document.createElement("img");
+            imagen.setAttribute("src", e.target.result);
+            document.getElementById("previewImages").appendChild(imagen);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
-    </body>
-    </html>
+// Función para mostrar la vista previa del video
+function mostrarVistaPreviaVideo(input) {
+    if (input.files && input.files[0]) {
+        var video = document.getElementById("videoPreview");
+        video.style.display = "block";
+        video.src = URL.createObjectURL(input.files[0]);
+    }
+}
+
+// Asignar eventos para mostrar vistas previas al cambiar los archivos
+document.querySelector('input[name="ArchivoSubido1"]').addEventListener('change', function() {
+    mostrarVistaPreviaImagen(this);
+});
+
+document.querySelector('input[name="ArchivoSubido2"]').addEventListener('change', function() {
+    mostrarVistaPreviaImagen(this);
+});
+
+document.querySelector('input[name="ArchivoSubido3"]').addEventListener('change', function() {
+    mostrarVistaPreviaImagen(this);
+});
+
+document.querySelector('input[name="ArchivoSubido4"]').addEventListener('change', function() {
+    mostrarVistaPreviaVideo(this);
+});
+</script>
+<script>
+// Función para mostrar la vista previa de imágenes
+function mostrarVistaPreviaImagen(input, imagenPreview) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var imagen = document.getElementById(imagenPreview);
+            imagen.src = e.target.result;
+            imagen.style.display = "block";
+        };
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        var imagen = document.getElementById(imagenPreview);
+        imagen.src = "";
+        imagen.style.display = "none";
+    }
+}
+
+// Asignar eventos para mostrar vistas previas al cambiar los archivos
+document.querySelector('input[name="ArchivoSubido1"]').addEventListener('change', function() {
+    mostrarVistaPreviaImagen(this, 'imagenPreview1');
+});
+
+document.querySelector('input[name="ArchivoSubido2"]').addEventListener('change', function() {
+    mostrarVistaPreviaImagen(this, 'imagenPreview2');
+});
+
+document.querySelector('input[name="ArchivoSubido3"]').addEventListener('change', function() {
+    mostrarVistaPreviaImagen(this, 'imagenPreview3');
+});
+</script>
