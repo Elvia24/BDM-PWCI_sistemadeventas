@@ -108,7 +108,7 @@ include('../app/controllers/productos/MIS_productos.php');
                         <div class="form-group row">
                             <label for="inputStock" class=" col-form-label ">Stock (Cantidad Disponible)</label>
                             <div class="col-sm-12">
-                            <input type="text" class="form-control" id="inputStock" placeholder="0" name="StockProducto">
+                            <input type="text" class="form-control" id="inputStock" placeholder="0" name="StockProducto" hidden>
                             </div>
                         </div>
 
@@ -311,7 +311,7 @@ include('../app/controllers/productos/MIS_productos.php');
                          //(lista de usuarios de la base de datos AS  mis lista )
                          //VERIFICAR LA CONSULTA PARA VER SOLO ALGUNOS USUARIOS 
                     foreach($productos_tabla as $productos_dato){ 
-                      //$id_producto = $productos_dato['ID_usuario'];
+                      $id_producto = $productos_dato['ID_producto'];
                       
                       
                       ?>
@@ -326,6 +326,8 @@ include('../app/controllers/productos/MIS_productos.php');
                             echo "No Autorizado";
                         }
                         ?>
+
+                        
                     </td>
 
 
@@ -357,6 +359,7 @@ include('../app/controllers/productos/MIS_productos.php');
     // Muestra las imágenes en la celda <td>
     foreach ($imagenes as $imagen) {
         echo '<img class="product-image" src="' . $directorioImagenes . $imagen . '"';
+        
         // Verifica si la imagen es válida y, si es el caso, establece el atributo "alt"
         if (file_exists($directorioImagenes . $imagen)) {
            
@@ -382,8 +385,8 @@ include('../app/controllers/productos/MIS_productos.php');
 
                         <td >
                               <div class="btn-group">
-                             
-                              <!-- <a href="EliminarUsuario.php?idu=<?php echo $id_usuario;?> " type="button" class="btn btn-danger"><i class="fa fa-trash"></i>Eliminar</a> -->
+                              <a href="EditarProducto.php?idu=<?php echo $id_producto;?> " type="button" class="btn btn-info"><i class="fa fa-eye"></i>Ver</a>
+                              <a href=" " type="button" class="btn btn-danger"><i class="fa fa-trash"></i>Eliminar</a>
 
                               </div>
                         </td>
