@@ -2,7 +2,7 @@
 include('../app/config.php');
 include('../layout/sesion.php');
 
-include('../app/controllers/productos/lista_productos_autorizados.php');
+//include('../app/controllers/productos/lista_productos_autorizados.php');
  include('../layout/parte1.php');  //ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR -LA BARRA IZQUIERDA AZUL 
 
 

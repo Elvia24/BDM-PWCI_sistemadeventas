@@ -22,13 +22,24 @@ include('../app/controllers/productos/MIS_productos.php');
 
 
     .estado-1 {
-    background-color: green;
-    color: white; /* Cambia el color del texto si es necesario */
+    background-color: rgba(51, 255, 0, 0.555);
+    color: black; /* Cambia el color del texto si es necesario */
 }
 
 .estado-0 {
-    background-color: red; /* Puedes elegir otro color si lo prefieres */
-    color: white; /* Cambia el color del texto si es necesario */
+    background-color: rgba(255, 0, 0, 0.555); 
+    color: black; 
+}
+/*cotizar o no*/
+
+.cotizar-1 {
+    background-color: rgba(0, 183, 255, 0.555);
+    color: black; /* Cambia el color del texto si es necesario */
+}
+
+.cotizar-0 {
+    background-color: rgba(0, 4, 255, 0.555);/* Puedes elegir otro color si lo prefieres */
+    color: black; /* Cambia el color del texto si es necesario */
 }
 
 
@@ -46,7 +57,7 @@ include('../app/controllers/productos/MIS_productos.php');
         <div class="container-fluid">
             <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Producto</h1>
+                <!-- <h1 class="m-0">Producto</h1> -->
             </div><!-- col-sm-6 -->
             </div><!-- row mb-2-->
         </div><!-- container-fluid -->
@@ -111,8 +122,8 @@ include('../app/controllers/productos/MIS_productos.php');
                             <!-- Campos para cargar imágenes -->
                             <div class="form-group row">
     <label class="col-form-label col-sm-12">Imágenes del Producto (Máximo 3)</label>
-    <div class="col-sm-6">
-                <table>
+    <div class="col-sm-12">
+                <table class="col-sm-12">
             <tr>
                 <td>
                     <input type="file" name="ArchivoSubido1" accept="image/*" style="display: none;" id="inputImagenProducto1" required >
@@ -275,141 +286,7 @@ include('../app/controllers/productos/MIS_productos.php');
                 </div> -->
                 <!-- Caja baja -->
             </div>
-            <!-- /.col -->
-            <div class="col-md-12  piso-container-borde-fIN" >
-                
-                <div class="card">
-                
-                <div class="card-header " ><!-- card-header ENCABEZADO CAJA DERECHA -->
-                <h1 class="card-title ">Mis Productos</h1>
 
-                    <!-- <ul class="nav nav-pills">
-                    <li class="nav-item"><a class="nav-link active " href="#EditarDatos" data-toggle="tab"  >Editar Datos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
-
-                    </ul> -->
-                    
-
-                    
-                </div><!-- /.card-header ENCABEZADO CAJA DERECHA-->
-                <!--  CAJA DERECHA-->
-                <div class="card-body">
-                    <!--  CAJA DERECHA CONTENIDO-->
-                                <!-- Encabezado tabla -->
-            <div class="row">
-            <div class="col-12">
-                <div class="card">
-                <div class="card-header">
-                    
-                <div class="card-body " style="overflow-y: scroll; max-height: 850px;">
-                    <table class="table   table-striped ">
-                    <thead>
-                        <tr>
-                        <th>Autorizado</th>
-                        <th>Producto</th>
-                        <th>Descripcion</th>
-                        <th>Precio</th>
-                        <th >Cantidad disponible</th>
-                        <th >Calificacion </th>
-                        <th >Categoria </th>
-                        <th >Vendedor </th>
-                        <th >Imagenes </th>
-                        </tr>
-                    </thead>
-                
-                    <tbody><!--   AQUI VA LA LISTA DE USUARIOS-->
-                    <?php
-                         //(lista de usuarios de la base de datos AS  mis lista )
-                         //VERIFICAR LA CONSULTA PARA VER SOLO ALGUNOS USUARIOS 
-                    foreach($productos_tabla as $productos_dato){ 
-                      $id_producto = $productos_dato['ID_producto'];
-                      
-                      
-                      ?>
-                      
-                     <tr >
-                      
-                     <td class="estado-<?php echo $productos_dato['EstadoProducto']; ?>">
-                        <?php
-                        if ($productos_dato['EstadoProducto'] == 1) {
-                            echo "Autorizado";
-                        } elseif ($productos_dato['EstadoProducto'] == 0) {
-                            echo "No Autorizado";
-                        }
-                        ?>
-
-                        
-                    </td>
-
-
-                        <td><?php echo $productos_dato['NombreProducto'];?></td>
-                        <td><?php echo $productos_dato['DescripcionProducto'];?></td>
-                        <td><?php echo $productos_dato['PrecioProducto'];?></td>
-                        <td><?php echo $productos_dato['CantidadDisponible'];?></td>
-                        
-                        <td><?php echo $productos_dato['CalificacionProducto'];?></td>
-                        <td><?php echo $productos_dato['NombreCategoria'];?></td>
-                        <td><?php echo $productos_dato['NombreUsuario'];?></td>
-                        
-                    
-                        </td>
-                        <td>
-                        <img src=" <?php echo $URL. "../app/controllers/productos/imageProductos/" .$productos_dato['imagenP_1'];?>" width="100px" alt="imageUsuarios/">
-                        <img src=" <?php echo $URL. "../app/controllers/productos/imageProductos/" .$productos_dato['imagenP_2'];?>" width="100px" alt="imageUsuarios/">
-                        <img src=" <?php echo $URL. "../app/controllers/productos/imageProductos/" .$productos_dato['imagenP_3'];?>" width="100px" alt="imageUsuarios/">
-
-
-                        </td>
-                        <td>
-                        <video width="320" height="240" controls>
-                            <source src="<?php echo $URL. "../app/controllers/productos/imageProductos/" .$productos_dato['VideoP'];?>" type="video/mp4">
-                            Tu navegador no soporta el elemento de video.
-                        </video>
-
-
-                        </td>
-
-                        <td >
-                              <div class="btn-group">
-                              <a href="EditarProducto.php?idu=<?php echo $id_producto;?> " type="button" class="btn btn-info"><i class="fa fa-eye"></i>Ver</a>
-                              <a href=" " type="button" class="btn btn-danger"><i class="fa fa-trash"></i>Eliminar</a>
-
-                              </div>
-                        </td>
-
-                     </tr>
-                     
-
-                    <?php
-                    }
-                    
-                    ?>
-                        
-                    </tbody>
-
-
-                    </table>
-
-                </div> <!--card -->
-            </div><!--col-12 -->
-            </div><!--row -->
-            <!-- Encabezado tabla -->
-        </div>
-        <!-- Contenedor tabla -->
-
-
-
-
-            </div>
-                        <!--  CAJA DERECHA CONTENIDO-->
-                </div> 
-                    <!--  CAJA DERECHA-->
-                </div><!-- /.card-body -->
-
-
-                </div>
-                <!-- /.card -->
             </div>
             <!-- /.col -->
             </div>

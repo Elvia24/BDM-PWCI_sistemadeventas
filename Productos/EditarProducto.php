@@ -2,85 +2,39 @@
 include('../app/config.php');
 include('../layout/sesion.php');
 
-// include('../app/controllers/productos/buscar_producto.php');
+include('../app/controllers/productos/cargar_producto.php');
  include('../layout/parte1.php');  //ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR -LA BARRA IZQUIERDA AZUL 
+
+ 
+
+ foreach($productos_datos AS $productos_dato){
+     $NombreProducto = $productos_dato['NombreProducto'];
+     $DescripcionProducto = $productos_dato['DescripcionProducto'];
+     // $ArchivoSubido1 = $_POST['ArchivoSubido1_I'];
+     // $ArchivoSubido2 = $_POST['ArchivoSubido2_I'];
+     // $ArchivoSubido3 = $_POST['ArchivoSubido3_I'];
+     // $ArchivoSubido4 = $_POST['ArchivoSubido4_I'];
+     $NombreCategoria = $productos_dato['NombreCategoria'];
+     $venta_cotizar = $productos_dato['venta_cotizar'];
+     $precioProducto = $productos_dato['PrecioProducto'];
+     $Cantidad_Disponible = $productos_dato['CantidadDisponible'];
+     $NombreUsuario = $productos_dato['NombreUsuario'];
+
+     $imagenP_1 = $productos_dato['imagenP_1'];
+     $imagenP_2 = $productos_dato['imagenP_2'];
+     $imagenP_3 = $productos_dato['imagenP_3'];
+     $VideoP = $productos_dato['VideoP'];
+
+
+
+
+ }
+
 
 
 ?> 
 
-<?php
 
-
-$id_producto = $_GET['idu'];
-
-$sql_productos = "SELECT
-p.ID_producto,
-p.nombre_prod AS NombreProducto,
-p.descripcion_prod AS DescripcionProducto,
-p.precio_prod AS PrecioProducto,
-p.status_prod AS EstadoProducto,
-p.cantDisp_prod AS CantidadDisponible,
-p.calificacion_prod AS CalificacionProducto,
-p.fechaCreacion_prod AS FechaCreacionProducto,
-p.id_Categoria,
-c.nombre_cate AS NombreCategoria,
-u.ID_usuario AS IDUsuario,
-u.nombreUsuario AS NombreUsuario
-FROM producto AS p
-LEFT JOIN categoria AS c ON p.id_Categoria = c.ID_categoria
-LEFT JOIN usuario AS u ON p.id_Usuario = u.ID_usuario
-WHERE p.ID_producto = $id_producto
-GROUP BY p.ID_producto;";
-
-
-$query_productos = $pdo->prepare($sql_productos);
-$query_productos->execute();
-
-$productos_tabla = $query_productos->fetchAll(PDO::FETCH_ASSOC);
-
-// Imprimir los datos
-foreach ($productos_tabla as $producto) {
-     "ID del Producto: " . $producto['ID_producto'] . "<br>";
-     "Nombre del Producto: " . $producto['NombreProducto'] . "<br>";
-     "Descripción del Producto: " . $producto['DescripcionProducto'] . "<br>";
-     "Precio del Producto: " . $producto['PrecioProducto'] . "<br>";
-     "Estado del Producto: " . $producto['EstadoProducto'] . "<br>";
-    
-   
- "Cantidad Disponible: " . $producto['CantidadDisponible'] . "<br>";
-     "Calificación del Producto: " . $producto['CalificacionProducto'] . "<br>";
-     "Fecha de Creación del Producto: " . $producto['FechaCreacionProducto'] . "<br>";
-     "ID de la Categoría: " . $producto['id_Categoria'] . "<br>";
-     "Nombre de la Categoría: " . $producto['NombreCategoria'] . "<br>";
-     "ID del Usuario: " . $producto['IDUsuario'] . "<br>";
-     "Nombre del Usuario: " . $producto['NombreUsuario'] . "<br>";
-}
-
-
-//imagenes del producto
-$sql_imagen_productos = "SELECT ID_Img_Vid, Imagen_Video FROM imagen_video WHERE id_producto =$id_producto";
-
-
-$query_imagen_productos = $pdo->prepare($sql_imagen_productos);
-$query_imagen_productos->execute();
-
-$productos_imagen_tabla = $query_imagen_productos->fetchAll(PDO::FETCH_ASSOC);
-
-// Imprimir los datos
-foreach ($productos_imagen_tabla as $productoimagen_) {
-    $imagenURL = $URL . "../app/controllers/productos/imageProductos/" . $productoimagen_['Imagen_Video'];
-    $altText = isset($productoimagen_['AltText']) ? $productoimagen_['AltText'] : ''; // Verificar si 'AltText' está definido
-       echo '<img src="' . $imagenURL . '" alt="' . $altText . '"><br>';
-       echo'_________________________________________________________________________________________'. $productoimagen_['ID_Img_Vid'] ;
-}
-// echo '<video width="320" height="240" controls>
-// <source src="' . $imagenURL . '" type="video/mp4"> <!-- Ajusta el tipo de archivo según el formato de tu video -->
-// Your browser does not support the video tag.
-// </video><br>';
-
-
-
-?>
 
 <title>Editar Producto</title>
 
@@ -94,22 +48,30 @@ foreach ($productos_imagen_tabla as $productoimagen_) {
 
 
     .estado-1 {
-    background-color: green;
-    color: white; /* Cambia el color del texto si es necesario */
+    background-color: rgba(51, 255, 0, 0.555);
+    color: black; /* Cambia el color del texto si es necesario */
 }
 
 .estado-0 {
-    background-color: red; /* Puedes elegir otro color si lo prefieres */
-    color: white; /* Cambia el color del texto si es necesario */
+    background-color: rgba(255, 0, 0, 0.555); 
+    color: black; 
+}
+/*cotizar o no*/
+
+.cotizar-1 {
+    background-color: rgba(0, 183, 255, 0.555);
+    color: black; /* Cambia el color del texto si es necesario */
+}
+
+.cotizar-0 {
+    background-color: rgba(0, 4, 255, 0.555);/* Puedes elegir otro color si lo prefieres */
+    color: black; /* Cambia el color del texto si es necesario */
 }
 
 
-/* En tu archivo CSS o en línea en el HTML */
-.imagen-pequena {
-    width: 100px; /* Ajusta el ancho según tus necesidades */
-    height: auto; /* Mantiene la proporción de aspecto */
-    margin-right: 10px; /* Espacio a la derecha para separar las imágenes */
-}
+  .form-group.row input[type="radio"] {
+    margin: 10px; /* Agregar margen derecho de 10px entre los radios */
+  }
 
 </style>
 
@@ -121,7 +83,7 @@ foreach ($productos_imagen_tabla as $productoimagen_) {
         <div class="container-fluid">
             <div class="row mb-2">
             <div class="col-sm-6">
-                <!-- <h1 class="m-0">Editar Producto</h1> -->
+                <!-- <h1 class="m-0">Producto</h1> -->
             </div><!-- col-sm-6 -->
             </div><!-- row mb-2-->
         </div><!-- container-fluid -->
@@ -145,20 +107,20 @@ foreach ($productos_imagen_tabla as $productoimagen_) {
                 <div class="card-body " ><!-- card-body -->
                     <div class="tab-content"><!-- tab-content -->
                     <div class="active tab-pane" id="EditarDatos">
-                    <form class="form-horizontal" action="../app/controllers/productos/edit_producto.php " method="POST"  enctype="multipart/form-data"   >
+                    <form class="form-horizontal" action="../app/controllers/productos/registrar_producto.php " method="POST"  enctype="multipart/form-data"   >
                         
                         <!-- Campos a LLenar -->
                         <div class="form-group row">
                             <label for="inputNombreProducto" class=" col-form-label ">Nombre</label>
                             <div class="col-sm-12">
-                            <input type="text" class="form-control" id="inputNombreProducto" placeholder="Nombre" name="NombreProducto" required value="<?php echo $producto['NombreProducto']?>">
+                    <input type="text" class="form-control" id="inputNombreProducto" placeholder="Nombre" name="NombreProducto" required value="<?php echo $NombreProducto ?>" disabled>
                             </div>
                         </div>
                         
                         <div class="form-group row">
                             <label for="inputDescripcionProducto" class="col-form-label">Descripción</label>
                             <div class="col-sm-12">
-                                <textarea class="form-control" id="inputDescripcionProducto" placeholder="Descripción" name="DescripcionProducto" rows="4" required  ><?php echo $producto['DescripcionProducto']?></textarea>
+                                <textarea class="form-control" id="inputDescripcionProducto" placeholder="Descripción" name="DescripcionProducto" rows="4" required disabled><?php echo $DescripcionProducto?></textarea>
                             </div>
                         </div>
 
@@ -180,100 +142,121 @@ foreach ($productos_imagen_tabla as $productoimagen_) {
                             </div>
                         </div> -->
 
-                        <div class="form-group row">
-                            <label for="inputDescripcionProducto" class=" col-form-label ">Precio *Si no establece precio es cotizacion</label>
-                            <div class="col-sm-12">
-                            <input type="text" class="form-control" id="inputDescripcionProducto" placeholder="0" name="PrecioProducto" value="<?php echo $producto['PrecioProducto']?>">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputStock" class=" col-form-label ">Stock (Cantidad Disponible)</label>
-                            <div class="col-sm-12">
-                            <input type="text" class="form-control" id="inputStock" placeholder="0" name="StockProducto" value="<?php echo $producto['CantidadDisponible']?>"required>
-                            </div>
-                        </div>
+
 
 
                             <!-- Campos para cargar imágenes -->
                             <div class="form-group row">
-    <label class="col-form-label col-sm-12">Imágenes del Producto (Máximo 3)</label>
-    <div class="col-sm-6">
-                <table>
-            <tr>
-                <td>
-                    <input type="file" name="ArchivoSubido1" accept="image/*" style="display: none;" id="inputImagenProducto1" required >
-                    <label for="inputImagenProducto1" class="btn btn-primary">Subir Imagen 1</label>
-                    <img id="imagenPreview1" class="imagen-estilo">
-                </td>
-                <td>
-                    <input type="file" name="ArchivoSubido2" accept="image/*" style="display: none;" id="inputImagenProducto2"required>
-                    <label for="inputImagenProducto2" class="btn btn-primary">Subir Imagen 2</label>
-                    <img id="imagenPreview2"class="imagen-estilo" >
-                </td>
+                                    <label class="col-form-label col-sm-12">Imágenes del Producto (Máximo 3)</label>
+                                            <div class="col-sm-12">
+                                                    <table  class="col-sm-12">
+                                                <tr>
+                                                    <td>
+                                                        <!-- <input type="file" name="ArchivoSubido1" accept="image/*" style="display: none;" id="inputImagenProducto1" required >
+                                                        <label for="inputImagenProducto1" class="btn btn-primary">Subir Imagen 1</label>
+                                                        <img id="imagenPreview1" class="imagen-estilo"> -->
+                                                        
+                                                        <img src=" <?php echo $URL. "../app/controllers/productos/imageProductos/" .$imagenP_1;?>" width="200px" >
+                                                    </td>
+                                                    <td>
+                                                        <!-- <input type="file" name="ArchivoSubido2" accept="image/*" style="display: none;" id="inputImagenProducto2"required>
+                                                        <label for="inputImagenProducto2" class="btn btn-primary">Subir Imagen 2</label>
+                                                        <img id="imagenPreview2"class="imagen-estilo" > -->
+                                                        <img src=" <?php echo $URL. "../app/controllers/productos/imageProductos/" .$imagenP_2;?>" width="200px" >
 
-                <td>
-                    <input type="file" name="ArchivoSubido3" accept="image/*" style="display: none;" id="inputImagenProducto3"required>
-                    <label for="inputImagenProducto3" class="btn btn-primary">Subir Imagen 3</label>
-                    <img id="imagenPreview3" class="imagen-estilo"></td>
-                </tr>
+                                                    </td>
 
-    
-            </table>
+                                                    <td>
+                                                        <!-- <input type="file" name="ArchivoSubido3" accept="image/*" style="display: none;" id="inputImagenProducto3"required>
+                                                        <label for="inputImagenProducto3" class="btn btn-primary">Subir Imagen 3</label>
+                                                        <img id="imagenPreview3" class="imagen-estilo"></td> -->
+                                                        <img src=" <?php echo $URL. "../app/controllers/productos/imageProductos/" .$imagenP_3;?>" width="200px" >
+                                                    </tr>
+
+                                        
+                                                </table>
 
 
-        </div>
-    </div>
-</tr>
+                                        </div>
+                            </div>
 
-    <!-- Campo para cargar un video -->
+
+
+                            <!-- Campo para cargar un video -->
+                            <div class="form-group row">
+                                <!-- <label for="inputVideoProducto" class="col-form-label ">Video Del Producto</label>
+                                <div class="col-sm-12">
+                                    <input  type="file" id="videoSubido" name="ArchivoSubido4" accept="video/*" required>
+                                    <video id="videoPreview" controls style="display: none;"></video>
+                                </div> -->
+                                <div class="col-sm-12">
+                                <video width="620" height="440" controls>
+                                    <source src="<?php echo $URL. "../app/controllers/productos/imageProductos/" .$VideoP;?>" type="video/mp4">
+                                    Tu navegador no soporta el elemento de video.
+                                </video>
+                                </div> 
+                            </div>
+
+                        <!-- Vista previa del video -->
+                        <!-- <div class="form-group row">
+                            <label class="col-form-label">Vista previa del video:</label>
+                            <div class="col-sm-12">
+                                <video id="videoPreview" controls style="display: none;"></video>
+                            </div>
+                        </div> -->
+
+                        
+                        <div class="form-group row">
+                            <label for="inputNombreCategoria" class=" col-form-label ">Categoria</label>
+                            <div class="col-sm-12">
+                    <input type="text" class="form-control" id="inputNombreCategoria" placeholder="Nombre" name="NombreCategoria" required value="<?php echo $NombreCategoria ?>" disabled>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div id="precioField" style="display: none">
+                            <div class="form-group row">
+                                <label for="inputDescripcionProducto" class="col-form-label">Precio</label>
+                                <div class="col-sm-12">
+                                    <input name="precioProducto" type="text" class="form-control" id="inputDescripcionProducto" placeholder="0" disabled value="<?php echo $precioProducto; ?>">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="otroDiv" style="display: none">
+                            <div class="form-group row">
+                            <label style=" background-color: rgba(0, 4, 255, 0.555);" for="inputDescripcionProducto" class="col-form-label">Cotizar</label>
+                            </div>
+                        </div>
+                        <script>
+                            var ventaCotizarValue = <?php echo $venta_cotizar; ?>; // Obtén el valor de venta_cotizar desde PHP
+
+                            if (ventaCotizarValue === 1) {
+                                // Muestra el primer div si ventaCotizarValue es igual a 1
+                                document.getElementById("precioField").style.display = "block";
+                            } else if (ventaCotizarValue === 0) {
+                                // Muestra el segundo div si ventaCotizarValue es igual a 0
+                                document.getElementById("otroDiv").style.display = "block";
+                            }
+                        </script>
+
+
+
+
     <div class="form-group row">
-        <label for="inputVideoProducto" class="col-form-label ">Video Del Producto</label>
+        <label for="inputStock" class="col-form-label">Stock (Cantidad Disponible)</label>
         <div class="col-sm-12">
-            <input  type="file" id="videoSubido" name="ArchivoSubido4" accept="video/*" required>
-            <video id="videoPreview" controls style="display: none;"></video>
+            <input type="text" class="form-control" id="inputStock" placeholder="0" name="CantidadDisponible" disabled value="<?php echo $Cantidad_Disponible; ?>">
+            
         </div>
+
+        
     </div>
+    
 
-<!-- Vista previa del video -->
-<div class="form-group row">
-    <label class="col-form-label">Video Anterior:</label>
-    <div class="col-sm-12">
-        <video id="videoPreview" controls style="display: none;"></video>
-       
-    </div>
-
-    <?php
-echo '<video id="videoPreview" width="520" height="440" controls>
-<source src="' . $imagenURL . '" type="video/mp4"> <!-- Ajusta el tipo de archivo según el formato de tu video -->
-Your browser does not support the video tag.
-</video><br>';
-
-?>
-</div>
-
-
-
-<div class="form-group row">
-    <label for="miComboBox" class="content" style="padding: 0px 10px;">Categoría: </label>
-    <select id="miComboBox" name="ID_Categoria_producto" class="form-control">
-        <?php
-        // Realiza una consulta para obtener las categorías desde la base de datos
-        $consultaCategorias = "SELECT `ID_categoria`, `nombre_cate` FROM `categoria`";
-        foreach ($pdo->query($consultaCategorias) as $row) {
-            $idCategoria = $row['ID_categoria'];
-            $nombreCategoria = $row['nombre_cate'];
-            
-            // Verifica si la categoría es la misma que la del producto actual
-            $seleccionada = ($idCategoria == $producto['id_Categoria']) ? 'selected' : '';
-            
-            echo "<option value='$idCategoria' $seleccionada>$nombreCategoria</option>";
-        }
-        ?>
-    </select>
-</div>
-
-
-<input type="text" name="ID_producto" id="ID_producto" value="<?php echo $producto['ID_producto'] ?>" hidden>
 
 
 
@@ -284,11 +267,11 @@ Your browser does not support the video tag.
     
                         <!-- Campos a LLenar -->
                         <!-- Boton Guardar -->
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <div class="offset-sm-5 col-sm-10">
                             <button type="submit" class="btn btn-success"  >Guardar</button>
                             </div>
-                        </div>
+                        </div> -->
                         
 
                         <!-- Boton Guardar -->
@@ -346,9 +329,7 @@ Your browser does not support the video tag.
                 </div> -->
                 <!-- Caja baja -->
             </div>
-            <!-- /.col -->
 
-                <!-- /.card -->
             </div>
             <!-- /.col -->
             </div>
@@ -435,50 +416,25 @@ document.querySelector('input[name="ArchivoSubido3"]').addEventListener('change'
     mostrarVistaPreviaImagen(this, 'imagenPreview3');
 });
 </script>
-<!-- JavaScript para cargar imágenes y video en la vista previa -->
-<!-- Agrega esta función JavaScript en el bloque de scripts de tu página -->
-<script type="text/javascript">
-    window.onload = function () {
-        function mostrarImagen(imagenURL, elementoImagen) {
-            if (imagenURL) {
-                elementoImagen.src = imagenURL;
-                elementoImagen.style.display = 'block';
-                
-            }
-        }
 
 
-        <?php
-        $contador = 1;
-        foreach ($productos_imagen_tabla as $productoimagen_) {?>
-            mostrarImagen('<?php echo $URL. "../app/controllers/productos/imageProductos/" .$productoimagen_['Imagen_Video']; ?>', document.getElementById('imagenPreview<?php echo $contador; ?>'));
-        <?php
-        $contador++;
-        }?>
-    }
-</script>
-
-
-
-
+<!-- OCULTAR PRECIO -->
 <script>
-    // Escuchar el evento de cambio en el campo de entrada de video
-    document.getElementById("videoSubido").addEventListener("change", function () {
-        var videoPreview = document.getElementById("videoPreview");
-        var fileInput = this;
-        
-        // Verificar si se seleccionó un archivo
-        if (fileInput.files.length > 0) {
-            var videoFile = fileInput.files[0];
-            
-            // Establecer la fuente del video con la URL del archivo seleccionado
-            videoPreview.src = URL.createObjectURL(videoFile);
-            
-            // Mostrar la etiqueta de video
-            videoPreview.style.display = "block";
+    const opcionVenta = document.getElementById("opcion1");
+    const opcionCotizar = document.getElementById("opcion2");
+    const precioField = document.getElementById("precioField");
+
+    opcionVenta.addEventListener("change", function() {
+        if (opcionVenta.checked) {
+            precioField.style.display = "block";
         } else {
-            // Ocultar la etiqueta de video si no se selecciona ningún archivo
-            videoPreview.style.display = "none";
+            precioField.style.display = "none";
+        }
+    });
+
+    opcionCotizar.addEventListener("change", function() {
+        if (opcionCotizar.checked) {
+            precioField.style.display = "none";
         }
     });
 </script>
