@@ -1,76 +1,57 @@
 <?php
 include ('../../config.php');
 
-// Recoge los datos del formulario
-$NombreProducto = $_POST['NombreProducto'];
-$DescripcionProducto = $_POST['DescripcionProducto'];
-$PrecioProducto = $_POST['PrecioProducto'];
-$StockProducto = $_POST['StockProducto'];
-$ID_Categoria_producto = $_POST['ID_Categoria_producto'];
-$id_usuarioSesion = $_POST['id_usuarioSesion'];
 
-// Directorio donde se guardarán las imágenes
-$directorioImagenes = "../productos/imageProductos/";
+    $NombreProducto = $_POST['NombreProducto'];
+    $DescripcionProducto = $_POST['DescripcionProducto'];
+    // $ArchivoSubido1 = $_POST['ArchivoSubido1_I'];
+    // $ArchivoSubido2 = $_POST['ArchivoSubido2_I'];
+    // $ArchivoSubido3 = $_POST['ArchivoSubido3_I'];
+    // $ArchivoSubido4 = $_POST['ArchivoSubido4_I'];
+    $ID_Categoria_producto = $_POST['ID_Categoria_producto'];
+    $venta_cotizar = $_POST['opcion'];
+    $precioProducto = $_POST['precioProducto'];
+    $Cantidad_Disponible = $_POST['CantidadDisponible'];
 
-// Procesar las imágenes
-$imagenesInsertadas = array();
-for ($i = 1; $i <= 4; $i++) {
-    $nombreCampoImagen = "ArchivoSubido" . $i;
+    //*nombre imagen1*// 
+    $nombreDelArchivo1=date("Y-m-d-h-i-s");
+    $filename1=$nombreDelArchivo1."__".$_FILES['ArchivoSubido1']['name']; //NOMBRE DEL IMAGEN 1
+    $location1="../productos/imageProductos/".$filename1; //UBIACION DE LA IMAGEN
 
-    if (isset($_FILES[$nombreCampoImagen]) && $_FILES[$nombreCampoImagen]['error'] == 0) {
-        $nombreDelArchivo = date("Y-m-d-h-i-s") . "__" . $_FILES[$nombreCampoImagen]['name'];
-        $location = $directorioImagenes . $nombreDelArchivo;
+    $nombreDelArchivo2=date("Y-m-d-h-i-s");
+    $filename2=$nombreDelArchivo2."__".$_FILES['ArchivoSubido2']['name'];//NOMBRE DEL IMAGEN 2
+     $location2="../productos/imageProductos/".$filename2;//UBIACION DE LA IMAGEN
 
-        if (move_uploaded_file($_FILES[$nombreCampoImagen]['tmp_name'], $location)) {
-            // La imagen se ha subido con éxito
-            // Guarda el nombre del archivo en el array $imagenesInsertadas
-            $imagenesInsertadas[] = $nombreDelArchivo;
-        } else {
-            echo "Error al subir el archivo";
-        }
-    }
-}
+    $nombreDelArchivo3=date("Y-m-d-h-i-s");
+    $filename3=$nombreDelArchivo3."__".$_FILES['ArchivoSubido3']['name'];//NOMBRE DEL IMAGEN 3
+     $location3="../productos/imageProductos/".$filename3;//UBIACION DE LA IMAGEN
 
-try {
-    // Crear una instancia de PDO para la conexión a la base de datos
-    $pdo = new PDO($servidor, USUARIO, PASSWORD, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+     $nombreDelArchivo4=date("Y-m-d-h-i-s");
+     $filename4=$nombreDelArchivo4."__".$_FILES['ArchivoSubido4']['name'];//NOMBRE DEL IMAGEN 4
+      $location4="../productos/imageProductos/".$filename4;//UBIACION DE LA IMAGEN
+ 
+// MOVEMOS LAS IMAGENES AL SEVIDOR 
 
-    // Insertar datos en la tabla producto
-    $query = "INSERT INTO producto (nombre_prod, descripcion_prod, precio_prod, cantDisp_prod, id_Categoria, id_Usuario) 
-              VALUES (?, ?, ?, ?, ?, ?)";
-    $stmt = $pdo->prepare($query);
-    $stmt->execute([$NombreProducto, $DescripcionProducto, $PrecioProducto, $StockProducto, $ID_Categoria_producto, $id_usuarioSesion]);
-    
-    // Obtén el ID del producto recién insertado
-    $id_producto = $pdo->lastInsertId();
-
-    // Insertar datos en la tabla imagen_video
-    foreach ($imagenesInsertadas as $nombreImagen) {
-        $query = "INSERT INTO imagen_video (Imagen_Video, id_producto) VALUES (?, ?)";
-        $stmt = $pdo->prepare($query);
-        $stmt->execute([$nombreImagen, $id_producto]);
-    }
-
-    header('Location:'.$URL.'/Productos/Productos.php');
-} catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
-}
+move_uploaded_file($_FILES['ArchivoSubido2']['tmp_name'],$location2);
+move_uploaded_file($_FILES['ArchivoSubido3']['tmp_name'],$location3);
+move_uploaded_file($_FILES['ArchivoSubido4']['tmp_name'],$location4);
 
 
-// // Procesar el campo de video
-// if (isset($_FILES['videoSubido']) && $_FILES['videoSubido']['error'] == 0) {
-//     $nombreDelArchivoVideo = date("Y-m-d-h-i-s") . "__" . $_FILES['videoSubido']['name'];
-//     $locationVideo = $directorioImagenes . $nombreDelArchivoVideo;
 
-//     if (move_uploaded_file($_FILES['videoSubido']['tmp_name'], $locationVideo)) {
-//         echo("la video se a subiro con exito");
-//         // El video se ha subido con éxito
-//         // Puedes hacer lo que necesites con la información del video
-//     } else {
-//         echo("Error al subir la video");
-//         // Error al mover el video
-//     }
-// }
+
+
+echo "Nombre del Producto: " . $NombreProducto . "<br>";
+echo "Descripción del Producto: " . $DescripcionProducto  . "<br>";
+ echo "Archivo Subido 1: " . $filename1 . "<br>";
+ echo "Archivo Subido 2: " . $filename2 . "<br>";
+ echo "Archivo Subido 3: " . $filename3 . "<br>";
+ echo "Archivo Subido 4: " . $filename4 . "<br>";
+echo "ID de la Categoría del Producto: " . $ID_Categoria_producto  . "<br>";
+echo "Opción de Venta o Cotización: " .$venta_cotizar. "<br>";
+echo "Precio del Producto: " . $precioProducto . "<br>";
+echo "Cantidad Disponible: " . $Cantidad_Disponible. "<br>";
+
+
 
 
 // $sentencia= $pdo->prepare("INSERT INTO categoria (nombre_cate,descripcion_cate,id_usuario) 
@@ -85,11 +66,11 @@ try {
 //     $_SESSION['mensaje']="Se Registro la categoria  de manera correcta";
 //     $_SESSION['icono']="success";
 // ?>
- <script >
+// <script >
     
-    //  location.href="<?php echo $URL;?>/Categorias/Categorias.php";
- </script>
- <?php
+//     location.href="<?php echo $URL;?>/Categorias/Categorias.php";
+// </script>
+// <?php
 // }else{
 //     session_start();
 //     $_SESSION['mensaje']="Error no se pudieron registrar de manera correcta los datos";

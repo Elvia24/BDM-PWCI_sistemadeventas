@@ -4,24 +4,29 @@
 
 
 // $email_sesion= $_SESSION['sesion_email'];
-$sql_productos = "SELECT
-p.ID_producto,
+$sql_productos = "SELECT 
+p.ID_producto , 
 p.nombre_prod AS NombreProducto,
-p.descripcion_prod AS DescripcionProducto,
-p.precio_prod AS PrecioProducto,
-p.status_prod AS EstadoProducto,
-p.cantDisp_prod AS CantidadDisponible,
-p.calificacion_prod AS CalificacionProducto,
-p.fechaCreacion_prod AS FechaCreacionProducto,
-p.id_Categoria,
-c.nombre_cate AS NombreCategoria,
-u.ID_usuario AS IDUsuario,
-u.nombreUsuario AS NombreUsuario
-FROM producto AS p
-LEFT JOIN categoria AS c ON p.id_Categoria = c.ID_categoria
-LEFT JOIN usuario AS u ON p.id_Usuario = u.ID_usuario
-WHERE u.ID_usuario = $ID_usuario_sesion 
-GROUP BY p.ID_producto; ";
+p.descripcion_prod AS DescripcionProducto, 
+p.precio_prod AS PrecioProducto, 
+p.status_prod AS EstadoProducto, 
+p.cantDisp_prod AS CantidadDisponible, 
+p.calificacion_prod AS CalificacionProducto, 
+p.fechaCreacion_prod, 
+p.baja_producto, 
+p.venta_cotizar, 
+p.imagenP_1, 
+p.imagenP_2, 
+p.imagenP_3, 
+p.VideoP,
+u.ID_usuario, 
+u.nombreUsuario AS NombreUsuario, 
+c.ID_categoria, 
+c.nombre_cate AS NombreCategoria
+FROM producto p
+JOIN usuario u ON p.id_Usuario = u.ID_usuario
+JOIN categoria c ON p.id_Categoria = c.ID_categoria
+WHERE p.id_Usuario = $ID_usuario_sesion AND p.baja_producto=1";
 
 
 $query_productos = $pdo->prepare($sql_productos);

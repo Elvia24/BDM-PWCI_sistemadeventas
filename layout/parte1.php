@@ -210,6 +210,12 @@
             <ul class="nav nav-treeview">
 
             <li class="nav-item">
+                <a href="<?php echo $URL;?>../Productos/Productos.php" class="nav-link ">
+                  <i class="fa fa-bars "></i>
+                  <p> Lista de Producto</p>
+                </a>
+              </li>
+            <li class="nav-item">
 
                 <?php if ($Rol_sesion === 'Administrador' ||$Rol_sesion === 'Vendedor' ) : ?>
         <a href="<?php echo $URL;?>../Productos/AgregarProducto.php" class="nav-link">
@@ -223,12 +229,7 @@
               </li>
 
 
-              <li class="nav-item">
-                <a href="<?php echo $URL;?>../Productos/Productos.php" class="nav-link ">
-                  <i class="fa fa-bars "></i>
-                  <p> Lista de Producto</p>
-                </a>
-              </li>
+
               <li class="nav-item">
 
                 <?php if ($Rol_sesion === 'Administrador'  ) : ?>

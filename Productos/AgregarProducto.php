@@ -30,6 +30,12 @@ include('../app/controllers/productos/MIS_productos.php');
     background-color: red; /* Puedes elegir otro color si lo prefieres */
     color: white; /* Cambia el color del texto si es necesario */
 }
+
+
+  .form-group.row input[type="radio"] {
+    margin: 10px; /* Agregar margen derecho de 10px entre los radios */
+  }
+
 </style>
 
     
@@ -99,18 +105,7 @@ include('../app/controllers/productos/MIS_productos.php');
                             </div>
                         </div> -->
 
-                        <div class="form-group row">
-                            <label for="inputDescripcionProducto" class=" col-form-label ">Precio *Si no establece precio es cotizacion</label>
-                            <div class="col-sm-12">
-                            <input type="text" class="form-control" id="inputDescripcionProducto" placeholder="0" name="PrecioProducto">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputStock" class=" col-form-label ">Stock (Cantidad Disponible)</label>
-                            <div class="col-sm-12">
-                            <input type="text" class="form-control" id="inputStock" placeholder="0" name="StockProducto" hidden>
-                            </div>
-                        </div>
+
 
 
                             <!-- Campos para cargar imágenes -->
@@ -179,21 +174,38 @@ include('../app/controllers/productos/MIS_productos.php');
     </select>
 </div>
 
+<div class="form-group row">
+        <input  type="radio" id="opcion1" name="opcion" value="1">
+        <label for="opcion1">Venta</label><br> 
+
+        <input type="radio" id="opcion2" name="opcion" value="0">
+        <label for="opcion2">Cotizar</label><br>
+</div>
 
 
+<div id="precioField" style="display: none">
     <div class="form-group row">
-        <label for="inputDescripcionProducto" class="col-form-label">Precio *Si no establece precio es cotización</label>
+        <label for="inputDescripcionProducto" class="col-form-label">Precio</label>
         <div class="col-sm-12">
-            <input type="text" class="form-control" id="inputDescripcionProducto" placeholder="0">
+            <input name="precioProducto" type="text" class="form-control" id="inputDescripcionProducto" placeholder="0">
         </div>
     </div>
+</div>
 
     <div class="form-group row">
         <label for="inputStock" class="col-form-label">Stock (Cantidad Disponible)</label>
         <div class="col-sm-12">
-            <input type="text" class="form-control" id="inputStock" placeholder="0">
+            <input type="text" class="form-control" id="inputStock" placeholder="0" name="CantidadDisponible">
+            
         </div>
+
+        
     </div>
+    
+
+
+
+
 
     <input type="text" name="id_usuarioSesion" id="ID_usuario_sesion" value="<?php echo $ID_usuario_sesion?>" hidden>
 
@@ -339,49 +351,24 @@ include('../app/controllers/productos/MIS_productos.php');
                         <td><?php echo $productos_dato['CalificacionProducto'];?></td>
                         <td><?php echo $productos_dato['NombreCategoria'];?></td>
                         <td><?php echo $productos_dato['NombreUsuario'];?></td>
-                       <?php 
-                        // ... Resto de tus datos
-    // Subconsulta para obtener imágenes
-    $sql_imagenes = "SELECT Imagen_Video FROM imagen_video WHERE id_producto = :id_producto";
-    $query_imagenes = $pdo->prepare($sql_imagenes);
-    $query_imagenes->bindParam(':id_producto', $productos_dato['ID_producto']);
-    $query_imagenes->execute();
-    $imagenes = $query_imagenes->fetchAll(PDO::FETCH_COLUMN);
-
-    // Dirección base de las imágenes en el servidor
-    $directorioImagenes = "../app/controllers/productos/imageProductos/"; // Cambia esta URL
-
-    // Abre la celda <td> antes del bucle
-    
-    echo '<td>';
-    $imagenMostrada = false; // Variable para verificar si se muestra al menos una imagen
-    
-    // Muestra las imágenes en la celda <td>
-    foreach ($imagenes as $imagen) {
-        echo '<img class="product-image" src="' . $directorioImagenes . $imagen . '"';
-        
-        // Verifica si la imagen es válida y, si es el caso, establece el atributo "alt"
-        if (file_exists($directorioImagenes . $imagen)) {
-           
-            $imagenMostrada = true; // Marca que se ha mostrado una imagen
-        }
-        echo '>';
-    }
-    
-    // Si al menos se mostró una imagen, agrega el reproductor de video
-    if ($imagenMostrada) {
-        echo '<video controls width="640" height="360">';
-        echo '<source src="' . $directorioImagenes . $imagen . '" type="video/mp4">';
-        echo 'Tu navegador no soporta la reproducción de videos.';
-        echo '</video>';
-    }
-    
-    // Cierra la celda <td>
-    echo '</td>';
-    
-    
                         
-                        ?>
+                    
+                        </td>
+                        <td>
+                        <img src=" <?php echo $URL. "../app/controllers/productos/imageProductos/" .$productos_dato['imagenP_1'];?>" width="100px" alt="imageUsuarios/">
+                        <img src=" <?php echo $URL. "../app/controllers/productos/imageProductos/" .$productos_dato['imagenP_2'];?>" width="100px" alt="imageUsuarios/">
+                        <img src=" <?php echo $URL. "../app/controllers/productos/imageProductos/" .$productos_dato['imagenP_3'];?>" width="100px" alt="imageUsuarios/">
+
+
+                        </td>
+                        <td>
+                        <video width="320" height="240" controls>
+                            <source src="<?php echo $URL. "../app/controllers/productos/imageProductos/" .$productos_dato['VideoP'];?>" type="video/mp4">
+                            Tu navegador no soporta el elemento de video.
+                        </video>
+
+
+                        </td>
 
                         <td >
                               <div class="btn-group">
@@ -509,3 +496,26 @@ document.querySelector('input[name="ArchivoSubido3"]').addEventListener('change'
     mostrarVistaPreviaImagen(this, 'imagenPreview3');
 });
 </script>
+
+
+<!-- OCULTAR PRECIO -->
+<script>
+    const opcionVenta = document.getElementById("opcion1");
+    const opcionCotizar = document.getElementById("opcion2");
+    const precioField = document.getElementById("precioField");
+
+    opcionVenta.addEventListener("change", function() {
+        if (opcionVenta.checked) {
+            precioField.style.display = "block";
+        } else {
+            precioField.style.display = "none";
+        }
+    });
+
+    opcionCotizar.addEventListener("change", function() {
+        if (opcionCotizar.checked) {
+            precioField.style.display = "none";
+        }
+    });
+</script>
+
