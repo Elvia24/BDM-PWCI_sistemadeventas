@@ -35,7 +35,30 @@ $query_productos->execute();
 $productos_datos = $query_productos->fetchAll(PDO::FETCH_ASSOC);
 
 
+foreach($productos_datos AS $productos_dato){
+    $ID_producto = $productos_dato['ID_producto'];
+    $NombreProducto = $productos_dato['NombreProducto'];
+    $DescripcionProducto = $productos_dato['DescripcionProducto'];
+    // $ArchivoSubido1 = $_POST['ArchivoSubido1_I'];
+    // $ArchivoSubido2 = $_POST['ArchivoSubido2_I'];
+    // $ArchivoSubido3 = $_POST['ArchivoSubido3_I'];
+    // $ArchivoSubido4 = $_POST['ArchivoSubido4_I'];
+    $NombreCategoria = $productos_dato['NombreCategoria'];
+    $ID_categoria = $productos_dato['ID_categoria'];
+    $venta_cotizar = $productos_dato['venta_cotizar'];
+    $precioProducto = $productos_dato['PrecioProducto'];
+    $Cantidad_Disponible = $productos_dato['CantidadDisponible'];
+    $NombreUsuario = $productos_dato['NombreUsuario'];
 
+    $imagenP_1 = $productos_dato['imagenP_1'];
+    $imagenP_2 = $productos_dato['imagenP_2'];
+    $imagenP_3 = $productos_dato['imagenP_3'];
+    $VideoP = $productos_dato['VideoP'];
+
+
+
+
+}
 
 
 ?>
