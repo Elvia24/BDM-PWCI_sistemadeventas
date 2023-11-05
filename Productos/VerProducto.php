@@ -7,28 +7,28 @@ include('../app/controllers/productos/cargar_producto.php');
 
  
 
- foreach($productos_datos AS $productos_dato){
-     $NombreProducto = $productos_dato['NombreProducto'];
-     $DescripcionProducto = $productos_dato['DescripcionProducto'];
-     // $ArchivoSubido1 = $_POST['ArchivoSubido1_I'];
-     // $ArchivoSubido2 = $_POST['ArchivoSubido2_I'];
-     // $ArchivoSubido3 = $_POST['ArchivoSubido3_I'];
-     // $ArchivoSubido4 = $_POST['ArchivoSubido4_I'];
-     $NombreCategoria = $productos_dato['NombreCategoria'];
-     $venta_cotizar = $productos_dato['venta_cotizar'];
-     $precioProducto = $productos_dato['PrecioProducto'];
-     $Cantidad_Disponible = $productos_dato['CantidadDisponible'];
-     $NombreUsuario = $productos_dato['NombreUsuario'];
+//  foreach($productos_datos AS $productos_dato){
+//      $NombreProducto = $productos_dato['NombreProducto'];
+//      $DescripcionProducto = $productos_dato['DescripcionProducto'];
+//      // $ArchivoSubido1 = $_POST['ArchivoSubido1_I'];
+//      // $ArchivoSubido2 = $_POST['ArchivoSubido2_I'];
+//      // $ArchivoSubido3 = $_POST['ArchivoSubido3_I'];
+//      // $ArchivoSubido4 = $_POST['ArchivoSubido4_I'];
+//      $NombreCategoria = $productos_dato['NombreCategoria'];
+//      $venta_cotizar = $productos_dato['venta_cotizar'];
+//      $precioProducto = $productos_dato['PrecioProducto'];
+//      $Cantidad_Disponible = $productos_dato['CantidadDisponible'];
+//      $NombreUsuario = $productos_dato['NombreUsuario'];
 
-     $imagenP_1 = $productos_dato['imagenP_1'];
-     $imagenP_2 = $productos_dato['imagenP_2'];
-     $imagenP_3 = $productos_dato['imagenP_3'];
-     $VideoP = $productos_dato['VideoP'];
-
-
+//      $imagenP_1 = $productos_dato['imagenP_1'];
+//      $imagenP_2 = $productos_dato['imagenP_2'];
+//      $imagenP_3 = $productos_dato['imagenP_3'];
+//      $VideoP = $productos_dato['VideoP'];
 
 
- }
+
+
+//  }
 
 
 

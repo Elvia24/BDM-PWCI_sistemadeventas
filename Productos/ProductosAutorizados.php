@@ -2,7 +2,7 @@
 include('../app/config.php');
 include('../layout/sesion.php');
 
-//include('../app/controllers/productos/lista_productos_autorizados.php');
+include('../app/controllers/productos/ListaProductosNoAutorizados.php');
  include('../layout/parte1.php');  //ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR -LA BARRA IZQUIERDA AZUL 
 
 
@@ -11,6 +11,17 @@ include('../layout/sesion.php');
 
 
 <title>Autorizar Productos</title>
+<style>
+  .cotizar-1 {
+    background-color: rgba(0, 183, 255, 0.555);
+    color: black; /* Cambia el color del texto si es necesario */
+}
+
+.cotizar-0 {
+    background-color: rgba(0, 4, 255, 0.555);/* Puedes elegir otro color si lo prefieres */
+    color: black; /* Cambia el color del texto si es necesario */
+}
+</style>
 
 <style>
     .product-image {
@@ -50,6 +61,29 @@ include('../layout/sesion.php');
     
             <!-- Encabezado tabla -->
             <div class="row">
+            <!-- /.col -->
+            <div class="col-md-12  piso-container-borde-fIN" >
+                
+                <div class="card">
+                
+                <div class="card-header " ><!-- card-header ENCABEZADO CAJA DERECHA -->
+                <!-- <h1 class="card-title ">Mis Productos</h1> -->
+
+                    <!-- <ul class="nav nav-pills">
+                    <li class="nav-item"><a class="nav-link active " href="#EditarDatos" data-toggle="tab"  >Editar Datos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
+
+                    </ul> -->
+                    
+
+                    
+                </div><!-- /.card-header ENCABEZADO CAJA DERECHA-->
+                <!--  CAJA DERECHA-->
+                <div class="card-body">
+                    <!--  CAJA DERECHA CONTENIDO-->
+                                <!-- Encabezado tabla -->
+            <div class="row">
             <div class="col-12">
                 <div class="card">
                 <div class="card-header">
@@ -58,7 +92,7 @@ include('../layout/sesion.php');
                     <table class="table   table-striped ">
                     <thead>
                         <tr>
-                        <th>Autorizado</th>
+                        <th></th>
                         <th>Producto</th>
                         <th>Descripcion</th>
                         <th>Precio</th>
@@ -66,7 +100,9 @@ include('../layout/sesion.php');
                         <th >Calificacion </th>
                         <th >Categoria </th>
                         <th >Vendedor </th>
+                        <th >Venta/Cotizacion </th>
                         <th >Imagenes </th>
+                        <th >Video </th>
                         </tr>
                     </thead>
                 
@@ -82,14 +118,21 @@ include('../layout/sesion.php');
                       
                      <tr >
                       
-                     <td>
-                        <div class="btn-group">
-                                <a href="../app/controllers/productos/autorizar_producto.php?idu=<?php echo $id_producto;?> " type="button" class="btn btn-success"><i class="fa fa-check"></i>Autorizar</a>
-                                <!-- <a href="../app/controllers/productos/autorizar_producto.php"></a> -->
-
-                        </div>
+                     <td >
+                       
+                            <div class="btn-group">
+                                    
+                                    <a href="../app/controllers/productos/autorizar_producto.php?id=<?php echo $id_producto; ?>" type="button" class="btn btn-success"><i class="fa  fa-check"></i>Autorizar</a>
+                                    
+                                    
+                         
+                            </div>
+                        
                     </td>
-                        <td><?php echo $productos_dato['NombreProducto'];?></td>
+
+
+                        <td><?php echo $productos_dato['NombreProducto'];?>
+                    </td>
                         <td><?php echo $productos_dato['DescripcionProducto'];?></td>
                         <td><?php echo $productos_dato['PrecioProducto'];?></td>
                         <td><?php echo $productos_dato['CantidadDisponible'];?></td>
@@ -97,48 +140,33 @@ include('../layout/sesion.php');
                         <td><?php echo $productos_dato['CalificacionProducto'];?></td>
                         <td><?php echo $productos_dato['NombreCategoria'];?></td>
                         <td><?php echo $productos_dato['NombreUsuario'];?></td>
-                       <?php 
-                        // ... Resto de tus datos
-    // Subconsulta para obtener imágenes
-    $sql_imagenes = "SELECT Imagen_Video FROM imagen_video WHERE id_producto = :id_producto";
-    $query_imagenes = $pdo->prepare($sql_imagenes);
-    $query_imagenes->bindParam(':id_producto', $productos_dato['ID_producto']);
-    $query_imagenes->execute();
-    $imagenes = $query_imagenes->fetchAll(PDO::FETCH_COLUMN);
-
-    // Dirección base de las imágenes en el servidor
-    $directorioImagenes = "../app/controllers/productos/imageProductos/"; // Cambia esta URL
-
-    // Abre la celda <td> antes del bucle
-    
-    echo '<td>';
-    $imagenMostrada = false; // Variable para verificar si se muestra al menos una imagen
-    
-    // Muestra las imágenes en la celda <td>
-    foreach ($imagenes as $imagen) {
-        echo '<img class="product-image" src="' . $directorioImagenes . $imagen . '"';
-        // Verifica si la imagen es válida y, si es el caso, establece el atributo "alt"
-        if (file_exists($directorioImagenes . $imagen)) {
-           
-            $imagenMostrada = true; // Marca que se ha mostrado una imagen
-        }
-        echo '>';
-    }
-    
-    // Si al menos se mostró una imagen, agrega el reproductor de video
-    if ($imagenMostrada) {
-        echo '<video controls width="640" height="360">';
-        echo '<source src="' . $directorioImagenes . $imagen . '" type="video/mp4">';
-        echo 'Tu navegador no soporta la reproducción de videos.';
-        echo '</video>';
-    }
-    
-    // Cierra la celda <td>
-    echo '</td>';
-    
-    
-                        
+                        <td class="cotizar-<?php echo $productos_dato['venta_cotizar']; ?>">
+                        <?php
+                        if ($productos_dato['venta_cotizar'] == 1) {
+                            echo "Venta";
+                        } elseif ($productos_dato['venta_cotizar'] == 0) {
+                            echo "Cotizar";
+                        }
                         ?>
+
+                        
+                    </td>
+                        <td>
+                        <img src=" <?php echo $URL. "../app/controllers/productos/imageProductos/" .$productos_dato['imagenP_1'];?>" width="100px" alt="imageUsuarios/">
+                        <img src=" <?php echo $URL. "../app/controllers/productos/imageProductos/" .$productos_dato['imagenP_2'];?>" width="100px" alt="imageUsuarios/">
+                        <img src=" <?php echo $URL. "../app/controllers/productos/imageProductos/" .$productos_dato['imagenP_3'];?>" width="100px" alt="imageUsuarios/">
+
+
+                        </td>
+                        <td>
+                        <video width="320" height="240" controls>
+                            <source src="<?php echo $URL. "../app/controllers/productos/imageProductos/" .$productos_dato['VideoP'];?>" type="video/mp4">
+                            Tu navegador no soporta el elemento de video.
+                        </video>
+
+
+                        </td>
+
 
 
 
@@ -160,6 +188,19 @@ include('../layout/sesion.php');
             </div><!--row -->
             <!-- Encabezado tabla -->
         </div>
+        <!-- Contenedor tabla -->
+
+
+
+
+            </div>
+                        <!--  CAJA DERECHA CONTENIDO-->
+                </div> 
+                    <!--  CAJA DERECHA-->
+                </div><!-- /.card-body -->
+
+
+                </div>
         <!-- Contenedor tabla -->
 
 

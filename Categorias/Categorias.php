@@ -65,7 +65,7 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-edit<?php echo $ID_categoria;?>">
                                     <i class="fas fa-pen"> </i>Editar
                             </button>
-                                <a href="#" type="button" class="btn btn-danger"><i class="fa fa-trash"></i>Eliminar</a>
+                                <!-- <a href="#" type="button" class="btn btn-danger"><i class="fa fa-trash"></i>Eliminar</a> -->
 
 
                                         <!-- MODAL PARA EDITAR CATEGORIAS -->
@@ -84,7 +84,7 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
                                                                 <div class="col-md-12">
                                                                     <div class="form-group">
                                                                     <label for="">Nombre de la Categoria: </label>
-                                                                    <input type="text" id="ID_categoria" value="<?php echo $ID_categoria  ?>" class="form-control">
+                                                                    <input type="text" id="ID_categoria" value="<?php echo $ID_categoria  ?>" class="form-control" hidden>
                                                                         <input type="text" id="nombre_categoria<?php echo $ID_categoria;?>" value="<?php echo $nombre_categoria  ?>" class="form-control">
 
                                                                     <label for="">Descripcion: </label>
