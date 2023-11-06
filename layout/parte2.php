@@ -1,12 +1,26 @@
   <!-- barra derecha carrito -->
-  <aside class="control-sidebar control-sidebar-dark" style="background-color: var(--bisonte-barralateralderecha); ">
-    <!-- El contenido de la barra lateral de control va aquí -->
+  <!-- <aside class="control-sidebar control-sidebar-dark" style="background-color: var(--bisonte-barralateralderecha); ">
+   
     <div class="p-3">
       <h5>Carrito</h5>
-      <p >Algo</p>
-      <p >Algo</p>
+       <p >Algo</p>
+      <p >Algo</p> 
+
+      <?php include('../app/controllers/carrito/carrito.php');?>
+      
+
+
+
     </div>
-  </aside>
+  </aside> -->
+
+
+
+
+
+
+
+  
   <!-- barra derecha carrito -->
 
 

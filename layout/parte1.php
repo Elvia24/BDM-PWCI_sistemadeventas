@@ -51,7 +51,12 @@
 // })
 
 </script>
+<style>
+.tamañoImagenCarrito{width: 70px; height: 70px;}
 
+
+  
+</style>
 <div class="wrapper" >
   <!-- buena noche -->
 
@@ -97,14 +102,25 @@
         <!--Boton Navbar Buscar -->
 
       <!-- Menú desplegable de Compras carrito-->
-      <li class="nav-item dropdown">
+      <!-- <li class="nav-item dropdown">
         <li class="nav-item">
           <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
             <i class="fas fa-cart-plus"></i>
+            
           </a>
         </li> 
-      </li>
+      </li> -->
 
+
+      <li class="nav-item">
+                <a type="button" class="nav-link" data-toggle="modal" data-target="#modal-lg">
+                <i class="fas fa-cart-plus"></i>
+                </a>
+
+
+
+                
+      </li>
 
       
       <!-- BOTON DE CERRAR SESION -->
@@ -294,3 +310,207 @@
   <!-- Contenedor de barra lateral Derecha -->
   
 
+      <!-- /.modal CARRITO-->
+
+      <div class="modal fade" id="modal-lg">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Mi Carrito</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body   table-responsive-sm ">
+            
+              
+                                          <?php include('../app/controllers/carrito/carrito.php');?>
+                                        
+
+
+                                          <?php if (isset($_SESSION['datos'])): ?>
+                                              <table class="table">
+                                                  
+                                                  <thead>
+                                                      <tr>
+                                                          <th scope="col">#</th>
+                                                          <th scope="col">Nombre del Producto</th>
+                                                          <th scope="col">ID del Producto</th>
+                                                          <th scope="col">Imagen</th>
+                                                          <th scope="col">Cantidad</th>
+                                                          <th scope="col">subTotal</th>
+                                                          <th scope="col">Acción</th>
+                                                      </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                      <?php foreach ($_SESSION['datos'] as $indice => $fila): ?>
+                                                          <tr>
+                                                              <th scope="row"><?= $indice + 1 ?></th>
+                                                              <td><?= $fila['NombreProducto'] ?></td>
+                                                              <td><?= $fila['idProducto'] ?></td>
+                                                              <td><img class="tamañoImagenCarrito" src="../app/controllers/productos/imageProductos/<?= $fila['imagenP_1'] ?>" alt="Imagen del Producto">
+                                                              <img class="tamañoImagenCarrito" src="../app/controllers/productos/imageProductos/<?= $fila['imagenP_2'] ?>" alt="Imagen del Producto">
+                                                              <img class="tamañoImagenCarrito" src="../app/controllers/productos/imageProductos/<?= $fila['imagenP_3'] ?>" alt="Imagen del Producto">
+                                                              </td>
+                                                              <td><?= $fila['CantidadDeProductos'] ?></td>
+                                                              <td><?= $fila['subTotalDelProducto'] ?></td>
+                                                              
+                                                              <td><button class="btn btn-danger" onclick="eliminarFila(<?= $indice ?>)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                                                          </tr>
+
+
+                                                      <?php endforeach; ?>
+                                                  </tbody>
+                                                  <tr>
+                                                          <td></td>
+                                                          <td></td>
+                                                          <td></td>
+                                                          <td class="col col-lg-2">Total:</td>
+                                                          <td class="p-3 mb-2 bg-secondary text-dark"  id="totalCantidad">0</td>
+                                                          <td class="p-3 mb-2 bg-dark text-dark" id="totalSubTotal">0.00</td>
+                                                          </tr>
+                                              </table>
+                                          <?php endif; ?>
+
+
+
+
+                                    <script>
+                                    function eliminarFila(indice) {
+                                        // Pide confirmación antes de eliminar la fila
+                                        if (confirm("¿Estás seguro de que deseas eliminar esta fila?")) {
+                                            // Realiza la eliminación en el lado del cliente
+                                            var tabla = document.querySelector('table');
+                                            if (tabla && tabla.rows.length > indice) {
+                                                tabla.deleteRow(indice + 1); // +1 para tener en cuenta la fila de encabezados
+
+                                                // Elimina la fila correspondiente de la matriz en PHP
+                                                eliminarFilaEnPHP(indice);
+                                            }
+                                        }
+                                    }
+
+                                    function eliminarFilaEnPHP(indice) {
+                                        // Envia una solicitud AJAX al servidor para eliminar la fila en la sesión de PHP
+                                        var xhr = new XMLHttpRequest();
+                                        xhr.open('GET', '../app/controllers/carrito/eliminar_fila.php?indice=' + indice, true);
+                                        xhr.send();
+
+                                        // Puedes manejar la respuesta del servidor si es necesario
+                                        xhr.onload = function() {
+                                            if (xhr.status === 200) {
+                                                // Maneja la respuesta del servidor si es necesario
+                                                calcularTotal(); // Llama a la función para recalcular los totales
+                                                location.reload(); // Recarga la página actual
+                                              }
+                                        };
+                                    }
+
+
+
+
+
+                                    // Función para calcular la suma de la columna "Cantidad" y "subTotal"
+                                    function calcularTotal() {
+                                        var tabla = document.querySelector('table'); // Obtén la tabla
+                                        var filas = tabla.querySelectorAll('tbody tr'); // Obtén todas las filas de la tabla
+                                        var totalCantidad = 0;
+                                        var totalSubTotal = 0;
+
+                                        // Recorre todas las filas y suma las cantidades y subtotales
+                                        filas.forEach(function(fila) {
+                                            var cantidad = parseInt(fila.querySelector('td:nth-child(5)').textContent); // Columna "Cantidad"
+                                            var subTotal = parseFloat(fila.querySelector('td:nth-child(6)').textContent); // Columna "subTotal"
+                                            totalCantidad += cantidad;
+                                            totalSubTotal += subTotal;
+                                        });
+
+                                        // Actualiza los valores totales
+                                        document.getElementById('totalCantidad').textContent = totalCantidad;
+                                        document.getElementById('totalSubTotal').textContent = totalSubTotal;
+                                    }
+
+                                    // Llama a la función para calcular el total al cargar la página
+                                    calcularTotal();
+
+
+
+
+
+
+
+                                    </script>
+
+
+
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-warning">   <i class="fas fa-cart-plus"></i>  Comprar</button>
+
+              <script>
+                              // Selecciona el botón por su clase
+              const boton = document.querySelector(".btn-warning");
+
+              // Agrega un controlador de eventos para el evento "click"
+              boton.addEventListener("click", function() {
+                // Este código se ejecutará cuando se haga clic en el botón
+                console.log("Se ha hecho clic en el botón.");
+                // Puedes agregar aquí cualquier otra lógica que desees ejecutar cuando se haga clic en el botón.
+              });
+
+              </script>
+              
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+
+
+      <script>
+
+document.querySelector('.btn.btn-warning').addEventListener('click', function() {
+    // Verifica si la tabla está vacía
+    var tabla = document.querySelector('table');
+    if (tabla && tabla.querySelectorAll('tbody tr').length === 0) {
+        // Muestra una alerta si la tabla está vacía
+        alert('El carrito de compras está vacío. Agrega productos antes de comprar.');
+        return;
+    }
+
+    // Recopila los datos de la tabla
+    var filas = tabla.querySelectorAll('tbody tr');
+    var datosDeCompra = [];
+
+    filas.forEach(function(fila) {
+        var nombreProducto = fila.querySelector('td:nth-child(2)').textContent;
+        var idProducto = fila.querySelector('td:nth-child(3)').textContent;
+        var cantidad = parseInt(fila.querySelector('td:nth-child(5)').textContent);
+        var subTotal = parseFloat(fila.querySelector('td:nth-child(6)').textContent);
+
+        datosDeCompra.push({
+            NombreProducto: nombreProducto,
+            idProducto: idProducto,
+            CantidadDeProductos: cantidad,
+            subTotalDelProducto: subTotal
+        });
+    });
+
+    // Realiza una solicitud AJAX para enviar los datos al servidor
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '../app/controllers/carrito/agregar_compra.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    xhr.send(JSON.stringify(datosDeCompra));
+
+    // Maneja la respuesta del servidor si es necesario
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            // Maneja la respuesta del servidor si es necesario
+        }
+    };
+});
+
+      </script>
