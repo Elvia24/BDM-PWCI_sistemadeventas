@@ -36,7 +36,7 @@ if(isset( $_SESSION['sesion_email'])){
         
 
 }else{
-  echo "no existe secion";
+  echo "no existe sesion";
 
   header('Location:'.$URL.'/Login/index.php');
 }

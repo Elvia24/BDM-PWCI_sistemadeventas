@@ -361,16 +361,20 @@
 
                                                       <?php endforeach; ?>
                                                   </tbody>
-                                                  <tr>
-                                                          <td></td>
-                                                          <td></td>
-                                                          <td></td>
-                                                          <td class="col col-lg-2">Total:</td>
-                                                          <td class="p-3 mb-2 bg-secondary text-dark"  id="totalCantidad">0</td>
-                                                          <td class="p-3 mb-2 bg-dark text-dark" id="totalSubTotal">0.00</td>
-                                                          </tr>
+
                                               </table>
                                           <?php endif; ?>
+                                          <table class="table">
+                                                          <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td class="col col-lg-2">Total:</td>
+                                                            <td class="p-3 mb-2 bg-secondary text-dark"  id="totalCantidad">0</td>
+                                                            <td class="p-3 mb-2 bg-dark text-dark" id="totalSubTotal">0.00</td>
+                                                          </tr>
+
+                                          </table>
 
 
 
@@ -433,7 +437,7 @@
                                     // Llama a la función para calcular el total al cargar la página
                                     calcularTotal();
 
-
+                                      
 
 
 
@@ -448,18 +452,7 @@
               <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
               <button type="button" class="btn btn-warning">   <i class="fas fa-cart-plus"></i>  Comprar</button>
 
-              <script>
-                              // Selecciona el botón por su clase
-              const boton = document.querySelector(".btn-warning");
 
-              // Agrega un controlador de eventos para el evento "click"
-              boton.addEventListener("click", function() {
-                // Este código se ejecutará cuando se haga clic en el botón
-                console.log("Se ha hecho clic en el botón.");
-                // Puedes agregar aquí cualquier otra lógica que desees ejecutar cuando se haga clic en el botón.
-              });
-
-              </script>
               
             </div>
           </div>
@@ -471,46 +464,71 @@
 
 
       <script>
-
 document.querySelector('.btn.btn-warning').addEventListener('click', function() {
     // Verifica si la tabla está vacía
     var tabla = document.querySelector('table');
     if (tabla && tabla.querySelectorAll('tbody tr').length === 0) {
         // Muestra una alerta si la tabla está vacía
         alert('El carrito de compras está vacío. Agrega productos antes de comprar.');
-        return;
-    }
+    } else {
+        // La tabla no está vacía, redirige a otra página y envía los datos
+        var totalCantidad = document.getElementById('totalCantidad').textContent;
+        var totalSubTotal = document.getElementById('totalSubTotal').textContent;
 
-    // Recopila los datos de la tabla
-    var filas = tabla.querySelectorAll('tbody tr');
-    var datosDeCompra = [];
+        // Recopila los datos de la tabla en un objeto
+        var datosTabla = [];
+        var filas = tabla.querySelectorAll('tbody tr');
+        filas.forEach(function(fila, indice) {
+            var nombreProducto = fila.querySelector('td:nth-child(2)').textContent;
+            var idProducto = fila.querySelector('td:nth-child(3)').textContent;
+            var cantidad = fila.querySelector('td:nth-child(5)').textContent;
+            var subTotal = fila.querySelector('td:nth-child(6)').textContent;
 
-    filas.forEach(function(fila) {
-        var nombreProducto = fila.querySelector('td:nth-child(2)').textContent;
-        var idProducto = fila.querySelector('td:nth-child(3)').textContent;
-        var cantidad = parseInt(fila.querySelector('td:nth-child(5)').textContent);
-        var subTotal = parseFloat(fila.querySelector('td:nth-child(6)').textContent);
-
-        datosDeCompra.push({
-            NombreProducto: nombreProducto,
-            idProducto: idProducto,
-            CantidadDeProductos: cantidad,
-            subTotalDelProducto: subTotal
+            datosTabla.push({
+                nombreProducto: nombreProducto,
+                idProducto: idProducto,
+                cantidad: cantidad,
+                subTotal: subTotal
+            });
         });
-    });
 
-    // Realiza una solicitud AJAX para enviar los datos al servidor
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '../app/controllers/carrito/agregar_compra.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-    xhr.send(JSON.stringify(datosDeCompra));
+        // Crea un formulario dinámico
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '<?php echo $URL ?>/Compra/RealizarCompra.php';
 
-    // Maneja la respuesta del servidor si es necesario
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            // Maneja la respuesta del servidor si es necesario
-        }
-    };
+        // Crea un campo oculto para enviar los datos de la tabla
+        var datosInput = document.createElement('input');
+        datosInput.type = 'hidden';
+        datosInput.name = 'datosTabla';
+        datosInput.value = JSON.stringify(datosTabla);
+
+        // Crear un campo oculto para enviar totalCantidad
+        var totalCantidadInput = document.createElement('input');
+        totalCantidadInput.type = 'hidden';
+        totalCantidadInput.name = 'totalCantidad';
+        totalCantidadInput.value = totalCantidad;
+
+        // Crear un campo oculto para enviar totalSubTotal
+        var totalSubTotalInput = document.createElement('input');
+        totalSubTotalInput.type = 'hidden';
+        totalSubTotalInput.name = 'totalSubTotal';
+        totalSubTotalInput.value = totalSubTotal;
+
+
+
+        // Agrega el campo oculto al formulario
+        form.appendChild(datosInput);
+        form.appendChild(totalCantidadInput);
+        form.appendChild(totalSubTotalInput);
+        // Agrega el formulario al cuerpo del documento y lo envía
+        document.body.appendChild(form);
+        form.submit();
+
+
+        
+    }
 });
 
-      </script>
+</script>
+<!-- <a href="/Compra/RealizarCompra.php"></a> -->
