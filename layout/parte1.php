@@ -316,6 +316,13 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
+
+            <input type="text" name="id_usuarioSesion" id="ID_usuario_sesion" value="<?php echo $ID_usuario_sesion?>" hidden>
+            <input type="text" name="nombresDusuario_sesion" id="nombresDusuario_sesion" value="<?php echo $nombresDusuario_sesion?>" hidden>
+            <input type="text" name="correo_sesion" id="correo_sesion" value="<?php echo $correo_sesion?>" hidden>
+
+
+
               <h4 class="modal-title">Mi Carrito</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -477,12 +484,25 @@ document.querySelector('.btn.btn-warning').addEventListener('click', function() 
 
         // Recopila los datos de la tabla en un objeto
         var datosTabla = [];
+        var nombresImagenP1 = []; // Variables para las rutas de las imágenes
+        var nombresImagenP2 = [];
+        var nombresImagenP3 = [];
         var filas = tabla.querySelectorAll('tbody tr');
         filas.forEach(function(fila, indice) {
             var nombreProducto = fila.querySelector('td:nth-child(2)').textContent;
             var idProducto = fila.querySelector('td:nth-child(3)').textContent;
             var cantidad = fila.querySelector('td:nth-child(5)').textContent;
             var subTotal = fila.querySelector('td:nth-child(6)').textContent;
+
+            // Obtiene las rutas de las imágenes
+            var imagenP1 = fila.querySelector('td:nth-child(4) img:nth-child(1)').src;
+            var imagenP2 = fila.querySelector('td:nth-child(4) img:nth-child(2)').src;
+            var imagenP3 = fila.querySelector('td:nth-child(4) img:nth-child(3)').src;
+
+            // Agrega las rutas de las imágenes a las variables
+            nombresImagenP1.push(imagenP1);
+            nombresImagenP2.push(imagenP2);
+            nombresImagenP3.push(imagenP3);
 
             datosTabla.push({
                 nombreProducto: nombreProducto,
@@ -497,36 +517,74 @@ document.querySelector('.btn.btn-warning').addEventListener('click', function() 
         form.method = 'POST';
         form.action = '<?php echo $URL ?>/Compra/RealizarCompra.php';
 
-        // Crea un campo oculto para enviar los datos de la tabla
+        // Crea campos ocultos para enviar los datos de la tabla
         var datosInput = document.createElement('input');
         datosInput.type = 'hidden';
         datosInput.name = 'datosTabla';
         datosInput.value = JSON.stringify(datosTabla);
+        form.appendChild(datosInput);
 
-        // Crear un campo oculto para enviar totalCantidad
+        // Crea campos ocultos para enviar totalCantidad y totalSubTotal
         var totalCantidadInput = document.createElement('input');
         totalCantidadInput.type = 'hidden';
         totalCantidadInput.name = 'totalCantidad';
         totalCantidadInput.value = totalCantidad;
+        form.appendChild(totalCantidadInput);
 
-        // Crear un campo oculto para enviar totalSubTotal
         var totalSubTotalInput = document.createElement('input');
         totalSubTotalInput.type = 'hidden';
         totalSubTotalInput.name = 'totalSubTotal';
         totalSubTotalInput.value = totalSubTotal;
-
-
-
-        // Agrega el campo oculto al formulario
-        form.appendChild(datosInput);
-        form.appendChild(totalCantidadInput);
         form.appendChild(totalSubTotalInput);
+
+        // Agrega campos ocultos para enviar las rutas de las imágenes individuales
+        nombresImagenP1.forEach(function(imagen, index) {
+            var imagenP1Input = document.createElement('input');
+            imagenP1Input.type = 'hidden';
+            imagenP1Input.name = 'imagenP1_' + index;
+            imagenP1Input.value = imagen;
+            form.appendChild(imagenP1Input);
+        });
+
+        nombresImagenP2.forEach(function(imagen, index) {
+            var imagenP2Input = document.createElement('input');
+            imagenP2Input.type = 'hidden';
+            imagenP2Input.name = 'imagenP2_' + index;
+            imagenP2Input.value = imagen;
+            form.appendChild(imagenP2Input);
+        });
+
+        nombresImagenP3.forEach(function(imagen, index) {
+            var imagenP3Input = document.createElement('input');
+            imagenP3Input.type = 'hidden';
+            imagenP3Input.name = 'imagenP3_' + index;
+            imagenP3Input.value = imagen;
+            form.appendChild(imagenP3Input);
+        });
+
+        var idUsuarioSesionInput = document.createElement('input');
+        idUsuarioSesionInput.type = 'hidden';
+        idUsuarioSesionInput.name = 'id_usuarioSesion';
+        idUsuarioSesionInput.value = '<?php echo $ID_usuario_sesion; ?>';
+        form.appendChild(idUsuarioSesionInput);
+
+        var nombresDusuarioSesionInput = document.createElement('input');
+        nombresDusuarioSesionInput.type = 'hidden';
+        nombresDusuarioSesionInput.name = 'nombresDusuario_sesion';
+        nombresDusuarioSesionInput.value = '<?php echo $nombresDusuario_sesion; ?>';
+        form.appendChild(nombresDusuarioSesionInput);
+
+        var correoSesionInput = document.createElement('input');
+        correoSesionInput.type = 'hidden';
+        correoSesionInput.name = 'correo_sesion';
+        correoSesionInput.value = '<?php echo $correo_sesion; ?>';
+        form.appendChild(correoSesionInput);
+
+
+
         // Agrega el formulario al cuerpo del documento y lo envía
         document.body.appendChild(form);
         form.submit();
-
-
-        
     }
 });
 
