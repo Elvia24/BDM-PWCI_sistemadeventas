@@ -254,6 +254,10 @@ if (!empty($datosTabla)) {
                     //console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
                     //actions.redirect('LA URL DE TU PAGINA DE GRACIAS');
                     
+
+
+                    //ENVIAR DATOS EN AL CONTROLADOR PARA ENVIAR A LA BASE DE DATOS
+
                   });
                 },
 

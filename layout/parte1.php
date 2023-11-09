@@ -275,6 +275,21 @@
           </li>
           
 
+<!-- MIS COMPRAS -->
+<li class="nav-item">
+
+<?php if ($Rol_sesion === 'Administrador' ||$Rol_sesion === 'Publico' ||$Rol_sesion === 'Privado') : ?>
+<a href="<?php echo $URL;?>../Compra/Compras.php" class="nav-link">
+<i class="fa fa-shopping-bag nav-icon"></i>
+<p>
+Mis Compras
+<!-- <span class="right badge badge-danger">0</span> insignia-peligro-->  
+</p>
+</a>
+<?php endif; ?>
+</li>
+<!-- MIS COMPRAS -->
+
           <!-- aqui -->
 
 
