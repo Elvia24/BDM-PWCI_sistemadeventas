@@ -23,7 +23,7 @@
   <!-- icono de la pagina -->
   <link rel="icon" href="<?php echo $URL;?>../icon/bisonte.ico" type="image/x-icon">
 
-
+  <script src="https://www.paypal.com/sdk/js?client-id=AUj8THAEz7LMU00imrp1Nhmzu7VOw84AgCQnWyS60HMKVWGa7Hmq_GYgyb1a10I1Ldo9XLaf1KvOVcIY&currency=MXN"></script>
 </head>
 <body class="hold-transition login-page2">
 
@@ -222,8 +222,47 @@ if (!empty($datosTabla)) {
               <div class="row no-print">
                 <div class="col-12">
                 
-                  <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
-                    Payment
+                     <!-- Set up a container element for the button -->
+                      <div id="smart-button-container">
+                            <div style="text-align: center;">
+                              <div id="paypal-button-container"></div>
+                            </div>
+                      </div>
+  <script>
+            function initPayPalButton() {
+              paypal.Buttons({
+                style: {
+                  shape: 'rect',
+                  color: 'gold',
+                  layout: 'vertical',
+                  label: 'pay',
+                  
+                },
+
+                createOrder: function(data, actions) {
+                  return actions.order.create({
+                    purchase_units: [{"description":"hola","amount":{"currency_code":"MXN","value":<?php echo $totalSubTotal?>}}]
+                  });
+                },
+
+                onApprove: function(data, actions) {
+                  return actions.order.capture().then(function(orderData) {
+                    // alert('click en el boton pagar');
+                    // Full available details
+                    console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                    actions.redirect('LA URL DE TU PAGINA DE GRACIAS');
+                    
+                  });
+                },
+
+                onError: function(err) {
+                  console.log(err);
+                }
+              }).render('#paypal-button-container');
+            }
+            initPayPalButton();
+  </script>
+
                   </button>
 
                 </div>
