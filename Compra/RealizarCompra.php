@@ -249,8 +249,10 @@ if (!empty($datosTabla)) {
                   return actions.order.capture().then(function(orderData) {
                     // alert('click en el boton pagar');
                     // Full available details
-                    console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-                    actions.redirect('LA URL DE TU PAGINA DE GRACIAS');
+
+                    
+                    //console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                    //actions.redirect('LA URL DE TU PAGINA DE GRACIAS');
                     
                   });
                 },
