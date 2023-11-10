@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-11-2023 a las 12:08:50
+-- Tiempo de generación: 10-11-2023 a las 03:44:03
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -20,6 +20,35 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `sistemadeventas`
 --
+
+DELIMITER $$
+--
+-- Procedimientos
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `EliminarUsuario` (IN `userID ` INT)   BEGIN
+  DECLARE categoria_count INT;
+  DECLARE mensaje VARCHAR(255); -- Declarar la variable mensaje
+  DECLARE icono VARCHAR(20);    -- Declarar la variable icono
+  
+  -- Verificar si existen registros en la tabla de categorías para el usuario
+  SELECT COUNT(*) INTO categoria_count FROM categoria WHERE id_usuario = userID;
+  
+  -- Si existen registros de categorías, establecer el mensaje y el icono
+  IF categoria_count > 0 THEN
+    SET mensaje = 'No es posible eliminar el usuario. Existen registros de categorías relacionados.';
+    SET icono = 'error';
+  ELSE
+    -- Si no existen registros de categorías, eliminar al usuario y establecer el mensaje y el icono
+    DELETE FROM usuario WHERE id = userID;
+    SET mensaje = 'Usuario eliminado correctamente.';
+    SET icono = 'success';
+  END IF;
+  
+  -- Devolver el valor de mensaje e icono como resultado
+  SELECT mensaje, icono;
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -78,7 +107,7 @@ CREATE TABLE `compra` (
   `id_carrito` int(11) DEFAULT NULL,
   `id_usuario` int(11) NOT NULL,
   `Total` float NOT NULL,
-  `fechaCreacion` datetime NOT NULL DEFAULT current_timestamp()
+  `fechaCreacion` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -86,7 +115,7 @@ CREATE TABLE `compra` (
 --
 
 INSERT INTO `compra` (`ID_Compra`, `id_carrito`, `id_usuario`, `Total`, `fechaCreacion`) VALUES
-(1, 1, 1, 92, '2023-11-09 04:47:57');
+(1, 1, 1, 92, '2023-11-09');
 
 -- --------------------------------------------------------
 
@@ -121,7 +150,8 @@ CREATE TABLE `detalle_carrito` (
 --
 
 INSERT INTO `detalle_carrito` (`ID_detalle_carrito`, `id_carrito`, `id_producto`, `cantidad`, `subTotal`) VALUES
-(1, 1, 1, 1, 25);
+(1, 1, 1, 1, 25),
+(2, 1, 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -324,7 +354,7 @@ ALTER TABLE `cotizar`
 -- AUTO_INCREMENT de la tabla `detalle_carrito`
 --
 ALTER TABLE `detalle_carrito`
-  MODIFY `ID_detalle_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_detalle_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
