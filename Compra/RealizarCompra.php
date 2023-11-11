@@ -43,20 +43,7 @@
 
 
             <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Recibe los datos enviados en el campo 'datosTabla'
-    $datosTablaJSON = $_POST['datosTabla'];
-    $totalCantidad = $_POST['totalCantidad'];
-    $totalSubTotal = $_POST['totalSubTotal'];
-
-    $id_usuarioSesion = $_POST['id_usuarioSesion'];
-    $nombresDusuario_sesion = $_POST['nombresDusuario_sesion'];
-    $correo_sesion = $_POST['correo_sesion'];
-    // Decodifica los datos JSON en un array de PHP
-    $datosTabla = json_decode($datosTablaJSON, true);
-    
-    
-    
+include('../app/controllers/compra/registrar_compra.php');
     
     ?>
 
@@ -65,7 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
               <!-- title row -->
               <div class="row">
-              <a href="<?php  include('../app/config.php');  echo $URL;?>/Productos/Productos.php" type="button" class="btn btn-info"><i class="fa fa-arrow-left" aria-hidden="true"></i>  Volver</a>
 
               
                 <div class="col-12">
@@ -100,7 +86,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <!-- info row -->
               <div class="row invoice-info">
                 <div class="col-sm-6 invoice-col">
-                  <input type="text" value="<?php echo $id_usuarioSesion ?>" disabled hidden>
+                  <!-- FORMULARIO PARA ENVIAR LOS DATOS A LA BASE  -->
+                  <form id="datosCompraForm" action="" method="POST">
+                      <input type="hidden" name="totalCantidad" id="totalCantidadInput" value="<?php echo $totalCantidad?>">
+                      <input type="hidden" name="totalSubTotal" id="totalSubTotalInput" value="<?php echo $totalSubTotal?>">
+                      <input type="hidden" name="id_usuarioSesion" id="idUsuarioSesionInput" value="<?php echo $id_usuarioSesion?>">
+                      <!-- Puedes agregar otros campos ocultos aquí si es necesario -->
+                  </form>
+
+                  
+                  
+                  
+                  
+                  
                   <address>
                     <strong>Cliente</strong><br>
                     Usuario: <?php echo $nombresDusuario_sesion?>               <br>
@@ -113,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <!-- /.col -->
                 <div class="col-sm-6">
 
-                  <b>Orden ID:</b> 4F3S8J<br>
+                  <b>ID de Compra: </b> <?php echo $ultimoID?> <br>
                  
                 </div>
                 <!-- /.col -->
@@ -144,7 +142,7 @@ if (!empty($datosTabla)) {
                       <th>Producto</th>
                       <th>Imagenes</th>
                       <th>idProducto</th>
-                      <th>Cantidad</th>
+                      <!-- <th>Cantidad</th> -->
                       <th>Subtotal</th>
                     </tr>
                     </thead>
@@ -165,7 +163,7 @@ if (!empty($datosTabla)) {
                         <img src="<?php echo $imagenP3?> " alt="Imagen 3" width="100" height="100">
                     
                       </td>
-                      <td><?php echo $fila['idProducto']?></td>
+                      <!-- <td><?php echo $fila['idProducto']?></td> -->
                       <td><?php echo $fila['cantidad']?></td>
                       <td><?php echo $fila['subTotal']?></td>
                     </tr>
@@ -249,14 +247,15 @@ if (!empty($datosTabla)) {
                   return actions.order.capture().then(function(orderData) {
                     // alert('click en el boton pagar');
                     // Full available details
-
-                    
                     //console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-                    //actions.redirect('LA URL DE TU PAGINA DE GRACIAS');
-                    
+                    actions.redirect('<?php echo $URL;?>/Productos/Productos.php'); 
+                   
+                            //_____________________________________________________________________________________________EDITAR ESTE SUJETO
+                            //actions.redirect('<?php echo $URL;?>../Productos/Productos.php');
+
+ //ENVIAR A LA BASE DE DATOS
 
 
-                    //ENVIAR DATOS EN AL CONTROLADOR PARA ENVIAR A LA BASE DE DATOS
 
                   });
                 },
@@ -279,7 +278,7 @@ if (!empty($datosTabla)) {
     } else {
         echo 'No se han recibido datos.';
     }
-  } 
+
   ?>
             </div>
 

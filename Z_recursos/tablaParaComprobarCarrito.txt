@@ -1,0 +1,21 @@
+<table>
+    <thead>
+        <tr>
+            <th>idProducto</th>
+            <th>cantidad</th>
+            <th>subTotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        // Asumiendo que $datosTabla es un array de productos
+        foreach ($datosTabla as $producto) {
+            echo '<tr>';
+            echo '<td>' . $producto['idProducto'] . '</td>';
+            echo '<td>' . $producto['cantidad'] . '</td>';
+            echo '<td>' . $producto['subTotal'] . '</td>';
+            echo '</tr>';
+        }
+        ?>
+    </tbody>
+</table>
