@@ -296,15 +296,37 @@ Mis Compras
             <!--  PRODUCTOS-->
             <!--  COTIZACION-->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?php echo $URL;?>../Cotizar/ProductosaCotizar.php" class="nav-link">
             <i  class="fa fa-handshake" ></i>
               <p>
-                Cotizacion
+                Pedidos/Cotizacion
                   <!-- <span class="right badge badge-danger">0</span> insignia-peligro-->  
               </p>
             </a>
           </li>
             <!--  COTIZACION-->
+            <!--  MisPedidos-->
+          <li class="nav-item">
+            <a href="<?php echo $URL;?>../Cotizar/MisPedidos.php" class="nav-link">
+            <i  class="fa fa-handshake" ></i>
+              <p>
+                Mis Pedidos
+                  <!-- <span class="right badge badge-danger">0</span> insignia-peligro-->  
+              </p>
+            </a>
+          </li>
+            <!--  MisPedidos-->
+          <!--  MisPedidos-->
+          <li class="nav-item">
+            <a href="<?php echo $URL;?>../Cotizar/MisPedidos.php" class="nav-link">
+            <i  class="fa fa-handshake" ></i>
+              <p>
+                Mis Listas
+                  <!-- <span class="right badge badge-danger">0</span> insignia-peligro-->  
+              </p>
+            </a>
+          </li>
+            <!--  MisPedidos-->
             <!--  REPORTES-->
           <li class="nav-item">
             <a href="#" class="nav-link">
