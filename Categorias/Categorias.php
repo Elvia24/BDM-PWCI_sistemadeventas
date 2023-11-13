@@ -214,7 +214,7 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
           <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
-      </div>
+</div>
       <!-- /.modal -->
 
         <script>

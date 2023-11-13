@@ -2,6 +2,8 @@
 include('../app/config.php');
 include('../layout/sesion.php');
 
+
+include('../app/controllers/listas/listas.php');
 include('../app/controllers/productos/cargar_producto.php');
  include('../layout/parte1.php');  //ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR -LA BARRA IZQUIERDA AZUL 
 
@@ -185,9 +187,10 @@ include('../app/controllers/productos/cargar_producto.php');
                             }elseif($venta_cotizar == 0){
                                 // echo '<h4 style="">Cotizar </h4>';
                                 
-                                echo '
-                              <button  onclick="submitForm(\'../app/controllers/carrito/cotizar.php\');" type="submit" class="btn btn-primary btn-lg btn-flat"  ><i class="fa fa-handshake fa-lg mr-2"></i> Pedir Cotizar.</button>
-                              ';
+                                echo '  <button onclick="submitForm(\'../app/controllers/carrito/carrito.php\');" type="submit" class="btn btn-primary btn-lg btn-flat"  >
+                                <i class="fas fa-handshake"> </i>Pedir Cotizar.
+                            </button>                                                  
+                                  ';
                                     
                             }
                             ?>
@@ -199,10 +202,11 @@ include('../app/controllers/productos/cargar_producto.php');
                   Add to Cart
                 </div> -->
 
-                <div class="btn btn-default btn-lg btn-flat">
+                  <button  type="button" class="btn btn-default btn-lg btn-flat" class="btn" data-toggle="modal" data-target="#modal-create">
                   <i class="fas fa-heart fa-lg mr-2"></i>
                   Agregar a mi lista
-                </div>
+          
+                </button>
               </div>
 
 
@@ -312,5 +316,125 @@ function submitForm(action) {
     document.getElementById("myForm").action = url;
     document.getElementById("myForm").submit();
 }
+
+</script>
+
+<!-- MODAL PARA REGISTRAR ListaS -->
+<div class="modal fade" id="modal-create">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-primary"  >
+              <h4 class="modal-title">Agregar Nueva Lista</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" style=color:#ffffff;>
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            
+            <div class="card-body " style="overflow-y: scroll; max-height: 850px;">
+                    <table class="table   table-striped ">
+                    <thead>
+                        <tr>
+                        <th>ID_usuario_sesion</th>
+                        <th>id_lista</th>
+                        <th>id_producto_get</th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th></th>
+                        <th></th>
+
+                        </tr>
+                    </thead>
+                
+                    <tbody><!--   AQUI VA LA LISTA DE USUARIOS-->
+                    <?php
+                         //(lista de usuarios de la base de datos AS  mis lista )
+                         //VERIFICAR LA CONSULTA PARA VER SOLO ALGUNOS USUARIOS 
+                    foreach($lista_tabla as $lista_dato){ 
+                      $id_lista = $lista_dato['ID_lista'];?>
+                      
+                     <tr >
+                        <td><?php echo $ID_usuario_sesion;?></td>
+                        <td><?php echo $id_lista;?></td>
+                        <td><?php echo $id_producto_get;?></td>
+                        <td><?php echo $lista_dato['nombre_lista'];?></td>
+                        <td><?php echo $lista_dato['descripcion'];?></td>
+                        <td><?php echo $lista_dato['Publica_Privada'];?></td>
+                        
+                        
+                        <td >
+                              <div class="btn-group">
+                              <td><a href="../app/controllers/listas/agregar_elemento.php?
+                              id_lista=<?php echo $id_lista; ?>&
+                              id_producto_get=<?php echo $id_producto_get; ?>" class="btn btn-success"><i class="fa fa-plus"></i></a>
+                              
+
+                              </td>
+                              
+                              </div>
+                        </td>
+
+                     </tr>
+                     
+
+                    <?php
+                    }
+                    
+                    ?>
+                        
+                    </tbody>
+
+
+                    </table>
+
+
+                    
+                </div> <!--card -->
+
+
+
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+              <!-- <button  type="button" class="btn btn-primary" id="btn_create">     Agregar Lista </button> -->
+                    <div id="respuesta" hidden>
+
+                    </div>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+</div>
+<script>
+$('#btn_create').click(function() {
+    var nombre_Lista = $('#nombre_Lista').val();
+    var descripcion_Lista = $('#descripcion_Lista').val();
+    var Publica_Privada = $('#Publica_Privada').val();
+    var ID_usuario_sesion=$('#ID_usuario_sesion').val();
+
+    var url = "../app/controllers/listas/registro_lista.php";
+    $.get(url, {
+        nombre_Lista: nombre_Lista,
+        descripcion_Lista: descripcion_Lista,
+        Publica_Privada: Publica_Privada,
+        ID_usuario_sesion:ID_usuario_sesion,
+
+    }, function (datos) {
+        // Esta función se ejecutará cuando se complete la solicitud
+        // Puedes procesar la respuesta aquí
+        console.log(datos); // Muestra la respuesta en la consola
+        $('#respuesta').html(datos);
+    })
+    .done(function() {
+        // Esta función se ejecutará si la solicitud tiene éxito
+        console.log("Solicitud exitosa");
+    })
+    .fail(function() {
+        // Esta función se ejecutará si la solicitud falla
+        console.error("Error en la solicitud");
+    });
+});
+
 
 </script>

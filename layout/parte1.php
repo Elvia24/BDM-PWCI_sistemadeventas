@@ -318,8 +318,8 @@ Mis Compras
             <!--  MisPedidos-->
           <!--  MisPedidos-->
           <li class="nav-item">
-            <a href="<?php echo $URL;?>../Cotizar/MisPedidos.php" class="nav-link">
-            <i  class="fa fa-handshake" ></i>
+            <a href="<?php echo $URL;?>../Listas/MisListas.php" class="nav-link">
+            <i  class="fa fa-list-alt" ></i>
               <p>
                 Mis Listas
                   <!-- <span class="right badge badge-danger">0</span> insignia-peligro-->  
