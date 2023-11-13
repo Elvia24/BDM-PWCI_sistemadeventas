@@ -2,14 +2,14 @@
 include('../app/config.php');
 include('../layout/sesion.php');
 
-include('../app/controllers/cotizar/cargar_cotizaciones.php');
+include('../app/controllers/productos/cargar_producto.php');
  include('../layout/parte1.php');  //ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR -LA BARRA IZQUIERDA AZUL 
 
 ?> 
 
 
 
-<title>Editar Mensaje</title>
+<title>Mensaje</title>
 
 
     
@@ -34,7 +34,7 @@ include('../app/controllers/cotizar/cargar_cotizaciones.php');
     <div class="card card-row card-default">
         <div class="card-header bg-dark">
             <h3 class="card-title">
-            Mensaje Cliente
+            Info Vendedor
             </h3>
         </div>
         <div class="card-body">
@@ -43,16 +43,16 @@ include('../app/controllers/cotizar/cargar_cotizaciones.php');
             <!-- <h5 class="card-title">Update Readme</h5> -->
             <div class="card-tools">
             Correo:                       
-            
-            <?php echo $correo_Cliente?>
+            <?php echo $correo?>
             <!-- <a href="#" class="btn btn-tool">
             <i class="fas fa-pen"></i>
             </a> -->
             </div>
             </div>
             <div class="card-body">
-            <p>
-                <?php echo $Mensaje_Cliente?>
+            <p>Producto:   <?php echo $NombreProducto;?>
+            <img src=" <?php echo $URL. "../app/controllers/productos/imageProductos/" .$imagenP_1;?>" width="100px" alt="imageProductos/">
+
             </p>
             </div>
             </div>
@@ -64,21 +64,23 @@ include('../app/controllers/cotizar/cargar_cotizaciones.php');
 <div class="card card-row card-default">
         <div class="card-header bg-light">
             <h3 class="card-title">
-            Mensaje Vendedor
+            Mensaje Cliente
             </h3>
         </div>
-        <form class="form-horizontal" action="../app/controllers/cotizar/edit_cotizacion.php " method="POST"  enctype="multipart/form-data"   >
+        <form class="form-horizontal" action="../app/controllers/cotizar/registar_cotizacion.php " method="POST"  enctype="multipart/form-data"   >
 
             <div class="card-body">
                 <div class="card card-light card-outline">
-                
+                <input name="ID_producto" type="text" value="<?php echo $ID_producto ?>" hidden>
+                <input name="ID_usuario_sesion" type="text" value="<?php echo $ID_usuario_sesion  ?>" hidden>
 
-                <input name="id_cotizacion" type="text" value="<?php echo $id_pedido_get ?>" hidden>
+
+                
 
 
 
                 <div class="card-body">
-                    <textarea  name="mensaje_vendedor" id="" cols="100" rows="10"><?php echo $Mensaje_Vendedor?></textarea>
+                    <textarea  name="mensaje_cliente" id="" cols="100" rows="10"></textarea>
 
                     <button type="submit" href="#" class="btn btn-success"> Enviar Mensaje
                         <i class="fas fa-envelope"></i>

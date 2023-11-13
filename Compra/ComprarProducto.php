@@ -184,29 +184,18 @@ include('../app/controllers/productos/cargar_producto.php');
 
                               <button onclick="submitForm(\'../app/controllers/carrito/carrito.php\');" type="submit" class="btn btn-primary btn-lg btn-flat"  ><i class="fas fa-cart-plus fa-lg mr-2"></i>  Agregar al Carrito.</button>';
                                 
-                            }elseif($venta_cotizar == 0){
-                                // echo '<h4 style="">Cotizar </h4>';
-                                
-                                echo '  <button onclick="submitForm(\'../app/controllers/carrito/carrito.php\');" type="submit" class="btn btn-primary btn-lg btn-flat"  >
-                                <i class="fas fa-handshake"> </i>Pedir Cotizar.
-                            </button>                                                  
-                                  ';
-                                    
-                            }
+                            }elseif ($venta_cotizar == 0) {
+                              echo '<a href="../Cotizar/PedirCotizacion.php?id=' . $ID_producto . '" type="button" class="btn btn-primary btn-lg btn-flat">
+                                      <i class="fas fa-handshake"></i> Pedir Cotizar
+                                    </a>';
+                          }
+                          
                             ?>
 
-<!-- <a href="../app/controllers/carrito/carrito.php"></a> -->
-
-                <!-- <div class="btn btn-primary btn-lg btn-flat">
-                  <i class="fas fa-cart-plus fa-lg mr-2"></i>
-                  Add to Cart
-                </div> -->
-
                   <button  type="button" class="btn btn-default btn-lg btn-flat" class="btn" data-toggle="modal" data-target="#modal-create">
-                  <i class="fas fa-heart fa-lg mr-2"></i>
-                  Agregar a mi lista
-          
-                </button>
+                    <i class="fas fa-heart fa-lg mr-2"></i>
+                    Agregar a mi lista
+                  </button>
               </div>
 
 
@@ -318,6 +307,10 @@ function submitForm(action) {
 }
 
 </script>
+
+
+
+
 
 <!-- MODAL PARA REGISTRAR ListaS -->
 <div class="modal fade" id="modal-create">

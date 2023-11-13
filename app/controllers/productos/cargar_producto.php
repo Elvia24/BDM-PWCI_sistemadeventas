@@ -21,6 +21,7 @@ p.imagenP_3,
 p.VideoP,
 u.ID_usuario, 
 u.nombreUsuario AS NombreUsuario, 
+u.correo,
 c.ID_categoria, 
 c.nombre_cate AS NombreCategoria
 FROM producto p
@@ -49,6 +50,7 @@ foreach($productos_datos AS $productos_dato){
     $precioProducto = $productos_dato['PrecioProducto'];
     $Cantidad_Disponible = $productos_dato['CantidadDisponible'];
     $NombreUsuario = $productos_dato['NombreUsuario'];
+    $correo = $productos_dato['correo'];
 
     $imagenP_1 = $productos_dato['imagenP_1'];
     $imagenP_2 = $productos_dato['imagenP_2'];

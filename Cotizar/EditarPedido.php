@@ -77,7 +77,7 @@ include('../app/controllers/cotizar/cargar_pedido.php');
 
 
                 <div class="card-body">
-                    <textarea  name="mensaje_cliente" id="" cols="140" rows="10"><?php echo $Mensaje_Cliente?></textarea>
+                    <textarea  name="mensaje_cliente" id="" cols="100" rows="10"><?php echo $Mensaje_Cliente?></textarea>
 
                     <button type="submit" href="#" class="btn btn-success"> Enviar Mensaje
                         <i class="fas fa-envelope"></i>

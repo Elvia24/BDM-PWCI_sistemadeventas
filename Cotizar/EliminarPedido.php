@@ -77,7 +77,7 @@ include('../app/controllers/cotizar/cargar_pedido.php');
 
 
                 <div class="card-body">
-                    <textarea disabled  name="mensaje_cliente" id="" cols="140" rows="10"><?php echo $Mensaje_Cliente?></textarea>
+                    <textarea disabled  name="mensaje_cliente" id="" cols="100" rows="10"><?php echo $Mensaje_Cliente?></textarea>
 
                     <button type="submit" href="#" class="btn btn-danger"> Eliminar Pedido
                         <i class="fas fa-trash"></i>
