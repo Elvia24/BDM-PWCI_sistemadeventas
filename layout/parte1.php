@@ -310,10 +310,10 @@ Mis Compras
             <!--  MisPedidos-->
             <!--  REPORTES-->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?php echo $URL;?>../Ventas/MisVentas.php" class="nav-link">
               <i class="nav-icon fas fa-clipboard"></i>
               <p>
-                Reportes
+                Mis Ventas
                   <!-- <span class="right badge badge-danger">0</span> insignia-peligro-->   
               </p>
             </a>
