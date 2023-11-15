@@ -73,7 +73,8 @@ include('../app/controllers/listas/listas.php');
                          //(lista de usuarios de la base de datos AS  mis lista )
                          //VERIFICAR LA CONSULTA PARA VER SOLO ALGUNOS USUARIOS 
                     foreach($lista_tabla as $lista_dato){ 
-                      $id_lista = $lista_dato['ID_lista'];?>
+                      $id_lista = $lista_dato['ID_lista'];
+                      $id_usuario_lista = $lista_dato['id_usuario'];?>
                       
                      <tr >
 
@@ -85,7 +86,7 @@ include('../app/controllers/listas/listas.php');
                         <td >
                               <div class="btn-group">
                               <a href="EditarLista.php?id=<?php echo $id_lista;?> " type="button" class="btn btn-success"><i class="fa fa-pen"></i>Editar</a>
-                              <a href="ElementosDeMiLista.php?id=<?php echo $id_lista;?> " type="button" class="btn btn-info"><i class="fa fa-eye"></i>Ver</a>
+                              <a href="ElementosDeMiLista.php?id=<?php echo $id_lista; ?>&id_usuario=<?php echo $id_usuario_lista; ?>" type="button" class="btn btn-info"><i class="fa fa-eye"></i>Ver</a>
                               <a href="EliminarLista.php?id=<?php echo $id_lista;?> " type="button" class="btn btn-danger"><i class="fa fa-trash"></i>Eliminar</a>
                               
                               

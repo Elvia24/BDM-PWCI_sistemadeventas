@@ -2,6 +2,8 @@
 
 
 $id_lista_get=$_GET['id'];
+$id_usuario_lista_get=$_GET['id_usuario'];
+
 
 // $email_sesion= $_SESSION['sesion_email'];
 $sql_lista = "SELECT p.ID_producto, p.nombre_prod, 

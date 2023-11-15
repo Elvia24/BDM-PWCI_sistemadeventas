@@ -101,8 +101,9 @@ include('../app/controllers/listas/cargar_elementosdelista.php');
                             <img src=" <?php echo $URL. "../app/controllers/productos/imageProductos/" .$lista_elemento_dato['imagenP_3'];?>" width="100px" alt="imageProductos/">
                         </td>
                         <td><?php echo $lista_elemento_dato['precio_prod'];?></td>
+                        <?php if ($id_usuario_lista_get == $ID_usuario_sesion ) : ?>
                         <td><a href="../app/controllers/listas/eliminar_elemento_lista.php?id=<?php echo $id_detalle_lista;?> " type="button" class="btn btn-danger"><i class="fa fa-trash"></i>Eliminar</a></td>
-
+                        <?php endif; ?>
 
                      </tr>
                      

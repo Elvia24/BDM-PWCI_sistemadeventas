@@ -94,63 +94,251 @@ if ($nombre_rol_verusuario !== 'Privado') {
 <?php
 if ($nombre_rol_verusuario === 'Publico') {
     // Si el rol del usuario es 'Publico', muestra la sección "ParaPublico"
-    echo '<div class="col-md-9  " id="ParaPublico">
-    <div class="card">
-      <div class="card-header p-2"><!-- card-header -->
-        <ul class="nav nav-pills">
-        <h2 class="m-0">Lista de Deseos:</h2>
-        </ul>
-      </div><!-- /.card-header -->
+    echo '
+    <div class="col-md-9" id="ParaVendedor">
+        <div class="card">
+            <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                    <h2 class="m-0">Lista de Deseos:</h2>
+                </ul>
+            </div>
+    
+            <div class="card-body">
+                <div class="card-body" style="overflow-y: scroll; max-height: 850px;">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Nombre Lista</th>
+                                <th></th>
 
-        <div class="card-body"><!-- card-body -->
+                            </tr>
+                        </thead>
+                        <tbody>';
+                            foreach ($lista_tabla as $dato_lista) {
+                                $id_producto_deseado = $dato_lista['ID_lista']; 
+                                $id_usuario = $dato_lista['id_usuario']; 
+                                echo '
+                                <tr>
+                                    <td></td>
+                                    <td>' . $dato_lista['nombre_lista'] . '</td>
+                                    <td>' . $dato_lista['Publica_Privada'] . '</td>
 
-        </div> <!-- /.tab-content -->
-
-        
-      </div><!-- /.card-body -->
-
-
+    
+                                    <td>
+                                        <div class="btn-group">
+                                        <a href="../Listas/ElementosDeMiLista.php?id=' . $id_producto_deseado . '&id_usuario=' . $dato_lista['id_usuario'] . '" type="button" class="btn btn-info"><i class="fa fa-eye"></i>Detalles</a>
+                                        </div>
+                                    </td>
+                                </tr>';
+                            }
+                        echo '</tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>';
+    
+
+foreach ($productosVendedor_tabla as $productosVendedor_dato) {
+    $id_producto = $productosVendedor_dato['ID_producto'];
+    ?>
+
+    <tr>
+        <td >
+
+            <div class="btn-group">
+                    <a href="<?php echo $URL; ?>../Productos/VerProducto.php?id=<?php echo $id_producto; ?>" type="button" class="btn btn-info"><i class="fa fa-eye"></i>Ver</a>
+                
+            </div>
+        </td>
+
+        <td><?php echo $productosVendedor_dato['NombreProducto']; ?></td>
+        
+        <td><?php echo $productosVendedor_dato['PrecioProducto']; ?></td>
+       
+        
+        <td><?php echo $productosVendedor_dato['NombreCategoria']; ?></td>
+        
+        <td class="cotizar-<?php echo $productosVendedor_dato['venta_cotizar']; ?>">
+            <?php
+            if ($productosVendedor_dato['venta_cotizar'] == 1) {
+                echo "Venta";
+            } elseif ($productosVendedor_dato['venta_cotizar'] == 0) {
+                echo "Cotizar";
+            }
+            ?>
+        </td>
+        <td>
+            <img src="<?php echo $URL . "../app/controllers/productos/imageProductos/" . $productosVendedor_dato['imagenP_1']; ?>" width="100px" alt="imagen1">
+            <img src="<?php echo $URL . "../app/controllers/productos/imageProductos/" . $productosVendedor_dato['imagenP_2']; ?>" width="100px" alt="imagen2">
+            <img src="<?php echo $URL . "../app/controllers/productos/imageProductos/" . $productosVendedor_dato['imagenP_3']; ?>" width="100px" alt="imagen3">
+        </td>
+
+    </tr>
+
+    <?php
+}
+
+echo '</tbody>
+    </table>
+    </div> <!-- card-body -->
+    </div> <!-- card -->
+    </div> <!-- col-md-9 -->';
+
 } elseif ($nombre_rol_verusuario === 'Vendedor') {
     // Si el rol del usuario es 'Vendedor', muestra la sección "ParaVendedor"
-    echo '           
-            <div class="col-md-9" id="ParaVendedor">
-            <div class="card">
-            <div class="card-header p-2"><!-- card-header -->
-                <ul class="nav nav-pills">
+    echo '<div class="col-md-9" id="ParaVendedor">
+    <div class="card">
+        <div class="card-header p-2">
+            <ul class="nav nav-pills">
                 <h2 class="m-0">Lista de Productos Autorizados:</h2>
-                </ul>
-            </div><!-- /.card-header -->
-            
-                <div class="card-body"><!-- card-body -->
+            </ul>
+        </div>
 
-                </div> <!-- /.tab-content -->
+        <div class="card-body">
+            <div class="card-body" style="overflow-y: scroll; max-height: 850px;">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                          <th></th>
+                            <th>Producto</th>
+                            
+                            <th>Precio</th>
+                           
+                            
+                            <th>Categoria </th>
+                         
+                            <th>Venta/Cotizacion </th>
+                            <th>Imagenes </th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>';
 
+foreach ($productosVendedor_tabla as $productosVendedor_dato) {
+    $id_producto = $productosVendedor_dato['ID_producto'];
+    ?>
+
+    <tr>
+        <td >
+
+            <div class="btn-group">
+                    <a href="<?php echo $URL; ?>../Productos/VerProducto.php?id=<?php echo $id_producto; ?>" type="button" class="btn btn-info"><i class="fa fa-eye"></i>Ver</a>
                 
-            </div><!-- /.card-body -->
+            </div>
+        </td>
+
+        <td><?php echo $productosVendedor_dato['NombreProducto']; ?></td>
+        
+        <td><?php echo $productosVendedor_dato['PrecioProducto']; ?></td>
+       
+        
+        <td><?php echo $productosVendedor_dato['NombreCategoria']; ?></td>
+        
+        <td class="cotizar-<?php echo $productosVendedor_dato['venta_cotizar']; ?>">
+            <?php
+            if ($productosVendedor_dato['venta_cotizar'] == 1) {
+                echo "Venta";
+            } elseif ($productosVendedor_dato['venta_cotizar'] == 0) {
+                echo "Cotizar";
+            }
+            ?>
+        </td>
+        <td>
+            <img src="<?php echo $URL . "../app/controllers/productos/imageProductos/" . $productosVendedor_dato['imagenP_1']; ?>" width="100px" alt="imagen1">
+            <img src="<?php echo $URL . "../app/controllers/productos/imageProductos/" . $productosVendedor_dato['imagenP_2']; ?>" width="100px" alt="imagen2">
+            <img src="<?php echo $URL . "../app/controllers/productos/imageProductos/" . $productosVendedor_dato['imagenP_3']; ?>" width="100px" alt="imagen3">
+        </td>
+
+    </tr>
+
+    <?php
+}
+
+echo '</tbody>
+    </table>
+    </div> <!-- card-body -->
+    </div> <!-- card -->
+    </div> <!-- col-md-9 -->';
 
 
-            </div>';
+
 }elseif ($nombre_rol_verusuario === 'Administrador') {
     // Si el rol del usuario es 'Vendedor', muestra la sección "ParaVendedor"
-    echo '           
-            <div class="col-md-9" id="ParaVendedor">
-            <div class="card">
-            <div class="card-header p-2"><!-- card-header -->
-                <ul class="nav nav-pills">
+    echo '<div class="col-md-9" id="ParaVendedor">
+    <div class="card">
+        <div class="card-header p-2">
+            <ul class="nav nav-pills">
                 <h2 class="m-0">Productos Autorizados Por el Administrador:</h2>
-                </ul>
-            </div><!-- /.card-header -->
-            
-                <div class="card-body"><!-- card-body -->
+            </ul>
+        </div>
 
-                </div> <!-- /.tab-content -->
+        <div class="card-body">
+            <div class="card-body" style="overflow-y: scroll; max-height: 850px;">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                        <th></th>
+                            <th>Producto</th>
+                            
+                            <th>Precio</th>
+                           
+                            
+                            <th>Categoria </th>
+                         
+                            <th>Venta/Cotizacion </th>
+                            <th>Imagenes </th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>';
 
+foreach ($productos_tabla as $productosAdministrador_dato) {
+    $id_producto = $productosAdministrador_dato['ID_producto'];
+    ?>
+
+    <tr>
+        <td >
+
+            <div class="btn-group">
+                    <a href="<?php echo $URL; ?>../Productos/VerProducto.php?id=<?php echo $id_producto; ?>" type="button" class="btn btn-info"><i class="fa fa-eye"></i>Ver</a>
                 
-            </div><!-- /.card-body -->
+            </div>
+        </td>
 
+        <td><?php echo $productosAdministrador_dato['NombreProducto']; ?></td>
+        
+        <td><?php echo $productosAdministrador_dato['PrecioProducto']; ?></td>
+       
+        
+        <td><?php echo $productosAdministrador_dato['NombreCategoria']; ?></td>
+        
+        <td class="cotizar-<?php echo $productosAdministrador_dato['venta_cotizar']; ?>">
+            <?php
+            if ($productosAdministrador_dato['venta_cotizar'] == 1) {
+                echo "Venta";
+            } elseif ($productosAdministrador_dato['venta_cotizar'] == 0) {
+                echo "Cotizar";
+            }
+            ?>
+        </td>
+        <td>
+            <img src="<?php echo $URL . "../app/controllers/productos/imageProductos/" . $productosAdministrador_dato['imagenP_1']; ?>" width="100px" alt="imagen1">
+            <img src="<?php echo $URL . "../app/controllers/productos/imageProductos/" . $productosAdministrador_dato['imagenP_2']; ?>" width="100px" alt="imagen2">
+            <img src="<?php echo $URL . "../app/controllers/productos/imageProductos/" . $productosAdministrador_dato['imagenP_3']; ?>" width="100px" alt="imagen3">
+        </td>
 
-            </div>';
+    </tr>
+
+    <?php
+}
+
+echo '</tbody>
+    </table>
+    </div> <!-- card-body -->
+    </div> <!-- card -->
+    </div> <!-- col-md-9 -->';
 }
 elseif ($nombre_rol_verusuario === 'Privado') { ?>
     

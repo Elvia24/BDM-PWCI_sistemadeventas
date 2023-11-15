@@ -26,7 +26,7 @@ c.nombre_cate AS NombreCategoria
 FROM producto p
 JOIN usuario u ON p.id_Usuario = u.ID_usuario
 JOIN categoria c ON p.id_Categoria = c.ID_categoria
-WHERE p.id_Usuario = $ID_usuario_sesion AND p.baja_producto=1";
+WHERE  p.baja_producto=1 AND p.id_Usuario = $ID_usuario_sesion ";
 
 
 $query_productos = $pdo->prepare($sql_productos);

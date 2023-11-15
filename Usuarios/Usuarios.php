@@ -77,8 +77,9 @@ include('../app/controllers/usuarios/listado_de_usuarios.php');
                         <td >
                               <div class="btn-group">
                               <a href="VerUsuario.php?idu=<?php echo $id_usuario;?> " type="button" class="btn btn-info"><i class="fa fa-eye"></i>Ver</a>
-                              <a href="EliminarUsuario.php?idu=<?php echo $id_usuario;?> " type="button" class="btn btn-danger"><i class="fa fa-trash"></i>Eliminar</a>
-
+                              <?php if ($Rol_sesion === 'Administrador') : ?>
+                                <a href="EliminarUsuario.php?idu=<?php echo $id_usuario;?> " type="button" class="btn btn-danger"><i class="fa fa-trash"></i>Eliminar</a>
+                              <?php endif; ?>
                               </div>
                         </td>
 
