@@ -1,73 +1,42 @@
 <?php
-include('../app/config.php');
-include('../layout/sesion.php');
+include('../../config.php');
 
-include('../app/controllers/productos/listaAutorizados.php');
+if (isset($_POST['buscarPorNombre']) && !empty($_POST['buscarPorNombre'])) {
+     $nombreBusqueda = $_POST['buscarPorNombre'];
+     $sql_productos="SELECT 
+     p.ID_producto , 
+     p.nombre_prod AS NombreProducto,
+     p.descripcion_prod AS DescripcionProducto, 
+     p.precio_prod AS PrecioProducto, 
+     p.status_prod AS EstadoProducto, 
+     p.cantDisp_prod AS CantidadDisponible, 
+     p.calificacion_prod AS CalificacionProducto, 
+     p.fechaCreacion_prod, 
+     p.baja_producto, 
+     p.venta_cotizar, 
+     p.imagenP_1, 
+     p.imagenP_2, 
+     p.imagenP_3, 
+     p.VideoP,
+     u.ID_usuario, 
+     u.nombreUsuario AS NombreUsuario, 
+     c.ID_categoria, 
+     c.nombre_cate AS NombreCategoria
+     FROM producto p
+     JOIN usuario u ON p.id_Usuario = u.ID_usuario
+     JOIN categoria c ON p.id_Categoria = c.ID_categoria
+     WHERE p.baja_producto=1 AND p.status_prod=1 AND p.nombre_prod LIKE '%$nombreBusqueda%'";
+}
 
-include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR -LA BARRA IZQUIERDA AZUL -->
-
-// include('../app/controllers/usuarios/ver_usuario.php');
 
 
+$query_productos = $pdo->prepare($sql_productos);
+$query_productos->execute();
 
-
-
-
-
-
-
-
+$productos_tabla = $query_productos->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<title>Productos</title>
-
-
-
-  <!-- El contenido de la página -->
-<div class=" content-wrapper "style="background-color: var(--gris-bisonte);">
-    <!-- Encabezado de contenido  -->
-    <div class="content-header ">
-            <!--Buscador -->
-        
-<!-- Formulario de búsqueda -->
-<form class="form-inline" id="formBusqueda">
-    <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Buscar por nombre" aria-label="Search" id="buscarPorNombre">
-        <div class="input-group-append">
-            <button class="btn btn-navbar" type="button" id="btnBuscar">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-    </div>
-</form>
-
-<!-- Contenedor para mostrar resultados de búsqueda -->
-
-
-
-            <!--Buscador -->
-    </div>
-
-
-
-            <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">Productos</h1>
                 
-                </div><!-- col-sm-6 -->
-
-                </div><!-- row mb-2-->
-            </div><!-- container-fluid -->
-            </div>
-    <!-- Encabezado de contenido -->
-    <!-- Contenedor Perfil -->
-    <div id="resultadosBusqueda"></div>
-    <!-- Contenedor Perfil -->
-<hr>
-
-
 <section class="content" >
             <div class="container-fluid">
             <!-- Encabezado tabla -->
@@ -138,44 +107,3 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
         <!-- /.row -->
 </div><!-- /.container-fluid -->
         </section>
-
-
-
-  </div>
-  <!-- El contenido de la página -->
-
-  <?php include('../layout/parte2.php');?> <!-- ESTE SUJETO CONTIENE  -LA BARRA DERECHA cARRITO -->
-
-
-
-
-
-  <script>
-    $(document).ready(function() {
-        // Acción al escribir en el campo de búsqueda
-        $("#buscarPorNombre").on("input", function() {
-            // Obtener el término de búsqueda
-            var nombreBusqueda = $(this).val();
-
-            // Verificar si buscarPorNombre está vacío
-            if (nombreBusqueda.trim() === "") {
-                // Mostrar otro resultado o realizar alguna acción cuando el término está vacío
-                $("#resultadosBusqueda").html("<p>Por favor, ingresa un término de búsqueda.</p>");
-            } else {
-                // Realizar la petición AJAX
-                $.ajax({
-                    type: "POST",
-                    url: "../app/controllers/productos/buscar.php", // Archivo PHP para procesar la búsqueda
-                    data: { buscarPorNombre: nombreBusqueda },
-                    success: function(response) {
-                        // Mostrar los resultados en el contenedor designado
-                        $("#resultadosBusqueda").html(response);
-                    }
-                });
-            }
-        });
-    });
-</script>
-
-
-
