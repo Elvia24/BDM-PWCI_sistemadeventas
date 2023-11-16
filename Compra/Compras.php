@@ -90,7 +90,7 @@ include('../app/controllers/compra/listado_compras.php');
                         <th>Fecha</th>
                         <th>Imagenes</th>
                         <th>Producto Comprado</th>
-                        <th>Categoria</th>
+                        <th>Categoria </th>
                         <th>Cantidad</th>
                         <th >SubTotal</th>
                         <th >Total</th>
@@ -124,11 +124,12 @@ include('../app/controllers/compra/listado_compras.php');
                             <img src=" <?php echo $URL. "../app/controllers/productos/imageProductos/" .$imagenP_3;?>" width="100px" alt="imageProducto/">
                         
                         </td>
+                        <td ><?php echo $ProductoComprado;?></td>
                         <td><?php echo $NombredeCategoría;?></td>
                         <td><?php echo $Cantidad;?></td>
                         <td ><?php echo $Subtotal;?></td>
-                        <td ><?php echo $Subtotal;?></td>
-                        <td ><?php echo $ProductoComprado;?></td>
+                        <td ><?php echo $Total;?></td>
+                        
                         <!-- <td ><?php echo $usuarios_dato['ID_usuario'];?></td> -->
 
 

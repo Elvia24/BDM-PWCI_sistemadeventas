@@ -173,17 +173,26 @@ include('../app/controllers/productos/cargar_producto.php');
 
                             }
                             ?>
-
+                                
+                                
+                                <div class="bg-yellow py-2 px-3 mt-4"> 
+                                  <h2 class="mb-0"><?php echo  $Cantidad_Disponible  ?></h2>
+                                    <h4 class="mt-0">
+                                      En Existencia:
+                                    </h4>
+                                </div>
             
 
 
               <div class="mt-4">
                             <?php
                             if ($venta_cotizar == 1) {
+
+                              if ($Cantidad_Disponible != 0) {
                                 echo '
 
                               <button onclick="submitForm(\'../app/controllers/carrito/carrito.php\');" type="submit" class="btn btn-primary btn-lg btn-flat"  ><i class="fas fa-cart-plus fa-lg mr-2"></i>  Agregar al Carrito.</button>';
-                                
+                              }  
                             }elseif ($venta_cotizar == 0) {
                               echo '<a href="../Cotizar/PedirCotizacion.php?id=' . $ID_producto . '" type="button" class="btn btn-primary btn-lg btn-flat">
                                       <i class="fas fa-handshake"></i> Pedir Cotizar
@@ -428,6 +437,37 @@ $('#btn_create').click(function() {
         console.error("Error en la solicitud");
     });
 });
+
+
+</script>
+
+<script>
+function validarCantidad() {
+    // Obtén el valor de la cantidad disponible
+    var cantidadDisponible = <?php echo $Cantidad_Disponible; ?>;
+
+    // Obtén el valor de la cantidad ingresada por el usuario
+    var cantidadIngresada = document.getElementById("CantidadDeProductos").value;
+
+    // Verifica si la cantidad ingresada es mayor que cero
+    if (cantidadIngresada > 0) {
+        // Verifica si la cantidad ingresada es menor o igual a la cantidad disponible
+        if (cantidadIngresada <= cantidadDisponible) {
+            // Llama a la función para enviar el formulario
+            submitForm('../app/controllers/carrito/carrito.php');
+            return true;
+        } else {
+            // Muestra un mensaje de alerta si la cantidad ingresada es mayor que la disponible
+            alert("La cantidad ingresada es mayor que la cantidad disponible.");
+            return false;
+        }
+    } else {
+        // Muestra un mensaje de alerta si la cantidad ingresada no es mayor que cero
+        alert("Ingrese una cantidad válida mayor que cero.");
+        return false;
+    }
+}
+
 
 
 </script>

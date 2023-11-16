@@ -2,7 +2,7 @@
 include('../app/config.php');
 include('../layout/sesion.php');
 
-include('../app/controllers/productos/listaAutorizados.php');
+include('../app/controllers/productos/productos_por_categoria.php');
 
 include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR -LA BARRA IZQUIERDA AZUL -->
 
@@ -19,7 +19,7 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
 
 ?>
 
-<title>Productos</title>
+<title>Ver mas Productos</title>
 
 
 
@@ -94,7 +94,7 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
                                 <!-- <h5>Usuario: <?php echo $PrecioProducto?></h5>  -->
                                 <img  style="width: 50%; height: 50%; object-fit: object-fit;" src=" <?php echo $URL. "../app/controllers/productos/imageProductos/" .$imagenP_1;?>" alt="imageProductos/">
                             </div>
-                            <?php if ($Rol_sesion === 'Administrador' ||$Rol_sesion === 'Publico' ||$Rol_sesion === 'Privado') : ?>       
+                                        
                             <?php
                             if ($venta_cotizar == 1) {
                                 echo '<h4 style="">Precio: ' . $PrecioProducto . ' $ </h4>';
@@ -107,7 +107,7 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
 
                             }
                             ?>
-                            <?php endif; ?>
+
                             <br><br> 
                             <a  style="background-color: var(--azul-bisonte);" href="<?php echo $URL;?>../Productos/VerProducto.php?id=<?php echo $ID_producto; ?>" class="small-box-footer">Mas informacion <i class="fas fa-arrow-circle-right"></i></a>
                         </div>

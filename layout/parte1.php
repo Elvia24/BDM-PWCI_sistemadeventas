@@ -169,7 +169,6 @@
           <!--  CATEGORIAS-->
           <li class="nav-item">
 
-              <?php if ($Rol_sesion === 'Administrador' ||$Rol_sesion === 'Vendedor' ) : ?>
               <a href="<?php echo $URL;?>../Categorias/Categorias.php" class="nav-link">
               <i class="fa fa-tags nav-icon"></i>
               <p>
@@ -177,7 +176,6 @@
               <!-- <span class="right badge badge-danger">0</span> insignia-peligro-->  
               </p>
               </a>
-              <?php endif; ?>
           </li>
 
         
@@ -215,7 +213,7 @@
               </li>
               <li class="nav-item">
 
-                <?php if ($Rol_sesion === 'Administrador' ||$Rol_sesion === 'Vendedor' ) : ?>
+                <?php if ($Rol_sesion === 'Administrador' ||$Rol_sesion === 'Vendedor'||$Rol_sesion === 'Publico' ) : ?>
                     <a href="<?php echo $URL;?>../Productos/MisProductos.php" class="nav-link">
                         <i class="fa fa-list-ol nav-icon"></i>
                         <p>
@@ -230,7 +228,7 @@
 
               <li class="nav-item">
 
-                <?php if ($Rol_sesion === 'Administrador' ||$Rol_sesion === 'Vendedor' ) : ?>
+                <?php if ($Rol_sesion === 'Administrador' ||$Rol_sesion === 'Vendedor'||$Rol_sesion === 'Publico' ) : ?>
                     <a href="<?php echo $URL;?>../Productos/AgregarProducto.php" class="nav-link">
                         <i class="fa fa-plus-circle nav-icon"></i>
                         <p>
@@ -277,6 +275,8 @@ Mis Compras
 
             <!--  PRODUCTOS-->
             <!--  COTIZACION-->
+            <?php if ($Rol_sesion === 'Administrador' ||$Rol_sesion === 'Publico' ||$Rol_sesion === 'Privado') : ?>
+
           <li class="nav-item">
             <a href="<?php echo $URL;?>../Cotizar/ProductosaCotizar.php" class="nav-link">
             <i  class="fa fa-handshake" ></i>
@@ -308,8 +308,11 @@ Mis Compras
               </p>
             </a>
           </li>
+
+          <?php endif; ?>
             <!--  MisPedidos-->
             <!--  REPORTES-->
+            <?php if ($Rol_sesion === 'Administrador' ||$Rol_sesion === 'Publico' ||$Rol_sesion === 'Vendedor') : ?>
           <li class="nav-item">
             <a href="<?php echo $URL;?>../Ventas/MisVentas.php" class="nav-link">
               <i class="nav-icon fas fa-clipboard"></i>
@@ -319,6 +322,9 @@ Mis Compras
               </p>
             </a>
           </li>
+          <?php endif; ?>
+          
+          
             <!--  REPORTES-->
         </ul>
       </nav>

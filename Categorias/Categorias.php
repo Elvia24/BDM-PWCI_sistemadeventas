@@ -19,10 +19,11 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
                 <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="m-0">Categorias
+                    <?php if ($Rol_sesion === 'Administrador' ||$Rol_sesion === 'Vendedor' ||$Rol_sesion === 'Publico' ) : ?>
                     <button style="background-color: var(--rojo-bisonte);   color: #ffffff;" type="button" class="btn" data-toggle="modal" data-target="#modal-create">
                     <i class="fas fa-plus"> </i>Agregar Categoria
                     </button>
-
+                    <?php endif; ?>
 
                     </h1>
 
@@ -62,12 +63,15 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
 
 
                             <div class="btn-group">
+                            <?php if ($Rol_sesion === 'Administrador' ||$Rol_sesion === 'Vendedor'||$Rol_sesion === 'Publico' ) : ?>
+
                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-edit<?php echo $ID_categoria;?>">
                                     <i class="fas fa-pen"> </i>Editar
                             </button>
+                            <?php endif; ?>
                                 <!-- <a href="#" type="button" class="btn btn-danger"><i class="fa fa-trash"></i>Eliminar</a> -->
 
-
+                                
                                         <!-- MODAL PARA EDITAR CATEGORIAS -->
                                         <div class="modal fade" id="modal-edit<?php echo $ID_categoria;?>">
                                                 <div class="modal-dialog">
@@ -99,11 +103,13 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
 
 
                                                     </div>
+                                                    
                                                     <div class="modal-footer justify-content-between">
-                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                                  
                                                     <button style="background-color: #67b150; color:#ffffff" type="button" class="btn btn-primary" id="btn_edit<?php echo $ID_categoria;?> "data-id="<?php echo $ID_categoria;?>"> Editar</button>
-
+                                                    
                                                 </div>
+                                                
                                                 <!-- /.modal-content -->
                                                 </div>
                                                 <!-- /.modal-dialog -->
@@ -143,7 +149,7 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
 
                         </div>
 
-                            <a  style="background-color: var(--azul-bisonte);" href="#" class="small-box-footer">Mas informacion <i class="fas fa-arrow-circle-right"></i></a>
+                            <a  style="background-color: var(--azul-bisonte);" href="VerMAS.php?idu=<?php echo $ID_categoria;?> " class="small-box-footer">Mas informacion <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
 
