@@ -2,50 +2,22 @@
 include('../app/config.php');
 include('../layout/sesion.php');
 
-include('../app/controllers/productos/listaAutorizados.php');
+include('../app/controllers/filtros/para_cotizar.php');
 
 include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR -LA BARRA IZQUIERDA AZUL -->
 
+// include('../app/controllers/usuarios/ver_usuario.php');
+
+
 ?>
 
-<title>Productos</title>
+<title>Para Cotizar</title>
 
 
 
   <!-- El contenido de la página -->
 <div class=" content-wrapper "style="background-color: var(--gris-bisonte);">
-    <!-- Encabezado de contenido  -->
-    <div class="content-header ">
-            <!--Buscador -->
-            <div class="row mb-2">
-                <div class="col-sm-2">
-            <!-- Formulario de búsqueda -->
-            <form class="form-inline" id="formBusqueda">
-                <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Buscar por nombre" aria-label="Search" id="buscarPorNombre">
-                    <div class="input-group-append">
-                        <button class="btn btn-navbar" type="button" id="btnBuscar">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-                </div>
-            <div class="col-sm-6">
-                <div class="btn-group">
-                <a href="../FiltrosProductos/MayorPrecio.php"  type="button" class="btn btn-default">Mayor/Menor Precio</a>
-                <a href="../FiltrosProductos/MenorPrecio.php"  type="button" class="btn btn-default">Menor/Mayor Precio</a>
-                <a href="../FiltrosProductos/MasVendido.php"  type="button" class="btn btn-default">Mas/Menos Vendido</a>
-                <a href="../FiltrosProductos/MenosVendido.php"  type="button" class="btn btn-default">Menos/Mas Vendido</a>
-                <a href="../FiltrosProductos/ParaCotizar.php"  type="button" class="btn btn-dark">Para Cotizar</a>
-                </div>
 
-            </div>
-
-            </div>
-
-            <!--Buscador -->
-    </div>
 
 
 
@@ -53,18 +25,15 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
             <div class="container-fluid">
                 <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Productos</h1>
+                    <h1 class="m-0"><a href="../Productos/Productos.php" type="button" class="btn btn-info"><i class="fa fa-arrow-left" aria-hidden="true"></i> Volver</a>Para Cotizar</h1>
                 
                 </div><!-- col-sm-6 -->
 
                 </div><!-- row mb-2-->
             </div><!-- container-fluid -->
             </div>
-    <!-- Encabezado de contenido -->
-    <!-- Contenedor Perfil -->
-    <div id="resultadosBusqueda"></div>
-    <!-- Contenedor Perfil -->
-<hr>
+   
+
 
 
 <section class="content" >
@@ -149,32 +118,7 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
 
 
 
-  <script>
-    $(document).ready(function() {
-        // Acción al escribir en el campo de búsqueda
-        $("#buscarPorNombre").on("input", function() {
-            // Obtener el término de búsqueda
-            var nombreBusqueda = $(this).val();
 
-            // Verificar si buscarPorNombre está vacío
-            if (nombreBusqueda.trim() === "") {
-                // Mostrar otro resultado o realizar alguna acción cuando el término está vacío
-                $("#resultadosBusqueda").html("<p>Por favor, ingresa un término de búsqueda.</p>");
-            } else {
-                // Realizar la petición AJAX
-                $.ajax({
-                    type: "POST",
-                    url: "../app/controllers/productos/buscar.php", // Archivo PHP para procesar la búsqueda
-                    data: { buscarPorNombre: nombreBusqueda },
-                    success: function(response) {
-                        // Mostrar los resultados en el contenedor designado
-                        $("#resultadosBusqueda").html(response);
-                    }
-                });
-            }
-        });
-    });
-</script>
 
 
 

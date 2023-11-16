@@ -95,7 +95,7 @@ include('../app/controllers/productos/MIS_productos.php');
                         <th>Descripcion</th>
                         <th>Precio</th>
                         <th >Cantidad disponible</th>
-                        <th >Calificacion </th>
+                        
                         <th >Categoria </th>
                         <th >Vendedor </th>
                         <th >Venta/Cotizacion </th>
@@ -142,7 +142,7 @@ include('../app/controllers/productos/MIS_productos.php');
                         <td><?php echo $productos_dato['PrecioProducto'];?></td>
                         <td><?php echo $productos_dato['CantidadDisponible'];?></td>
                         
-                        <td><?php echo $productos_dato['CalificacionProducto'];?></td>
+                        
                         <td><?php echo $productos_dato['NombreCategoria'];?></td>
                         <td><?php echo $productos_dato['NombreUsuario'];?></td>
                         <td class="cotizar-<?php echo $productos_dato['venta_cotizar']; ?>">

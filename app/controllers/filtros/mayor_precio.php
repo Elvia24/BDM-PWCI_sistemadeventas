@@ -4,7 +4,7 @@
 
 
 // $email_sesion= $_SESSION['sesion_email'];
-$sql_productos = "SELECT * FROM vista_productos_no_autorizados";
+$sql_productos = "SELECT * FROM vista_mayorprecio";
 
 
 $query_productos = $pdo->prepare($sql_productos);
