@@ -51,7 +51,10 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
                     foreach($categoria_tabla as $categoria_dato){
                                 $ID_categoria = $categoria_dato['ID_categoria'];
                                 $nombre_categoria = $categoria_dato['nombre_cate'];
-                                $descripcion_cate = $categoria_dato['descripcion_cate'];?>
+                                $descripcion_cate = $categoria_dato['descripcion_cate'];
+                                
+                                $precioPromedio = calcularPrecioPromedioCategoria($ID_categoria, $pdo);
+                                ?>
                     <div class="col-lg-3 col-6">
 
                         <div class="small-box" style="background-color:#495057a2;">
@@ -60,6 +63,8 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
                             <h3 style="background-color: var(--rojo-bisonte); color:#ffffff"  ><?php echo $categoria_dato['nombre_cate'];?></h3>
                             <h4 style="">Descripcion: <?php echo $categoria_dato['descripcion_cate'];?></h4>
                             <h5>Usuario: <?php echo $categoria_dato['nombreUsuario'];?></h5>
+                            <h6>precioPromedio: <?php echo $precioPromedio;?></h6>
+
 
 
                             <div class="btn-group">
@@ -69,6 +74,7 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
                                     <i class="fas fa-pen"> </i>Editar
                             </button>
                             <?php endif; ?>
+                            
                                 <!-- <a href="#" type="button" class="btn btn-danger"><i class="fa fa-trash"></i>Eliminar</a> -->
 
                                 

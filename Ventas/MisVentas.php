@@ -20,14 +20,147 @@ include('../app/controllers/ventas/misventas.php');
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
+        <div class="col-sm-6"> <h1 class="m-0">Mis Ventas</h1></h1></div>
+<!--  -->
+          <div class="col-sm-3">
           <!-- <form method="post" action="../app/controllers/usuarios/listado_de_usuarios.php">
           <input type="text" name="id_usuarioSesion" value="<?php echo $ID_usuario_sesion?>" hidden>
           
         </form> -->
 
-            <h1 class="m-0">Mis Ventas</h1>
-          </div><!-- col-sm-6 -->
+            
+
+            <label for="miComboBox" class="content" style="padding: 0px 10px;">Categoría: </label>
+    <select id="miComboBox" name="ID_Categoria_producto" class="form-control">
+        <?php
+        // Realiza una consulta para obtener las categorías desde la base de datos
+        // Asegúrate de ajustar esta consulta según tu estructura de base de datos
+        $consultaCategorias = "SELECT `ID_categoria`, `nombre_cate` FROM `categoria`";
+
+        // Ejecuta la consulta y recorre los resultados
+        foreach ($pdo->query($consultaCategorias) as $row) {
+            $idCategoria = $row['ID_categoria'];
+            $nombreCategoria = $row['nombre_cate'];
+            echo "<option value='$idCategoria'>$nombreCategoria</option>";
+        }
+        ?>
+    </select>
+            <!-- Large modal -->
+<button onclick="buscarPorCategoria()" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" >Buscar</button>
+
+
+<script>
+    function buscarPorCategoria() {
+        var categoriaSeleccionada = $('#miComboBox').val();
+
+        // Realizar la solicitud AJAX
+        $.ajax({
+            type: 'GET',
+            url: '../app/controllers/filtros/filtrar_venta_categoria.php',
+            data: { categoria: categoriaSeleccionada },
+            success: function(response) {
+                // Puedes manejar la respuesta aquí
+                console.log(response);
+
+                // Si deseas, puedes hacer algo con la respuesta, como mostrarla en algún elemento HTML
+                $('#resultado').html(response);
+            },
+            error: function(error) {
+                console.error(error);
+            }
+        });
+    }
+</script>
+
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+  <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Resultados de la busqueda </h5>
+        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div id="resultado"></div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+          <!-- Large modal -->
+          </div>
+<!--  -->
+<div class="col-sm-3">
+          <label for="Porfecha" class="content" style="padding: 0px 10px;">Categoría: </label>
+          <input  name="Porfecha" value="" class="form-control" type="date" name="Porfecha" id="Porfecha"  min="1977-01-01"  required>
+
+            <!-- Large modal -->
+<button onclick="buscarPorFecha()" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg2">Buscar</button>
+<script>
+    function buscarPorFecha() {
+        var fechaSeleccionada = $('#Porfecha').val();
+
+        // Realizar la solicitud AJAX
+        $.ajax({
+            type: 'GET',
+            url: '../app/controllers/filtros/filtrar_venta_fecha.php',
+            data: { fecha: fechaSeleccionada },
+            success: function(response) {
+                // Puedes manejar la respuesta aquí
+                console.log(response);
+
+                // Si deseas, puedes hacer algo con la respuesta, como mostrarla en algún elemento HTML
+                $('#resultado2').html(response);
+            },
+            error: function(error) {
+                console.error(error);
+            }
+        });
+    }
+</script>
+
+
+<div class="modal fade bd-example-modal-lg2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+  <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Resultados de la busqueda </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+      <div id="resultado2"></div>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+          <!-- Large modal -->
+
+
+
+          </div>
+
+
+
+
         </div><!-- row mb-2-->
       </div><!-- container-fluid -->
     </div>
@@ -55,30 +188,6 @@ include('../app/controllers/ventas/misventas.php');
 
 
 
-<form method="post" action="../app/controllers/compra/filtrar_ventas.php?>">
-    <label for="categoria">Filtrar por Categoría:</label>
-    <select id="categoria" name="categoria" class="">
-        <?php
-        // Realiza una consulta para obtener las categorías desde la base de datos
-        // Asegúrate de ajustar esta consulta según tu estructura de base de datos
-        $consultaCategorias = "SELECT `ID_categoria`, `nombre_cate` FROM `categoria`";
-
-        // Ejecuta la consulta y recorre los resultados
-        foreach ($pdo->query($consultaCategorias) as $row) {
-            $idCategoria = $row['ID_categoria'];
-            $nombreCategoria = $row['nombre_cate'];
-            echo "<option value='$idCategoria'>$nombreCategoria</option>";
-        }
-        ?>
-    </select>
-
-    <label for="fecha">Filtrar por Fecha:</label>
-    <input type="date" name="fecha" id="fecha" required>
-
-    <input type="text" name="ID_usuario" id="ID_usuario" value="<?php echo $ID_usuario_sesion?>">
-    <input   type="submit" value="Filtrar">
-</form>
-<!-- Fin del formulario de filtro -->
 
 
 
@@ -158,29 +267,7 @@ include('../app/controllers/ventas/misventas.php');
 
 
 
-<form method="post" action="../app/controllers/compra/filtrar_ventas.php?>">
-    <label for="categoria">Filtrar por Categoría:</label>
-    <select id="categoria" name="categoria" class="">
-        <?php
-        // Realiza una consulta para obtener las categorías desde la base de datos
-        // Asegúrate de ajustar esta consulta según tu estructura de base de datos
-        $consultaCategorias = "SELECT `ID_categoria`, `nombre_cate` FROM `categoria`";
 
-        // Ejecuta la consulta y recorre los resultados
-        foreach ($pdo->query($consultaCategorias) as $row) {
-            $idCategoria = $row['ID_categoria'];
-            $nombreCategoria = $row['nombre_cate'];
-            echo "<option value='$idCategoria'>$nombreCategoria</option>";
-        }
-        ?>
-    </select>
-
-    <label for="fecha">Filtrar por Fecha:</label>
-    <input type="date" name="fecha" id="fecha" required>
-
-    <input type="text" name="ID_usuario" id="ID_usuario" value="<?php echo $ID_usuario_sesion?>">
-    <input   type="submit" value="Filtrar">
-</form>
 <!-- Fin del formulario de filtro -->
 
 

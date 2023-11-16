@@ -56,6 +56,9 @@ include('../layout/parte1.php'); //<!-- ESTE SUJETO CONTIENE  -LA BARRA SUPERIOR
                   <li class="list-group-item mx-auto">
                     <b>Sexo:</b> <a><a><?php echo $Sexo_sesion;?></a>
                   </li>
+                  <li class="list-group-item mx-auto">
+                    <b>Edad:</b> <a><a><?php echo $edadUsuario;?></a>
+                  </li>
                 </ul>
                 <!-- Datos Usuario -->
 
