@@ -337,9 +337,9 @@ function submitForm(action) {
                     <table class="table   table-striped ">
                     <thead>
                         <tr>
-                        <th>ID_usuario_sesion</th>
+                        <!-- <th hidden>ID_usuario_sesion</th>
                         <th>id_lista</th>
-                        <th>id_producto_get</th>
+                        <th>id_producto_get</th> -->
                         <th>Nombre</th>
                         <th>Descripcion</th>
                         <th></th>
@@ -356,9 +356,9 @@ function submitForm(action) {
                       $id_lista = $lista_dato['ID_lista'];?>
                       
                      <tr >
-                        <td><?php echo $ID_usuario_sesion;?></td>
+                        <!-- <td><?php echo $ID_usuario_sesion;?></td>
                         <td><?php echo $id_lista;?></td>
-                        <td><?php echo $id_producto_get;?></td>
+                        <td><?php echo $id_producto_get;?></td> -->
                         <td><?php echo $lista_dato['nombre_lista'];?></td>
                         <td><?php echo $lista_dato['descripcion'];?></td>
                         <td><?php echo $lista_dato['Publica_Privada'];?></td>

@@ -78,7 +78,7 @@ include('../app/controllers/cotizar/cargar_cotizaciones.php');
 
 
                 <div class="card-body">
-                    <textarea  name="mensaje_vendedor" id="" cols="100" rows="10"><?php echo $Mensaje_Vendedor?></textarea>
+                    <textarea  name="mensaje_vendedor" id="" cols="50" rows="10"><?php echo $Mensaje_Vendedor?></textarea>
 
                     <button type="submit" href="#" class="btn btn-success"> Enviar Mensaje
                         <i class="fas fa-envelope"></i>

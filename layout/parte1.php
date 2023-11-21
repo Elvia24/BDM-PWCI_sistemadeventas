@@ -275,7 +275,7 @@ Mis Compras
 
             <!--  PRODUCTOS-->
             <!--  COTIZACION-->
-            <?php if ($Rol_sesion === 'Administrador' ||$Rol_sesion === 'Publico' ||$Rol_sesion === 'Privado') : ?>
+            <?php if ($Rol_sesion === 'Administrador' ||$Rol_sesion === 'Vendedor' ) : ?>
 
           <li class="nav-item">
             <a href="<?php echo $URL;?>../Cotizar/ProductosaCotizar.php" class="nav-link">
@@ -286,7 +286,9 @@ Mis Compras
               </p>
             </a>
           </li>
+          <?php endif; ?>
             <!--  COTIZACION-->
+            <?php if ($Rol_sesion === 'Administrador' ||$Rol_sesion === 'Privado' ||$Rol_sesion === 'Publico' ) : ?>
             <!--  MisPedidos-->
           <li class="nav-item">
             <a href="<?php echo $URL;?>../Cotizar/MisPedidos.php" class="nav-link">
@@ -297,8 +299,10 @@ Mis Compras
               </p>
             </a>
           </li>
+          <?php endif; ?>
             <!--  MisPedidos-->
           <!--  MisPedidos-->
+          <?php if ($Rol_sesion === 'Administrador' ||$Rol_sesion === 'Privado' ||$Rol_sesion === 'Publico' ) : ?>
           <li class="nav-item">
             <a href="<?php echo $URL;?>../Listas/MisListas.php" class="nav-link">
             <i  class="fa fa-list-alt" ></i>
@@ -308,8 +312,8 @@ Mis Compras
               </p>
             </a>
           </li>
-
           <?php endif; ?>
+          
             <!--  MisPedidos-->
             <!--  REPORTES-->
             <?php if ($Rol_sesion === 'Administrador' ||$Rol_sesion === 'Publico' ||$Rol_sesion === 'Vendedor') : ?>
