@@ -275,7 +275,7 @@ Mis Compras
 
             <!--  PRODUCTOS-->
             <!--  COTIZACION-->
-            <?php if ($Rol_sesion === 'Administrador' ||$Rol_sesion === 'Vendedor' ) : ?>
+            <?php if ($Rol_sesion === 'Administrador' ||$Rol_sesion === 'Vendedor' ||$Rol_sesion === 'Publico') : ?>
 
           <li class="nav-item">
             <a href="<?php echo $URL;?>../Cotizar/ProductosaCotizar.php" class="nav-link">
