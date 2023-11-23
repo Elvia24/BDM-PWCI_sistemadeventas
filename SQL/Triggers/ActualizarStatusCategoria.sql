@@ -1,10 +1,5 @@
-
-DELIMITER //
-
-CREATE TRIGGER ActualizarStatusCategoria
-AFTER UPDATE ON usuario
-FOR EACH ROW
-BEGIN
+CREATE TRIGGER `ActualizarStatusCategoria` AFTER UPDATE ON `usuario`
+ FOR EACH ROW BEGIN
   DECLARE usuario_id_to_update INT;
   DECLARE nuevo_status_usuario INT;
   
@@ -14,7 +9,4 @@ BEGIN
   IF nuevo_status_usuario = 0 THEN
     UPDATE categoria SET status_categoria = 0 WHERE ID_usuario = usuario_id_to_update;
   END IF;
-END;
-//
-
-DELIMITER ;
+END
